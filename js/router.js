@@ -19,15 +19,15 @@ define([
         },
 
         routes: {
-            'about': "showAbout",
-            'about/:sub': "showAbout",
-            'coding': "showCoding",
-            'coding/:sub': "showCoding",
-            'drawing': "showDrawing",
-            'drawing/:sub': "showDrawing",
-            'writing': "showWriting",
-            'writing/:sub': "showWriting",
-            'manifest': "showManifest",
+            '!about': "showAbout",
+            '!about/:sub': "showAbout",
+            '!coding': "showCoding",
+            '!coding/:sub': "showCoding",
+            '!drawing': "showDrawing",
+            '!drawing/:sub': "showDrawing",
+            '!writing': "showWriting",
+            '!writing/:sub': "showWriting",
+            '!manifest': "showManifest",
 
             // Default
             '*actions': 'defaultAction'
@@ -64,7 +64,7 @@ define([
 
         defaultAction: function (actions) {
             console.log("Actions: ", actions);
-            window.location.replace("/#about");
+            window.location.replace("/#!about");
         }
     });
 
