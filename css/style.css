@@ -1,0 +1,191 @@
+body {
+    font-family: "Roboto", "Arial", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    background: #eee;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: #d00;
+    text-decoration: none;
+}
+
+p {
+    margin: 15px 0;
+}
+
+strong {
+    font-weight: normal;
+}
+
+ul.list {
+    margin: 15px 0;
+    list-style: disc;
+}
+ul.list li {
+    margin-left: 40px;
+}
+
+.icon-github {
+    position: relative;
+    display: inline-block;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 0.1em;
+    font-size: 1.8em;
+    top: 2px;
+    text-align: center;
+    font-family: 'Mono Social Icons Font';
+}
+.icon-github:before {
+    content: "\e037";
+}
+
+
+header {
+    position: fixed;
+    z-index: 200;
+    background: #333;
+    width: 180px;
+}
+
+header .avatar {
+    height: 180px;
+    position: relative;
+}
+header .avatar img {
+    width: 180px;
+}
+
+h1 {
+    font-family: "Josefin Sans";
+    font-size: 2.0em;
+    height: 25px;
+    padding: 10px 0;
+    text-align: center;
+}
+h1 a {
+    color: #ddd;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+}
+
+.social li {
+    height: 30px;
+}
+.social li a {
+    display: block;
+    color: #ddd;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.85em;
+    height: 14px;
+    padding: 8px 0 8px 35px;
+}
+.social li a:hover {
+    background: #000;
+}
+.social li a span {
+    color: #888;
+    color: rgba(255,255,255,0.4);
+}
+.social .icon {
+    color: #ddd;
+    color: rgba(255,255,255,0.9);
+    width: 30px;
+    height: 30px;
+    margin: -8px 0 0 -35px;
+    position: absolute;
+    font-family: 'Mono Social Icons Font';
+    font-size: 32px;
+    text-align: center;
+    background: #000;
+}
+.social .icon img {
+    width: 30px;
+    height: 30px;
+    opacity: 0.9;
+}
+.social .icon:before {
+    display: block;
+    margin-top: -1px;
+}
+.social .twitter .icon:before { content: "\e086"; }
+.social .twitter a:hover, .social .twitter .icon { background: #00ACED; }
+.social .linkedin .icon:before { content: "\e052"; }
+.social .linkedin a:hover, .social .linkedin .icon { background: #007FB1; }
+.social .github .icon:before { content: "\e037"; }
+.social .github a:hover, .social .github .icon { background: #4183C4; }
+.social .deviantart .icon:before { content: "\e018"; }
+.social .deviantart a:hover, .social .deviantart .icon { background: #4B5D50; }
+.social .stackoverflow .icon:before { content: "\e081"; }
+.social .stackoverflow a:hover, .social .stackoverflow .icon { background: #F47920; }
+
+
+
+
+.nav {
+    position: fixed;
+    z-index: 100;
+    left: 180px;
+    width: 100%;
+    height: 45px;
+    background: #333;
+    box-shadow: 3px 20px 20px #eee;
+}
+.nav li {
+    float: left;
+    font-size: 1.5em;
+}
+.nav li a {
+    display: block;
+    color: #ddd;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    height: 23px;
+    padding: 12px 15px 10px 15px;
+}
+.nav li a:hover {
+    color: #fff;
+}
+.nav li .selected, .nav li .selected:hover {
+    background: #eee;
+    color: #333;
+}
+
+.container {
+    padding: 60px 20px 0 215px;
+    font-size: 1.2em;
+    max-width: 800px;
+    line-height: 1.4em;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: normal;
+    padding: 15px 0;
+}
+
+h2 a {
+    text-decoration: none;
+}
+
+h2:hover a:after {
+    content: "\2191";
+    color: #999;
+    font-size: 0.8em;
+    position: absolute;
+    margin-left: 5px;
+}
+
+code {
+    font-family: "Ubuntu Mono";
+    font-weight: normal;
+    background: #ddd;
+    border-radius: 3px;
+}

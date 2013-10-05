@@ -1,0 +1,5 @@
+<ul>
+    <% _.each(menu_items, function(name, key) { %>
+    <li><a href="#<%= key %>"<% if (selected == key) { %> class="selected"<% } %>><%= name %></a></li>
+    <% }) %>
+</ul>

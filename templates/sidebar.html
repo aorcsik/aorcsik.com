@@ -1,0 +1,16 @@
+<h1><a href="<%= url %>"><%= title %></a></h1>
+<% if (avatar) { %>
+<div class="avatar">
+    <img src="<%= avatar %>" alt="">
+</div>
+<% } %>
+<nav>
+    <ul class="social">
+        <% _.each(social, function(item, key) { %>
+        <li class="<%= key %>"><a href="<%= item.url %>">
+            <span class="icon"><% if (item.img) { %><img src="<%= item.img %>" alt=""><% } %></span>
+            <%= item.title %> <span> / <%= item.user %></span>
+        </a></li>
+        <% }) %>
+    </ul>
+</nav>
