@@ -50,6 +50,12 @@ define([
                         url: "http://aorcsik.deviantart.com/",
                         title: "deviantART",
                         user: "aorcsik"
+                    },
+                    adn: {
+                        url: "https://alpha.app.net/intent/follow/?user_id=%40aorcsik",
+                        img: "images/adn_icon.png",
+                        title: "App.net",
+                        user: "@aorcsik"
                     }
                 }
             }));

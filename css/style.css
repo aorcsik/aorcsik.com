@@ -125,7 +125,8 @@ h1 a {
 .social .deviantart a:hover, .social .deviantart .icon { background: #4B5D50; }
 .social .stackoverflow .icon:before { content: "\e081"; }
 .social .stackoverflow a:hover, .social .stackoverflow .icon { background: #F47920; }
-
+.social .medium a:hover, .social .medium .icon { background: #000; }
+.social .adn a:hover, .social .adn .icon { background: #4a484d; }
 
 
 
@@ -162,7 +163,7 @@ h1 a {
     padding: 60px 20px 0 215px;
     font-size: 1.2em;
     max-width: 800px;
-    line-height: 1.4em;
+    line-height: 1.5em;
 }
 
 h2 {
