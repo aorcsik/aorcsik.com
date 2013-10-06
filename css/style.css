@@ -19,6 +19,10 @@ p {
     margin: 15px 0;
 }
 
+small {
+    font-size: 0.8em;
+}
+
 strong {
     font-weight: normal;
 }
