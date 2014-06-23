@@ -56,7 +56,8 @@ define([
                     'icon_appended': false,
                     'finished': false
                 };
-                var $a = $data_node.find("a");
+                var $a = $data_node.find(".node_text");
+                if (!$a.is("a")) $a = $a.children("a");
                 if ($a.size() > 0) {
                     node.href = $a.attr("href").replace(/\[kukac\]/, "@").replace(/\[pont\]/, ".");
                     $a.attr("href", node.href);
