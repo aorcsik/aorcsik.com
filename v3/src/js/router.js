@@ -21,6 +21,8 @@ define([
             this.content.$el.appendTo($("body"));
             this.content.render();
 
+            $("body").append($("<footer>aorcsik.com &copy; 2016</footer>"));
+
             Backbone.history.start();
         },
 
@@ -31,17 +33,16 @@ define([
             '*actions': 'defaultAction'
         },
         openWork: function () {
-            console.log("work");
             this.navigation.selectNavItem("work");
             this.content.loadContent("work");
         },
         openEducation: function() {
-            console.log("education");
             this.navigation.selectNavItem("education");
             this.content.loadContent("education");
         },
         defaultAction: function (actions) {
-            this.navigate("#!work", {trigger: true});
+            this.navigation.selectNavItem("aboutme");
+            this.content.loadContent("aboutme");
         }
     });
 

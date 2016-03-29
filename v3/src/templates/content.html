@@ -11,7 +11,7 @@
         <% _.each(content_sections, function(section) { %>
         <div class="subsection">
             <h3><%= section.team %> <span><%= section.interval %></span></h3>
-            <p><%= section.summary %></p>
+            <p><%= section.summary.replace(/\n/g, "</p><p>") %></p>
         </div>
         <% })%>
     </section>

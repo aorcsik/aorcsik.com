@@ -5,20 +5,44 @@ define([
 ], function($, _, Backbone) {
     var Content = Backbone.Model.extend({
         defaults: {
+            'aboutme': [{
+                'content_class': "aboutme",
+                'content_title': "Antal Orcsik",
+                'content_subtitle': "Application Developer",
+                'content_logo': "https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=256",
+                'content_company': "Antal Orcsik",
+                'content_sections': [{
+                    'team': "Summary",
+                    'interval': "",
+                    'summary': "I'm Orcsik Antal, I work as an Application Developer at IBM Hungary. I live in the beautiful city of Budapest.\n" +
+                               "Before IBM I was working as a Software Engineer in Infrastructure and Payments teams at Prezi, the company behind the zoomin online presentations. I started web development at ingatlan.com and worked on köpönyeg.hu, a popular local weather portal for more than 5 years.\n" +
+                               "In my free time I own, design and develop Mozipremierek.hu, a Hungarian movie premiere calendar page, along some other pet projects.\n" +
+                               "Right now I'm doing my last semester at Eötvös Lóránt University in Computer Science."
+
+                }]
+            }],
             'education': [{
                 'content_class': "elte",
-                'content_title': "Computer Science BSc",
-                'content_subtitle': "2013 – Present",
-                'content_logo': null,
+                'content_title': "Eötvös Lóránd University",
+                'content_subtitle': "September 2013 – Present",
+                'content_logo': "images/elte.png",
                 'content_company': "ELTE",
-                'content_sections': []
+                'content_sections': [{
+                    'team': "Computer Science",
+                    'interval': "Bachelor of Science (in progress)",
+                    'summary': "Three years after I quit university I decided to resume my academic studies. I started over in a more science oriented institute, which was a great fit so far, I progressed well and I expect to finish in July 2016."
+                }]
             },{
                 'content_class': "bme",
-                'content_title': "Software Engineer BSc",
-                'content_subtitle': "2003 – 2010",
-                'content_logo': null,
+                'content_title': "Budapest University of Technology and Economics",
+                'content_subtitle': "September 2003 – February 2010",
+                'content_logo': "images/bme.png",
                 'content_company': "BME",
-                'content_sections': []
+                'content_sections': [{
+                    'team': "Software Engineer",
+                    'interval': "Bachelor of Science (unfinished)",
+                    'summary': "I started learning computer science right after high school. During this time I learned the basics of programming, and wrote my first real applications in C and Java. After learning PHP for a community projects I applied for summer work, whihc proved to be more interesting and rewarding back then, which in the end was the reason I quit this institute."
+                }]
             }],
             'work': [{
                 'content_class': "ibm",
