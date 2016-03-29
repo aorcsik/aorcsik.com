@@ -1,0 +1,18 @@
+<div class="row content_card <%= content_class %>">
+    <header class="col-md-4">
+        <% if (content_logo) { %>
+            <img src="<%= content_logo %>" alt="<%= content_company %>">
+        <% } else { %>
+            <div class="company"><%= content_company %></div>
+        <% } %>
+        <h2><%= content_title %> <span><%= content_subtitle %></span></h2>
+    </header>
+    <section class="col-md-8">
+        <% _.each(content_sections, function(section) { %>
+        <div class="subsection">
+            <h3><%= section.team %> <span><%= section.interval %></span></h3>
+            <p><%= section.summary %></p>
+        </div>
+        <% })%>
+    </section>
+</div>

@@ -1,2 +1,9 @@
-web/
+# v2
+v2/web/
+
+# v3
+v3/src/components/
+v3/build/
+
+# common
 .DS_Store
