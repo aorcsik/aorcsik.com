@@ -29,6 +29,7 @@ define([
         routes: {
             "!work": "openWork",
             "!education": "openEducation",
+            "!projects": "openProjects",
             // Default
             '*actions': 'defaultAction'
         },
@@ -39,6 +40,10 @@ define([
         openEducation: function() {
             this.navigation.selectNavItem("education");
             this.content.loadContent("education");
+        },
+        openProjects: function() {
+            this.navigation.selectNavItem("projects");
+            this.content.loadContent("projects");
         },
         defaultAction: function (actions) {
             this.navigation.selectNavItem("aboutme");

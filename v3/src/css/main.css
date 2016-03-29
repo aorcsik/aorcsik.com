@@ -3,10 +3,17 @@ html, body {
     margin: 0;
     font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
     font-size: 12px;
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: top center;
+    height: 100%;
+
 }
 @media (min-width: 480px) {
     body {
         font-size: 14px;
+        background-size: 125% auto;
     }
 }
 
@@ -19,6 +26,7 @@ html, body {
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
     z-index: 1000;
     font-size: 14px;
+    text-transform: uppercase;
 }
 #navigation ul {
     padding: 0;
@@ -32,7 +40,7 @@ html, body {
 #navigation ul li a {
     display: inline-block;
     height: 50px;
-    padding: 15px 20px 15px 40px;
+    padding: 15px 10px 15px 30px;
     text-decoration: none;
     color: rgba(0,0,0);
     opacity: .3;
@@ -43,7 +51,7 @@ html, body {
 #navigation ul li a i {
     font-size: 1.5em;
     position: absolute;
-    left: 20px;
+    left: 10px;
     width: 20px;
     text-align: center;
 }
@@ -59,6 +67,10 @@ html, body {
 #navigation ul li a#nav_education {
     color: rgb(147,26,44);
 }
+#navigation ul li a#nav_projects {
+    color: rgb(0, 0, 0);
+}
+
 #navigation ul li a.selected,
 #navigation ul li a.selected:hover {
     opacity: 1;
@@ -99,6 +111,7 @@ footer {
 #content header {
     overflow: auto;
     padding: 15px;
+    background: rgba(255,255,255,0.75);
 }
 #content h2 {
     font-size: 1.5em;
@@ -141,6 +154,30 @@ footer {
     margin-top: 5px;
     font-size: 1.5em;
     float: right;
+}
+
+#content section ul {
+    margin: 0;
+    padding: 0 0 0 20px;
+    list-style: none;
+}
+#content section ul li {
+    line-height: 2.5em;
+}
+#content section ul li.separator {
+    width: 100px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    height: 0px;
+    margin: 5px 0 7px 0px;
+}
+#content section ul li a {
+    text-decoration: none;
+}
+#content section ul li a i {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    font-size: 1.2em;
 }
 
 #content .aboutme section,
@@ -196,6 +233,15 @@ footer {
     margin-top: 5px;
     width: 110px;
 }
+#content .mozipremierek section,
+#content .mozipremierek .subsection h3::before {
+    border-color: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.05);
+}
+#content .mozipremierek header img {
+    margin-top: 5px;
+    width: 60px;
+}
 
 /*#content .subsection::before {
     content: "";
@@ -212,6 +258,7 @@ footer {
 @media (min-width: 992px) {
     #content header {
         text-align: right;
+        background: transparent;
     }
     #content header img {
         display: inline-block;
@@ -245,4 +292,8 @@ footer {
         top: 6px;
         left: -25px;
     }
+    #content section ul li {
+        line-height: 1.8em;
+    }
+
 }

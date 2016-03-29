@@ -18,7 +18,17 @@ define([
                                "Before IBM I was working as a Software Engineer in Infrastructure and Payments teams at Prezi, the company behind the zoomin online presentations. I started web development at ingatlan.com and worked on köpönyeg.hu, a popular local weather portal for more than 5 years.\n" +
                                "In my free time I own, design and develop Mozipremierek.hu, a Hungarian movie premiere calendar page, along some other pet projects.\n" +
                                "Right now I'm doing my last semester at Eötvös Lóránt University in Computer Science."
-
+                },{
+                    'team': "Contact me",
+                    'interval': "",
+                    'summary': "",
+                    'links': [
+                        {'url': "mailto:aorcsik@gmail.com", 'title': "Email – aorcsik@gmail.com", 'icon': "envelope"},
+                        {'url': "http://twitter.com/aorcsik", 'title': "Twitter – @aorcsik ", 'icon': "twitter"},
+                        {'url': "http://linkedin.com/in/aorcsik", 'title': "LinkedIn – Antal Orcsik", 'icon': "linkedin"},
+                        {'url': "http://github.com/aorcsik", 'title': "GitHub – @aorcsik", 'icon': "github-alt"},
+                        {'url': "https://dribbble.com/aorcsik", 'title': "Dribbble – aorcsik", 'icon': "dribbble"}
+                    ]
                 }]
             }],
             'education': [{
@@ -53,7 +63,7 @@ define([
                 'content_sections': [{
                     'team': "Global CIO Services – HR Web & HRIT BPM",
                     'interval': "March 2015 – February 2016",
-                    'summary': "Our family enterprise, which was founded by my father in 1999. The profile of the company was extended with IT services in 2006 and I became co-owner in 2008. Since then my occasional freelance assignments and projects are done under this name."
+                    'summary': "In the mid-90s, when I started to show interest about computers, the name IBM was among the first I learned. It was everywhere, it was important, it was a <i>legend</i>. Today I'm part of this legend. My job is to create and manage HR websites and business processes, used by 400 thousand IBMers around the world."
                 }]
             },{
                 'content_class': "prezi",
@@ -88,6 +98,47 @@ define([
                     'team': "ingatlan.com",
                     'interval': "July 2005 – January 2007",
                     'summary': "I was hired as an intern and stayed as a full time sitebuilder working on the redesign of ingatlan.com real estate portal using client side technologies, JavaScript, CSS and HTML. Later I was involved in some backend development with PHP."
+                }]
+            }],
+            'projects': [{
+                'content_class': "mozipremierek",
+                'content_title': "mozipremierek.hu",
+                'content_subtitle': "April 2014 – Present",
+                'content_logo': "http://mozipremierek.hu/images/website_icon.svg",
+                'content_company': "mozipremierek.hu",
+                'content_sections': [{
+                    'team': "mozipremierek.hu",
+                    'url': "http://mozipremierek.hu",
+                    'interval': "",
+                    'summary': "It started with an idea to write a simple automated web crawler, that finds Hungarian movie premiere dates and generates a calendar link. Once the robot was working, it was just a step further to get some poster images, plot summary and genres.\n" +
+                               "Today it's a standalone web application with a couple hundred visitors every day. I'm in contact with almost every local distributor, who provide me press materials, and I do weekly social media updates on the actual releases.",
+                    'links': [
+                        {'url': "https://www.behance.net/gallery/23460787/Mozipremierekhu-21", 'title': "Behance – Mozipremierek.hu 2.1 ", 'icon': "behance"},
+                        {'url': "https://www.behance.net/gallery/16950807/Mozipremierekhu", 'title': "Behance – Mozipremierek.hu", 'icon': "behance"},
+                        {'url': "https://dribbble.com/aorcsik/projects/252712-Mozipremierek-hu", 'title': "Dribbble – Mozipremierek.hu", 'icon': "dribbble"},
+                        {'separator': true},
+                        {'url': "http://facebook.com/Mozipremierek", 'title': "Facebook – Mozipremierek", 'icon': "facebook"},
+                        {'url': "http://twitter.com/Mozipremierek", 'title': "Twitter – @Mozipremierek ", 'icon': "twitter"}
+
+                    ]
+                }]
+            },{
+                'content_class': "include",
+                'content_title': "#include",
+                'content_subtitle': "April 2014 – Present",
+                'content_logo': null,
+                'content_company': null,
+                'content_sections': [{
+                    'team': "include.aorcsik.com",
+                    'url': "http://include.aorcsik.com",
+                    'interval': "",
+                    'summary': "#include is my English blog about coding, design or anything that I want to share and is longer than a tweet.\n" +
+                               "Some popular posts:",
+                    'links': [
+                        {'url': "http://include.aorcsik.com/2015/09/02/safari-tips-and-tricks/", 'title': "Safari Tips and Tricks – September 2, 2015"},
+                        {'url': "http://include.aorcsik.com/2014/12/04/add-favicons-to-safari-8-tabs/", 'title': "Add favicons to Safari 8 (and 9) tabs – December 4, 2014"},
+                        {'url': "http://include.aorcsik.com/2014/09/19/installing-java-on-mac-os-10-10-yosemite-beta/", 'title': "Installing Java on Mac OS X 10.10 Yosemite and 10.11 El Capitan – September 19, 2014"}
+                    ]
                 }]
             }]
         },

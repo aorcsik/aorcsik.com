@@ -2,17 +2,36 @@
     <header class="col-md-4">
         <% if (content_logo) { %>
             <img src="<%= content_logo %>" alt="<%= content_company %>">
-        <% } else { %>
+        <% } else { if (content_company) { %>
             <div class="company"><%= content_company %></div>
-        <% } %>
+        <% } } %>
         <h2><%= content_title %> <span><%= content_subtitle %></span></h2>
     </header>
     <section class="col-md-8">
         <% _.each(content_sections, function(section) { %>
         <div class="subsection">
-            <h3><%= section.team %> <span><%= section.interval %></span></h3>
-            <p><%= section.summary.replace(/\n/g, "</p><p>") %></p>
+            <h3>
+                <% if (section.url) { %><a href="<%= section.url %>" target="_blank"><% } %>
+                <%= section.team %>
+                <% if (section.url) { %></a><% } %>
+                <span><%= section.interval %></span>
+            </h3>
+            <% if (section.summary) _.each(section.summary.split(/\n/), function(paragraph) { %>
+                <p><%= paragraph %></p>
+            <% }) %>
+            <% if (section.links) { %><ul>
+                <% _.each(section.links, function(link) { %>
+                    <% if (link.separator) { %>
+                    <li class="separator"></li>
+                    <% } else { %>
+                    <li><a href="<%= link.url %>" target="_blank">
+                        <i class="fa fa-<%= link.icon || 'external-link' %>"></i>
+                        <%= link.title %>
+                    </a></li>
+                    <% } %>
+                <% }) %>
+            </ul><% } %>
         </div>
-        <% })%>
+        <% }) %>
     </section>
 </div>
