@@ -27,6 +27,7 @@
                     <li><a href="<%= link.url %>" target="_blank">
                         <i class="fa fa-<%= link.icon || 'external-link' %>"></i>
                         <%= link.title %>
+                        <% if (link.subtitle) { %><span><%= link.subtitle %></span><% } %>
                     </a></li>
                     <% } %>
                 <% }) %>

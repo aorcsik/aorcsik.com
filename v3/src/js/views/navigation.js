@@ -34,7 +34,7 @@ define([
             var self = this;
             this.$el.html(this.template({
 
-            }));
+            }).replace(/>\s+<li/g, "><li")); // remove whitespaces between list items
             $(window).resize(function() {
                 self.updateSelectionIndicator();
             });

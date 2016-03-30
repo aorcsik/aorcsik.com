@@ -8,10 +8,9 @@ html, body {
     background-size: auto 100%;
     background-position: top center;
     height: 100%;
-
 }
 @media (min-width: 480px) {
-    body {
+    html, body {
         font-size: 14px;
         background-size: 125% auto;
     }
@@ -40,23 +39,22 @@ html, body {
 #navigation ul li a {
     display: inline-block;
     height: 50px;
-    padding: 15px 10px 15px 30px;
+    padding: 10px 10px 15px 10px;
     text-decoration: none;
     color: rgba(0,0,0);
     opacity: .3;
     position: relative;
+    width: 25%;
 
     transition: opacity .3s;
 }
 #navigation ul li a i {
     font-size: 1.5em;
-    position: absolute;
-    left: 10px;
-    width: 20px;
     text-align: center;
 }
 #navigation ul li a span {
-    display: none;
+    display: block;
+    font-size: 0.6em;
 }
 #navigation ul li a#nav_aboutme {
     color: rgb(107, 154, 22);
@@ -89,12 +87,22 @@ html, body {
 }
 
 @media (min-width: 480px) {
+    #navigation ul li a {
+        width: auto;
+        padding: 15px 20px 15px 35px;
+    }
     #navigation ul li a:hover {
         opacity: .6;
     }
     #navigation ul li a span {
         margin-left: 10px;
         display: inline;
+        font-size: 0.8em;
+    }
+    #navigation ul li a i {
+        position: absolute;
+        left: 10px;
+        width: 30px;
     }
 }
 
@@ -116,18 +124,18 @@ footer {
 #content h2 {
     font-size: 1.5em;
     line-height: 1.4em;
-    margin: 5px 0;
+    margin: 4px 0;
     position: relative;
 }
 #content h2 span {
     display: block;
     font-weight: normal;
-    font-size: 0.8em;
+    font-size: 0.7em;
     opacity: 0.5;
-    margin: 5px 0;
+    text-transform: uppercase;
 }
 #content h3 {
-    font-size: 1.3em;
+    font-size: 1.2em;
     line-height: 1.6em;
     margin: 5px 0;
     position: relative;
@@ -135,8 +143,9 @@ footer {
 #content h3 span {
     display: block;
     font-weight: normal;
-    font-size: 0.8em;
+    font-size: 0.7em;
     opacity: 0.5;
+    text-transform: uppercase;
 }
 
 #content section {
@@ -145,9 +154,12 @@ footer {
     padding: 15px;
     background: rgba(0,0,0,0.05);
 }
+#content section p {
+    line-height: 1.6em;
+}
 
 #content header img {
-    margin-top: 5px;
+    margin-left: 10px;
     float: right;
 }
 #content header .company {
@@ -158,26 +170,40 @@ footer {
 
 #content section ul {
     margin: 0;
-    padding: 0 0 0 20px;
+    padding: 5px 0 0 20px;
     list-style: none;
 }
 #content section ul li {
-    line-height: 2.5em;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    position: relative;
 }
 #content section ul li.separator {
     width: 100px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(0,0,0,0.1);
     height: 0px;
-    margin: 5px 0 7px 0px;
+    padding-top: 0;
 }
 #content section ul li a {
     text-decoration: none;
 }
 #content section ul li a i {
-    display: inline-block;
+    position: absolute;
     width: 30px;
     text-align: center;
     font-size: 1.2em;
+    left: 0;
+    top: 50%;
+    margin-top: -0.85em;
+}
+#content section ul li a span {
+    display: block;
+    opacity: 0.5;
+}
+
+#content section img {
+    display: block;
+    width: 100%;
 }
 
 #content .aboutme section,
@@ -195,7 +221,7 @@ footer {
     background: rgba(37,114,190,0.05);
 }
 #content .ibm header img {
-    margin-top: 3px;
+    margin-top: 15px;
     width: 80px;
 }
 #content .prezi section,
@@ -204,7 +230,7 @@ footer {
     background: rgba(32,105,201,0.05);
 }
 #content .prezi header img {
-    width: 80px;
+    width: 90px;
 }
 #content .ingatlan section,
 #content .ingatlan .subsection h3::before {
@@ -221,7 +247,6 @@ footer {
     background: rgba(176, 8, 55,0.05);
 }
 #content .elte header img {
-    margin-top: 10px;
     width: 60px;
 }
 #content .bme section,
@@ -240,7 +265,7 @@ footer {
 }
 #content .mozipremierek header img {
     margin-top: 5px;
-    width: 60px;
+    width: 55px;
 }
 
 /*#content .subsection::before {
@@ -275,10 +300,14 @@ footer {
         padding-bottom: 20px;
         min-height: 200px;
     }
+    #content section img {
+        float: right;
+        width: 50%;
+    }
     #content .aboutme header img {
         margin-top: 10px;
-        width: 128px;
-        border-radius: 70px;
+        width: 100px;
+        border-radius: 55px;
     }
     #content .content_card .subsection h3::before {
         content: "";
@@ -293,7 +322,13 @@ footer {
         left: -25px;
     }
     #content section ul li {
-        line-height: 1.8em;
+        padding-bottom: 7px;
     }
-
+    #content section ul li a i {
+        margin-top: -0.7em;
+    }
+    #content .ibm header img {
+        margin-top: 5px;
+        width: 80px;
+    }
 }

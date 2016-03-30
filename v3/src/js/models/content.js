@@ -18,7 +18,15 @@ define([
                                "Before IBM I was working as a Software Engineer in Infrastructure and Payments teams at Prezi, the company behind the zoomin online presentations. I started web development at ingatlan.com and worked on köpönyeg.hu, a popular local weather portal for more than 5 years.\n" +
                                "In my free time I own, design and develop Mozipremierek.hu, a Hungarian movie premiere calendar page, along some other pet projects.\n" +
                                "Right now I'm doing my last semester at Eötvös Lóránt University in Computer Science."
-                },{
+                },/* {
+                    'team': "Skills",
+                    'interval': "",
+                    'summary': "<u>JavaScript</u>, jQuery, Backbone.js, Underscore.js, require.js\n" +
+                               "<u>CSS3</u>, LESS, Bootstrap\n" +
+                               "<u>HTML5</u>, XHTML, XML, JSON\n" +
+                               "<u>PHP</u>, Python, Ruby, Scala, Java\n" +
+                               "<u>MySQL</u>, SQLite, NoSQL, Oracle"
+                },*/{
                     'team': "Contact me",
                     'interval': "",
                     'summary': "",
@@ -110,7 +118,8 @@ define([
                     'team': "mozipremierek.hu",
                     'url': "http://mozipremierek.hu",
                     'interval': "",
-                    'summary': "It started with an idea to write a simple automated web crawler, that finds Hungarian movie premiere dates and generates a calendar link. Once the robot was working, it was just a step further to get some poster images, plot summary and genres.\n" +
+                    'summary': "<img src='images/mozipremierek1.png' alt='mozipremierek.hu timeline'>" +
+                               "It started with an idea to write a simple automated web crawler, that finds Hungarian movie premiere dates and generates a calendar link. Once the robot was working, it was just a step further to get some poster images, plot summary and genres.\n" +
                                "Today it's a standalone web application with a couple hundred visitors every day. I'm in contact with almost every local distributor, who provide me press materials, and I do weekly social media updates on the actual releases.",
                     'links': [
                         {'url': "https://www.behance.net/gallery/23460787/Mozipremierekhu-21", 'title': "Behance – Mozipremierek.hu 2.1 ", 'icon': "behance"},
@@ -135,9 +144,9 @@ define([
                     'summary': "#include is my English blog about coding, design or anything that I want to share and is longer than a tweet.\n" +
                                "Some popular posts:",
                     'links': [
-                        {'url': "http://include.aorcsik.com/2015/09/02/safari-tips-and-tricks/", 'title': "Safari Tips and Tricks – September 2, 2015"},
-                        {'url': "http://include.aorcsik.com/2014/12/04/add-favicons-to-safari-8-tabs/", 'title': "Add favicons to Safari 8 (and 9) tabs – December 4, 2014"},
-                        {'url': "http://include.aorcsik.com/2014/09/19/installing-java-on-mac-os-10-10-yosemite-beta/", 'title': "Installing Java on Mac OS X 10.10 Yosemite and 10.11 El Capitan – September 19, 2014"}
+                        {'url': "http://include.aorcsik.com/2015/09/02/safari-tips-and-tricks/", 'title': "Safari Tips and Tricks", 'subtitle': "September 2, 2015"},
+                        {'url': "http://include.aorcsik.com/2014/12/04/add-favicons-to-safari-8-tabs/", 'title': "Add favicons to Safari 8 (and 9) tabs", 'subtitle': "December 4, 2014"},
+                        {'url': "http://include.aorcsik.com/2014/09/19/installing-java-on-mac-os-10-10-yosemite-beta/", 'title': "Installing Java on Mac OS X 10.10 Yosemite and 10.11 El Capitan", 'subtitle': "September 19, 2014"}
                     ]
                 }]
             }]
