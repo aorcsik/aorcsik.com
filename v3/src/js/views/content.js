@@ -13,27 +13,18 @@ define([
         },
         template: _.template(contentTemplate),
 
-        loadContent: function(content_name) {
-            var self = this;
-            this.$el.html("");
-            this.model.get(content_name).forEach(function(content_data) {
-                self.$el.append(self.template(content_data));
-            });
-            this.updateContentSize();
-        },
-
-        updateContentSize: function() {
-            /* this.$el.find(".content_card").css({
-                'width': $(window).width(),
-                'min-height': $(window).height()
-            }); */
-        },
-
-        render: function() {
-            var self = this;
-            $(window).resize(function() {
-                self.updateContentSize();
-            });
+        render: function(content_name) {
+            var self = this,
+                content_class = "content-" + content_name;
+            this.$el.children("div").hide();
+            if (this.$el.find("." + content_class).size() === 0) {
+                var $content = $("<div>").addClass(content_class).appendTo(this.$el).hide();
+                this.model.get(content_name).forEach(function(content_data) {
+                    $content.append(self.template(content_data));
+                });
+            }
+            this.$el.find("." + content_class).show();
+            return this;
         }
     });
     return ContentView;

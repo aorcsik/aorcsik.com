@@ -13,13 +13,14 @@ define([
         navigation: null,
 
         initialize: function() {
+            $("#noscript").remove();
+
             this.navigation = new NavigationView();
             this.navigation.$el.appendTo($("body"));
             this.navigation.render();
 
             this.content = new ContentView({'model': new Content()});
             this.content.$el.appendTo($("body"));
-            this.content.render();
 
             $("body").append($("<footer>aorcsik.com &copy; 2016</footer>"));
 
@@ -35,19 +36,19 @@ define([
         },
         openWork: function () {
             this.navigation.selectNavItem("work");
-            this.content.loadContent("work");
+            this.content.render("work");
         },
         openEducation: function() {
             this.navigation.selectNavItem("education");
-            this.content.loadContent("education");
+            this.content.render("education");
         },
         openProjects: function() {
             this.navigation.selectNavItem("projects");
-            this.content.loadContent("projects");
+            this.content.render("projects");
         },
         defaultAction: function (actions) {
             this.navigation.selectNavItem("aboutme");
-            this.content.loadContent("aboutme");
+            this.content.render("aboutme");
         }
     });
 
