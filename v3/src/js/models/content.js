@@ -9,7 +9,7 @@ define([
                 'content_class': "aboutme",
                 'content_title': "Antal Orcsik",
                 'content_subtitle': "Application Developer",
-                'content_logo': "https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=256",
+                'content_logo': "images/avatar.jpg",
                 'content_company': "Antal Orcsik",
                 'content_sections': [{
                     'team': "Summary",

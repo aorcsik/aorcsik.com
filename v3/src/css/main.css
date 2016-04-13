@@ -18,6 +18,8 @@ html, body {
 
 #navigation {
     position: fixed;
+    top: 0;
+    bottom: auto;
     width: 100%;
     overflow: auto;
     background: rgba(255,255,255,0.9);
@@ -105,13 +107,6 @@ html, body {
         width: 30px;
     }
 }
-
-footer {
-    padding: 10px;
-    opacity: 0.3;
-    text-align: center;
-}
-
 
 #content {
     padding-top: 50px;
@@ -279,6 +274,16 @@ footer {
 #content .subsection:first-child::before {
     display: none;
 }*/
+
+footer {
+    padding: 10px 10px 60px 10px;
+    opacity: 0.3;
+    text-align: center;
+}
+
+
+@media (min-width: 480px) {
+}
 
 @media (min-width: 992px) {
     #content header {

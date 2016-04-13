@@ -5,7 +5,6 @@
     modules: [{
         name: "main"
     }],
-    skipDirOptimize: true,
     optimizeAllPluginResources: true,
     paths: {
         text: "../components/requirejs-text/text",
