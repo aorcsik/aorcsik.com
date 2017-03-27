@@ -16364,7 +16364,7 @@
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "**Hello World!**\n"
+	module.exports = "**Hello World!**\n\nThis is much better!\n"
 
 /***/ }
 /******/ ]);
