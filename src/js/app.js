@@ -1,4 +1,6 @@
-import markdown from 'markdown/lib/markdown';
+import MarkdownIt from 'markdown-it';
+
+require("../less/app.less");
 
 var App = Backbone.View.extend({
     el: "#content",
@@ -9,7 +11,10 @@ var App = Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html(markdown.toHTML(require("../md/test.md")));
+        var md = new MarkdownIt({
+            html: true
+        });
+        this.$el.html($("<div id='main'>").html(md.render(require("../md/main.md"))));
 
         return this;
     }

@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css?family=Teko:300,400,500,700&amp;subset=latin-ext");
+// @import "~bootstrap/less/bootstrap";
+@import "~font-awesome/less/font-awesome";
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+body {
+    background-color: #222222; /* Old browsers */
+    background-image: -moz-radial-gradient(center, ellipse cover, #115b93 0%, #222222 99%); /* FF3.6-15 */
+    background-image: -webkit-radial-gradient(center, ellipse cover, #115b93 0%,#222222 99%); /* Chrome10-25,Safari5.1-6 */
+    background-image: radial-gradient(ellipse at center, #115b93 0%,#222222 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background-repeat: no-repeat;
+
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-family: "Teko";
+}
+
+a {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#content {
+
+    #main {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding-left: 125px;
+        padding-bottom: 5px;
+
+        h1 {
+            margin: 0;
+            font-weight: normal;
+        }
+        h1::before {
+            content: " ";
+            width: 1px;
+            height: 100%;
+            background: #fff;
+            position: absolute;
+            left: 110px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        }
+        p {
+            margin: 0;
+            font-size: 1.2em;
+            line-height: 1.0em;
+        }
+        img {
+            position: absolute;
+            width: 95px;
+            left: 0;
+            top: 15px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        }
+
+        ul {
+            overflow: auto;
+            margin: 10px 0 0 0;
+            padding: 0;
+            list-style: none;
+            li {
+                margin: 0;
+                padding: 0;
+                float: left;
+                a {
+                    margin: 0 5px;
+                }
+            }
+            li:first-child {
+                a {
+                    margin-left: 0;
+                }
+            }
+            li::after {
+                content: "|";
+                opacity: 0.3;
+            }
+            li:last-child::after {
+                content: "";
+            }
+        }
+    }
+
+}

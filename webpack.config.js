@@ -37,6 +37,7 @@ module.exports = {
             { test: /\.jsx?/, loader : "babel", include: APP_DIR + "/js" },
             { test: /\.html$/, loader: "raw" },
             { test: /\.md$/, loader: "raw"},
+            { test: /\.json$/, loader: "raw"},
             { test: /\.(png|jpg|gif)/, loader: "file-loader?name=/images/[hash].[ext]" },
             { test: /\.(eot|svg|ttf|woff|woff2|otf)(\?v=.*)?$/, loader: "file-loader?name=/fonts/[hash].[ext]" },
         ]
