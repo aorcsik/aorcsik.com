@@ -1,6 +1,6 @@
 #!/bin/sh
 
-./build.sh
+./build.sh -p
 
 cd dist
 git add --all

@@ -3,43 +3,100 @@ var webpack = require('webpack');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-var APP_DIR = path.resolve(__dirname + "/src");
-var BUILD_DIR = path.resolve(__dirname + "/dist");
+var PROD = process.env.NODE_ENV == "production";
+
 
 module.exports = {
+    resolve: {
+        modules: [
+            path.resolve(__dirname, "src"),
+            "node_modules"
+        ]
+    },
     entry: {
-        'app':   APP_DIR + "/js/app.js",
+        app: "js/index.jsx",
+        vendor: [
+            "jquery",
+            "react",
+            "react-dom",
+            "react-tap-event-plugin"
+        ],
     },
     output: {
-        path: BUILD_DIR,
+        path: path.resolve(__dirname, "dist"),
         filename: "[name].bundle.js"
     },
     plugins: [
         new webpack.ProvidePlugin({
             $: 'jquery',
-            jQuery: 'jquery',
-            _: 'underscore',
-            Backbone: 'backbone'
+            jQuery: 'jquery'
         }),
         new ExtractTextPlugin("[name].bundle.css"),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vendor",
+            filename: "vendor.bundle.js"
+        }),
         new HtmlWebpackPlugin({
           title: 'Antal Orcsik',
-          template: APP_DIR + '/ejs/index.ejs',
+          template: path.resolve(__dirname, 'src/ejs/index.ejs'),
           minify: {removeComments: true},
           hash: true,
         })
-    ],
+    ].concat(PROD ? [
+        new UglifyJSPlugin()
+    ] : []),
     module: {
-        loaders: [
-            { test: /\.css$/, loader: ExtractTextPlugin.extract(["css-loader?minimize"]) },
-            { test: /\.less$/, loader: ExtractTextPlugin.extract(["css-loader?minimize", "less-loader"]), include: APP_DIR + "/less" },
-            { test: /\.jsx?/, loader : "babel", include: APP_DIR + "/js" },
-            { test: /\.html$/, loader: "raw" },
-            { test: /\.md$/, loader: "raw"},
-            { test: /\.json$/, loader: "raw"},
-            { test: /\.(png|jpg|gif)/, loader: "file-loader?name=images/[hash].[ext]" },
-            { test: /\.(eot|svg|ttf|woff|woff2|otf)(\?v=.*)?$/, loader: "file-loader?name=fonts/[hash].[ext]" },
+        rules: [
+            {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract([{
+                    loader: "css-loader",
+                    options: {minimize: PROD}
+                }])
+            },
+            {
+                test: /\.less$/,
+                use: ExtractTextPlugin.extract([{
+                    loader: "css-loader",
+                    options: {minimize: PROD}
+                },{
+                    loader: "less-loader"
+                }]),
+                include: path.resolve(__dirname, "src/less")
+            },
+            {
+                test: /\.jsx?/,
+                use: ["babel-loader"],
+                include: path.resolve(__dirname, "src/js")
+            },
+            {
+                test: /\.html$/,
+                use: ["raw-loader"]
+            },
+            {
+                test: /\.md$/,
+                use: ["raw-loader"]
+            },
+            {
+                test: /\.json$/,
+                use: ["raw-loader"]
+            },
+            {
+                test: /\.(png|jpg|gif)/,
+                use: [{
+                    loader: "file-loader",
+                    options: {name: "images/[hash].[ext]"}
+                }]
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2|otf)(\?v=.*)?$/,
+                use: [{
+                    loader: "file-loader",
+                    options: {name: "fonts/[hash].[ext]"}
+                }]
+            }
         ]
     }
 };
