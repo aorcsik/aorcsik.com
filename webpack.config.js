@@ -16,12 +16,9 @@ module.exports = {
         ]
     },
     entry: {
-        app: "js/index.jsx",
+        app: "js/index.js",
         vendor: [
-            "jquery",
-            "react",
-            "react-dom",
-            "react-tap-event-plugin"
+            "jquery"
         ],
     },
     output: {
@@ -73,10 +70,6 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                use: ["raw-loader"]
-            },
-            {
-                test: /\.md$/,
                 use: ["raw-loader"]
             },
             {
