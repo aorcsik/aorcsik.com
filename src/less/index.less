@@ -7,25 +7,35 @@
     text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
 
+@white:  #FFFFFF;
+@black:  #000000;
+
+// Palette 1
+@color1: #F0EBD8;
+@color2: #748CAB;
+@color3: #3E5C76;
+@color4: #1D2D44;
+@color5: #0D1321;
+
 body {
     padding: 0;
     margin: 0;
     font-size: 18px;
     font-weight: 300;
     font-family: "Roboto";
-    background: #222;
-    color: #fff;
+    background: @color5;
+    color: @white;
 }
 
 a {
-    color: #fff;
+    color: @white;
     text-decoration: none;
 
     transition: text-shadow .3s;
 
 }
 a:hover {
-    text-shadow: 0 0 10px #fff;
+    text-shadow: 0 0 10px @color1;
 }
 
 .logo {
@@ -39,7 +49,7 @@ a:hover {
         height: 30px;
         width: 16px;
         border-width: 15px 8px;
-        border-color: transparent transparent #fff transparent;
+        border-color: transparent transparent @color1 transparent;
         border-style: solid;
         left: 0;
         bottom: 0.24em;
@@ -50,7 +60,7 @@ a:hover {
         height: 16px;
         width: 16px;
         border-radius: 16px;
-        background: #fff;
+        background: @color1;
         left: 16px;
         bottom: 0.24em;
         text-indent: -9999px;
@@ -66,7 +76,7 @@ a:hover {
     z-index: 100;
     width: 100%;
     overflow: auto;
-    background: rgba(0, 0, 0, 0.3);
+    background: fade(@color5, 30);
 
     transition: background .3s;
 
@@ -94,7 +104,7 @@ a:hover {
     }
 }
 #header:hover {
-    background: rgba(0, 0, 0, 0.9);
+    background: fade(@color5, 90);
 }
 
 .gradient(@deg, @color1, @opacity1, @color2, @opacity2) {
@@ -107,142 +117,6 @@ a:hover {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@color1', endColorstr='@color2', GradientType=1 );
 }
 
-#aboutme {
-    background-image: url("../images/aboutme_bw.jpg");
-    .main-section-container {
-        .gradient(180deg, #3081e3, 75, #111111, 100);
-    }
-    .content-section {
-        .avatar {
-            display: block;
-            width: 128px;
-            border-radius: 70px;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .content-lead {
-            text-align: center;
-        }
-    }
-
-    .main-section-separator::after {
-        background: #111111;
-        transform: rotateZ(1deg);
-    }
-}
-
-#work {
-    background-image: url("../images/work_bw.jpg");
-    .main-section-container {
-        .gradient(180deg, #CB946E, 75, #111111, 100);
-    }
-
-    .ibm-logo {
-        background-image: url("../images/ibm.svg");
-        background-size: 100% auto;
-        background-repeat: no-repeat;
-        background-position: center center;
-        width: 128px;
-        height: 80px;
-    }
-
-    .prezi-logo {
-        background-image: url("../images/prezi.svg");
-        background-size: 100% auto;
-        background-repeat: no-repeat;
-        background-position: center center;
-        width: 150px;
-        height: 150px;
-    }
-
-    .ingatlancom-logo {
-        background-image: url("../images/ingatlancom.svg");
-        background-size: 100% auto;
-        background-repeat: no-repeat;
-        background-position: center center;
-        width: 200px;
-        height: 50px;
-    }
-
-    .content-section {
-        .ibm-logo, .prezi-logo, .ingatlancom-logo {
-            margin: 0 auto 20px auto;
-        }
-    }
-
-    .main-section-separator::after {
-        background: #111111;
-        transform: rotateZ(-1deg);
-    }
-}
-
-#education {
-    background-image: url("../images/education_bw.jpg");
-    .main-section-container {
-        .gradient(180deg, #620D06, 75, #111111, 100);
-    }
-
-    .elte-logo {
-        background-image: url("../images/elte.svg");
-        background-size: 100% auto;
-        background-repeat: no-repeat;
-        background-position: center center;
-        width: 100px;
-        height: 100px;
-    }
-
-    .bme-logo {
-        background-image: url("../images/bme.png");
-        background-size: 100% auto;
-        background-repeat: no-repeat;
-        background-position: center center;
-        width: 200px;
-        height: 60px;
-    }
-
-    .content-section {
-        .elte-logo, .bme-logo {
-            margin: 0 auto 20px auto;
-        }
-    }
-
-    .main-section-separator::after {
-        background: #111111;
-        transform: rotateZ(1deg);
-    }
-}
-
-#projects {
-    background-image: url("../images/projects_bw.jpg");
-    .main-section-container {
-        .gradient(180deg, #8060A3, 75, #111111, 100);
-    }
-
-    .mozipremierek-logo {
-        background-image: url("../images/mozipremierek.svg");
-        background-size: 100% auto;
-        background-repeat: no-repeat;
-        background-position: center center;
-        width: 100px;
-        height: 100px;
-    }
-
-    .content-section {
-        .mozipremierek-logo {
-            margin: 0 auto 20px auto;
-        }
-    }
-
-    .main-section-separator::after {
-        background: #111111;
-        transform: rotateZ(-1deg);
-    }
-}
-
-
-
-
 .main-section {
     position: relative;
     background-size: cover;
@@ -254,7 +128,8 @@ a:hover {
 
         .main-section-header {
             h2 {
-                font-size: 2.0em;
+                margin: 1.3em;
+                font-size: 2.5em;
                 font-weight: 300;
                 text-align: center
             }
@@ -298,8 +173,8 @@ a:hover {
                 li {
                     float: left;
                     margin: 0 5px 5px 0;
-                    background: rgba(0, 0, 0, 0.6);
-                    color: #fff;
+                    background: fade(@color5, 60);
+                    color: @color1;
                     padding: 5px 10px;
                 }
             }
@@ -326,10 +201,10 @@ a:hover {
                 margin-left: 61%;
 
                 article {
-                    background: rgba(255, 255, 255, 0.1);
+                    background: fade(@color1, 10);
                     padding: 15px;
                     margin-bottom: 10px;
-                    border-left: 2px solid #fff;
+                    border-left: 2px solid @color1;
                 }
             }
         }
@@ -338,7 +213,7 @@ a:hover {
             font-size: 3.0em;
             display: block;
             text-align: center;
-            color: #fff;
+            color: @color1;
             height: 50px;
 
             padding-top: 0;
@@ -368,6 +243,138 @@ a:hover {
     }
 }
 
+#aboutme {
+    background-image: url("../images/aboutme_bw.jpg");
+    .main-section-container {
+        .gradient(180deg, @color2, 75, @color4, 100);
+    }
+    .content-section {
+        .avatar {
+            display: block;
+            width: 128px;
+            border-radius: 70px;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .content-lead {
+            text-align: center;
+        }
+    }
+
+    .main-section-separator::after {
+        background: @color4;
+        transform: rotateZ(1deg);
+    }
+}
+
+#work {
+    background-image: url("../images/work_bw.jpg");
+    .main-section-container {
+        .gradient(180deg, @color3, 75, @color5, 100);
+    }
+
+    .ibm-logo {
+        background-image: url("../images/ibm.svg");
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 128px;
+        height: 80px;
+    }
+
+    .prezi-logo {
+        background-image: url("../images/prezi.svg");
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 150px;
+        height: 150px;
+    }
+
+    .ingatlancom-logo {
+        background-image: url("../images/ingatlancom.svg");
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 200px;
+        height: 50px;
+    }
+
+    .content-section {
+        .ibm-logo, .prezi-logo, .ingatlancom-logo {
+            margin: 0 auto 20px auto;
+        }
+    }
+
+    .main-section-separator::after {
+        background: @color5;
+        transform: rotateZ(-1deg);
+    }
+}
+
+#education {
+    background-image: url("../images/education_bw.jpg");
+    .main-section-container {
+        .gradient(180deg, @color2, 75, @color4, 100);
+    }
+
+    .elte-logo {
+        background-image: url("../images/elte.svg");
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 100px;
+        height: 100px;
+    }
+
+    .bme-logo {
+        background-image: url("../images/bme.png");
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 200px;
+        height: 60px;
+    }
+
+    .content-section {
+        .elte-logo, .bme-logo {
+            margin: 0 auto 20px auto;
+        }
+    }
+
+    .main-section-separator::after {
+        background: @color4;
+        transform: rotateZ(1deg);
+    }
+}
+
+#projects {
+    background-image: url("../images/projects_bw.jpg");
+    .main-section-container {
+        .gradient(180deg, @color3, 75, @color5, 100);
+    }
+
+    .mozipremierek-logo {
+        background-image: url("../images/mozipremierek.svg");
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 100px;
+        height: 100px;
+    }
+
+    .content-section {
+        .mozipremierek-logo {
+            margin: 0 auto 20px auto;
+        }
+    }
+
+    .main-section-separator::after {
+        background: @color5;
+        transform: rotateZ(-1deg);
+    }
+}
 
 #footer {
     font-size: 0.8em;
