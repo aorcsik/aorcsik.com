@@ -1,8 +1,17 @@
 require('smoothscroll-polyfill').polyfill();
 
+import 'whatwg-fetch'
+
+import Promise from 'promise-polyfill';
+
+// To add to window
+if (!window.Promise) {
+  window.Promise = Promise;
+}
+
 import "../less/index.less";
 
-window.addEventListener("load", function(event) {
+window.addEventListener("load", event => {
     Array.from(document.querySelectorAll("a[href^='#']"), element => {
         element.addEventListener("click", event => {
             var targetId = element.href.split("#")[1];
@@ -16,4 +25,54 @@ window.addEventListener("load", function(event) {
             }
         });
     });
+
+    window.addEventListener("scroll", event => {
+        if (window.pageYOffset > 0) {
+            if (!document.getElementById("header").className.match("header-scrolled")) {
+                document.getElementById("header").className += " header-scrolled";
+            }
+        } else {
+            document.getElementById("header").className = document.getElementById("header").className.replace(/header-scrolled/, "");
+        }
+    });
+
+    document.getElementById("submitForm").addEventListener("click", event => {
+        event.preventDefault();
+
+        var email = document.querySelector("input[name='yourEmail']").value.trim(),
+            message = document.querySelector("textarea[name='yourMessage']").value.trim();
+
+        if (email && message) {
+            fetch('https://formspree.io/aorcsik+formspree@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Accept': "application/json",
+                    'Content-Type': "application/json"
+                },
+                body: JSON.stringify({
+                    email: email,
+                    message: message
+                })
+            }).then(response => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response;
+                } else {
+                    var error = new Error(response.statusText);
+                    error.response = response;
+                    throw error;
+                }
+            }).then(response => {
+                return response.json()
+            }).then(body => {
+
+                console.log(body);
+
+            }).catch(error => {
+
+                console.error(error);
+
+            });
+        }
+    });
+
 });
