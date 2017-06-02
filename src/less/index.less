@@ -1,6 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,latin-ext);
 @import "~font-awesome/less/font-awesome";
 
+.fa-angle-times::before {
+    content: "\F105\F104";
+    letter-spacing: -0.15em;
+}
+
 * {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -96,65 +101,12 @@ a:hover {
         float: left;
         font-size: 1.5em;
     }
-
-    nav > ul {
-        float: right;
-        margin: 0;
-        padding: 0 15px 0;
-    }
-    nav > ul > li {
-        display: inline-block;
-        position: relative;
-
-        -moz-perspective: 800px;
-        -webkit-perspective: 800px;
-        -o-perspective: 800px;
-        perspective: 800px;
-
-        a {
-            display: inline-block;
-            padding: 18px 10px;
-
-            i.fa-caret-down {
-                margin-left: 5px;
-            }
-        }
-    }
-    nav > ul > li > ul {
-        position: absolute;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        background: fade(@color6, 90);
-        left: -8px;
-        top: 60px;
-
-        opacity: 0;
-        transform-origin: 0px 0px;
-        transform: rotateX(-100deg);
-        -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
-        backface-visibility: hidden;
-
-        overflow: hidden;
-
-        transition: all .3s;
-
-        li {
-            a {
-                padding: 10px 18px;
-            }
-        }
-    }
-    nav > ul > li:hover > ul {
-        opacity: 1;
-        transform: rotateX(0deg);
-    }
 }
 #header.header-scrolled {
     background: fade(@color6, 75);
 }
 #header:hover {
-    background: fade(@color6, 90);
+    background: @color6;
 }
 
 .gradient(@deg, @color1, @opacity1, @color2, @opacity2) {
@@ -178,7 +130,7 @@ a:hover {
 
         .main-section-header {
             h2 {
-                margin: 1.0em;
+                margin: 1.0em 0;
                 font-size: 3.5em;
                 font-weight: 300;
                 text-align: center;
@@ -198,14 +150,14 @@ a:hover {
         }
 
         .content-section {
-            max-width: 1000px;
+            max-width: 940px;
             margin: 0 auto 20px auto;
             padding-top: 80px;
             overflow: auto;
 
             p {
                 margin: 0;
-                padding-bottom: 20px;
+                padding-top: 20px;
                 line-height: 1.7em;
             }
 
@@ -220,6 +172,7 @@ a:hover {
                     opacity: 0.75;
                     font-size: 0.8em;
                     text-align: center;
+                    padding-top: 0;
                 }
             }
 
@@ -229,7 +182,7 @@ a:hover {
 
             ul.tags {
                 margin: 0;
-                padding: 0;
+                padding: 20px 0 0 0;
                 overflow: auto;
                 list-style: none;
 
@@ -251,6 +204,7 @@ a:hover {
                     text-transform: uppercase;
                     opacity: 0.75;
                     font-size: 0.8em;
+                    padding-top: 0;
                 }
             }
 
@@ -267,7 +221,9 @@ a:hover {
                     background: fade(@color1, 10);
                     padding: 15px;
                     margin-bottom: 10px;
-                    border-left: 2px solid @color1;
+                    border-width: 0 0 0 2px;
+                    border-style: solid;
+                    border-color: @color1;
                 }
             }
         }
@@ -318,7 +274,7 @@ a:hover {
         }
     }
     .content-section {
-        padding: 0;
+        padding-top: 0;
 
         .avatar {
             display: block;
@@ -521,6 +477,220 @@ ul.social {
     font-size: 0.8em;
     text-align: center;
     padding: 10px;
+}
+
+
+@media screen and (max-width: 1023px) {
+    body {
+        font-size: 16px;
+    }
+
+    .main-section {
+        .main-section-container {
+            .content-section {
+                max-width: 100%;
+
+                .left-section {
+                    padding-left: 40px;
+                    padding-right: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #header {
+        nav > ul {
+            float: right;
+            margin: 0;
+            padding: 0 15px 0;
+        }
+        nav > ul > li {
+            display: inline-block;
+            position: relative;
+
+            -moz-perspective: 800px;
+            -webkit-perspective: 800px;
+            -o-perspective: 800px;
+            perspective: 800px;
+
+            a {
+                display: inline-block;
+                padding: 18px 10px;
+
+                i.fa-caret-down {
+                    margin-left: 5px;
+                }
+            }
+        }
+        nav > ul > li > ul {
+            position: absolute;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            background: fade(@color6, 90);
+            left: -8px;
+            top: 60px;
+
+            opacity: 0;
+            transform-origin: 0px 0px;
+            transform: rotateX(-100deg);
+            -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+            backface-visibility: hidden;
+
+            overflow: hidden;
+
+            transition: all .3s;
+
+            li {
+                a {
+                    padding: 10px 18px;
+                }
+            }
+        }
+        nav > ul > li:hover > ul {
+            opacity: 1;
+            transform: rotateX(0deg);
+        }
+        nav #menuButton {
+            display: none;
+        }
+    }
+
+    .toggleArticleContent {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .main-section {
+        .main-section-container {
+            .content-section {
+                padding-top: 0px;
+
+                .content-lead {
+                    font-size: 1.1em;
+                }
+
+                .left-section {
+                    float: none;
+                    width: 100%;
+                    padding-right: 40px;
+                }
+                .right-section {
+                    float: none;
+                    width: 100%;
+                    margin-left: 0px;
+
+                    article {
+                        border-width: 2px 0 0 0;
+                        margin-top: 20px;
+                        padding: 20px 40px;
+                    }
+                }
+            }
+        }
+    }
+
+    #header {
+        nav > ul {
+            display: none;
+        }
+        nav #menuButton {
+            float: right;
+            display: block;
+            background: none;
+            border: 0;
+            outline: 0;
+            font-size: 1.5em;
+            color: @white;
+            padding: 15px 20px;
+            width: 60px;
+            text-align: center;
+
+            .fa-bars { display: inline-block; }
+            .fa-angle-times { display: none; }
+        }
+    }
+
+    #header,
+    .main-section {
+        transition: transform .3s;
+    }
+
+    .menuOpen {
+        #header,
+        .main-section {
+            transform: translateX(-260px);
+        }
+        #header {
+            background: @color6;
+
+            nav > ul {
+                display: block;
+                position: absolute;
+                right: -260px;
+                width: 260px;
+                list-style: none;
+                margin: 0;
+                padding: 7px 0;
+            }
+            nav > ul > li {
+                position: relative;
+
+                a {
+                    display: block;
+                    padding: 8px 30px;
+                    font-size: 1.5em;
+
+                    i.fa-caret-down {
+                        display: none;
+                    }
+                }
+            }
+            nav > ul > li > ul {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+
+                li {
+                    a {
+                        padding-left: 60px;
+                        font-size: 1.1em;
+                    }
+                }
+            }
+            nav #menuButton {
+                .fa-bars { display: none; }
+                .fa-angle-times { display: inline-block; font-size: 1.3em; }
+            }
+        }
+    }
+
+    .main-section .main-section-container .content-section {
+        .toggleArticleContent {
+            display: block;
+            float: right;
+            color: @white;
+            font-size: 2.0em;
+            margin-top: -5px;
+            margin-right: -30px;
+            outline: 0;
+
+            .fa-angle-down { display: inline-block; }
+            .fa-angle-up { display: none; }
+        }
+        article.articleOpen {
+            .toggleArticleContent {
+                .fa-angle-down { display: none; }
+                .fa-angle-up { display: inline-block; }
+            }
+        }
+        article > p { display: none; }
+        article.articleOpen > p { display: block; }
+    }
+
 }
 
 
