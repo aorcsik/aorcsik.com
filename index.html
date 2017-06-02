@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>Antal Orcsik</title>
-<link href="app.bundle.css?b62ac16d068edddf006f" rel="stylesheet"></head>
+<link href="app.bundle.css?0a81b5c1e80f4e1c68b5" rel="stylesheet"></head>
 <body>
 
     <header id="header">
@@ -18,10 +18,20 @@
                 <li><a href="#aboutme" title="About me">About me</a></li>
                 <li><a href="#work" title="Work">Work</a></li>
                 <li><a href="#education" title="Education">Education</a></li>
-                <li><a href="#projects" title="Projects">Projects</a></li>
+                <li>
+                    <a href="#projects" title="Projects">Projects <i class="fa fa-caret-down"></i></a>
+                    <ul>
+                        <li><a href="#projects-mozipremierek" title="Mozipremierek">Mozipremierek</a></li>
+                        <li><a href="#projects-coderdays" title="CoderDays">CoderDays</a></li>
+                    </ul>
+                </li>
                 <li><a href="#contactme" title="Contact me">Contact me</a></li>
-            
-        </ul></nav>
+            </ul>
+            <button id="menuButton">
+                <i class="fa fa-bars"></i>
+                <i class="fa fa-angle-times"></i>
+            </button>
+        </nav>
     </header>
 
 
@@ -48,7 +58,7 @@
                 </div>
 
                 <div class="right-section">
-                    <article>
+                    <article class="articleOpen">
                         <p>
                             In my entire professional life I was working with the Internet. I
                             created my first websites around 2000, and since then I kept learning
@@ -73,7 +83,7 @@
     <section id="work" class="main-section">
         <div class="main-section-container">
             <header class="main-section-header">
-                <h2>Work</h2>
+                <h2><i class="fa fa-briefcase"></i> Work</h2>
             </header>
 
             <section class="content-section">
@@ -111,6 +121,10 @@
 
                     <article>
                         <header>
+                            <button class="toggleArticleContent">
+                                <i class="fa fa-angle-down"></i>
+                                <i class="fa fa-angle-up"></i>
+                            </button>
                             <h4>Development Team Leader</h4>
                             <p>December 2016 - Present</p>
                         </header>
@@ -123,6 +137,10 @@
 
                     <article>
                         <header>
+                            <button class="toggleArticleContent">
+                                <i class="fa fa-angle-down"></i>
+                                <i class="fa fa-angle-up"></i>
+                            </button>
                             <h4>Senior Application Developer</h4>
                             <p>March 2016 - Present</p>
                         </header>
@@ -170,6 +188,10 @@
 
                     <article>
                         <header>
+                            <button class="toggleArticleContent">
+                                <i class="fa fa-angle-down"></i>
+                                <i class="fa fa-angle-up"></i>
+                            </button>
                             <h4>Payment Engineer</h4>
                             <p>March 2015 - February 2016</p>
                         </header>
@@ -184,6 +206,10 @@
 
                     <article>
                         <header>
+                            <button class="toggleArticleContent">
+                                <i class="fa fa-angle-down"></i>
+                                <i class="fa fa-angle-up"></i>
+                            </button>
                             <h4>Infrastructure Engineer</h4>
                             <p>May 2013 - March 2015</p>
                         </header>
@@ -234,6 +260,10 @@
 
                     <article>
                         <header>
+                            <button class="toggleArticleContent">
+                                <i class="fa fa-angle-down"></i>
+                                <i class="fa fa-angle-up"></i>
+                            </button>
                             <h4>Senior Web Developer</h4>
                             <p>January 2008 - April 2013</p>
                         </header>
@@ -252,6 +282,10 @@
 
                     <article>
                         <header>
+                            <button class="toggleArticleContent">
+                                <i class="fa fa-angle-down"></i>
+                                <i class="fa fa-angle-up"></i>
+                            </button>
                             <h4>Web Developer</h4>
                             <p>January 2007 - January 2008</p>
                         </header>
@@ -263,6 +297,10 @@
 
                     <article>
                         <header>
+                            <button class="toggleArticleContent">
+                                <i class="fa fa-angle-down"></i>
+                                <i class="fa fa-angle-up"></i>
+                            </button>
                             <h4>Junior Web Developer</h4>
                             <p>July 2005 - January 2007</p>
                         </header>
@@ -286,7 +324,7 @@
     <section id="education" class="main-section">
         <div class="main-section-container">
             <header class="main-section-header">
-                <h2>Education</h2>
+                <h2><i class="fa fa-graduation-cap"></i> Education</h2>
             </header>
 
             <section class="content-section">
@@ -310,6 +348,10 @@
 
                     <article>
                         <header>
+                            <button class="toggleArticleContent">
+                                <i class="fa fa-angle-down"></i>
+                                <i class="fa fa-angle-up"></i>
+                            </button>
                             <h4>Computer Science</h4>
                             <p>Bachelor of Science</p>
                         </header>
@@ -351,6 +393,10 @@
 
                     <article>
                         <header>
+                            <button class="toggleArticleContent">
+                                <i class="fa fa-angle-down"></i>
+                                <i class="fa fa-angle-up"></i>
+                            </button>
                             <h4>Computer Engineering</h4>
                             <p>Bachelor of Science (Unfinished)</p>
                         </header>
@@ -376,21 +422,22 @@
     <section id="projects" class="main-section">
         <div class="main-section-container">
             <header class="main-section-header">
-                <h2>Projects</h2>
+                <h2><i class="fa fa-flask"></i> Projects</h2>
             </header>
 
-            <section class="content-section">
+            <section id="projects-mozipremierek" class="content-section">
                 <div class="left-section">
                     <div class="mozipremierek-logo"></div>
 
                     <header class="content-section-header">
-                        <h3><a href="https://mozipremierek.hu/" target="_blank">mozipremierek.hu</a></h3>
+                        <h3><a href="https://mozipremierek.hu/" target="_blank" title="Mozipremierek">Mozipremierek</a></h3>
                         <p>April 2014 - Present</p>
                     </header>
 
                     <p class="content-lead">
-                        This is my biggest standalone project, that I published. While
-                        it's a live projects, I keep playing with it, making it better
+                        My biggest standalone project. With its moderate
+                        audience and ever changing content it's ideal for
+                        experimenting with new technologies while making it better
                         with every little change.
                     </p>
 
@@ -430,6 +477,54 @@
                 </div>
 
             </section>
+
+            <section id="projects-coderdays" class="content-section">
+                <div class="left-section">
+                    <div class="coderdays-logo"></div>
+
+                    <header class="content-section-header">
+                        <h3><a href="https://coderdays.com/" target="_blank" title="CoderDays">CoderDays</a></h3>
+                        <p>September 2016 - Present</p>
+                    </header>
+
+                    <p class="content-lead">
+                        My active blog, where I publish posts about development,
+                        games and all kinds of things.
+                    </p>
+
+                    <ul class="tags">
+                        <li>Ghost</li>
+                        <li>Heroku</li>
+                        <li>Amazon S3</li>
+                        <li>Amazon RDS</li>
+                        <li>NodeJS</li>
+                        <li>MySQL</li>
+                        <li>JavaScript</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                    </ul>
+
+                </div>
+
+                <div class="right-section">
+
+                    <article class="articleOpen">
+                        <p>
+                            I wrote my first blog post around 2003. Since then
+                            I've had many blogs, I kept searching for the perfect
+                            medium to share my thoughts. Building the blog was
+                            always more interesting, than writing posts.
+                        </p>
+                        <p>
+                            This one is my latest attempt. It's based on Ghost,
+                            a lightweight open-source blog engine written in
+                            NodeJS. <a href="https://coderdays.com/" target="_blank" title="CoderDays">Check out my writings...</a>
+                        </p>
+                    </article>
+
+                </div>
+
+            </section>
             <a class="next-section-link" href="#contactme" title="Next section"><i class="fa fa-angle-down"></i></a>
         </div>
         <div class="main-section-separator"></div>
@@ -442,7 +537,46 @@
             </header>
 
             <section class="content-section">
+                <div class="left-section">
 
+                    <header class="content-section-header">
+                        <h3>Find me on</h3>
+                    </header>
+
+                    <ul class="social">
+                        <li><a href="https://twitter.com/aorcsik" target="_blank" title="Find me on Twitter">
+                            <i class="fa fa-twitter"></i> Twitter
+                        </a></li>
+                        <li><a href="https://facebook.com/aorcsik" target="_blank" title="Find me on Facebook">
+                            <i class="fa fa-facebook"></i> Facebook
+                        </a></li>
+                        <li><a href="https://linkedin.com/in/aorcsik" target="_blank" title="Find me on LinkedIn">
+                            <i class="fa fa-linkedin"></i> LinkedIn
+                        </a></li>
+                        <li><a href="https://github.com/aorcsik" target="_blank" title="Find me on GitHub">
+                            <i class="fa fa-github"></i> GitHub
+                        </a></li>
+                        <li><a href="https://stackoverflow.com/users/601224/aorcsik" target="_blank" title="Find me on StackOverflow">
+                            <i class="fa fa-stack-overflow"></i> StackOverflow
+                        </a></li>
+
+
+                    </ul>
+
+                </div>
+
+                <div class="right-section">
+                    <article class="articleOpen">
+                        <header>
+                            <h4><i class="fa fa-envelope-o"></i> Send me an email</h4>
+                        </header>
+                        <form id="contactForm">
+                            <input type="email" placeholder="Your email" name="yourEmail">
+                            <textarea placeholder="Your message" name="yourMessage"></textarea>
+                            <button id="submitForm"><i class="fa fa-paper-plane"></i> Send</button>
+                        </form>
+                    </article>
+                </div>
             </section>
         </div>
     </section>
@@ -450,5 +584,5 @@
     <footer id="footer">
         &copy; 2017 aorcsik.com
     </footer>
-<script type="text/javascript" src="vendor.bundle.js?b62ac16d068edddf006f"></script><script type="text/javascript" src="app.bundle.js?b62ac16d068edddf006f"></script></body>
+<script type="text/javascript" src="vendor.bundle.js?0a81b5c1e80f4e1c68b5"></script><script type="text/javascript" src="app.bundle.js?0a81b5c1e80f4e1c68b5"></script></body>
 </html>
