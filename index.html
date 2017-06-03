@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>Antal Orcsik</title>
-<link href="app.bundle.css?3c5f7cd04eb609152d40" rel="stylesheet"></head>
+
+    <link rel="shortcut icon" href="images/a72262970767e4fd07a9aea4aad8c360.jpg">
+
+    <meta name="robots" content="index, follow">
+    <meta name="copyright" content="2017 aorcsik.com">
+    <meta name="description" content="Hello, my name is Antal Orcsik, Tony. I'm a Senior Web Application Developer. I work as Development Team Leader at IBM. I live in the beautiful city of Budapest, Hungary.">
+    <meta name="keywords" content="web,development,software,coding,polyglot,php,javascript,python,scala,coder">
+
+    <meta property="og:image" content="images/a72262970767e4fd07a9aea4aad8c360.jpg">
+    <meta property="og:title" content="aorcsik.com">
+    <meta property="og:url" content="https://aorcsik.com/">
+    <meta property="og:site_name" content="aorcsik.com">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Hello, my name is Antal Orcsik, Tony. I'm a Senior Web Application Developer. I work as Development Team Leader at IBM. I live in the beautiful city of Budapest, Hungary.">
+
+    <meta name="google-site-verification" content="o2bErJPOsLZjjmNMaIhpkyja0vo9-0DT7CkSapJsbRU">
+
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-8111441-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+<link href="app.bundle.css?8afacc4f30ad4134f65f" rel="stylesheet"></head>
 <body>
 
     <header id="header">
@@ -44,7 +72,7 @@
             <section class="content-section">
 
                 <div class="left-section">
-                    <img class="avatar" src="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=256" alt="Avatar">
+                    <img class="avatar" src="images/a72262970767e4fd07a9aea4aad8c360.jpg" alt="Avatar">
 
                     <p class="content-lead">
                         Hello, my name is <strong>Antal Orcsik</strong>, <strong>Tony</strong>.<br>
@@ -566,15 +594,27 @@
                 </div>
 
                 <div class="right-section">
-                    <article class="articleOpen">
+                    <article id="contactFormArticle" class="articleOpen">
                         <header>
                             <h4><i class="fa fa-envelope-o"></i> Send me an email</h4>
                         </header>
                         <form id="contactForm">
                             <input type="email" placeholder="Your email" name="yourEmail">
                             <textarea placeholder="Your message" name="yourMessage"></textarea>
-                            <button id="submitForm"><i class="fa fa-paper-plane"></i> Send</button>
+                            <button id="submitForm">
+                                <i class="fa fa-circle-o-notch fa-spin"></i>
+                                <i class="fa fa-paper-plane"></i>
+                                Send
+                            </button>
+                            <p id="submitError">
+                                <i class="fa fa-exclamation-triangle"></i>
+                                Something went wrong, please try again!
+                            </p>
                         </form>
+                        <p id="emailTankYou">
+                            <i class="fa fa-smile-o"></i>
+                            Thank you!
+                        </p>
                     </article>
                 </div>
             </section>
@@ -584,5 +624,5 @@
     <footer id="footer">
         &copy; 2017 aorcsik.com
     </footer>
-<script type="text/javascript" src="vendor.bundle.js?3c5f7cd04eb609152d40"></script><script type="text/javascript" src="app.bundle.js?3c5f7cd04eb609152d40"></script></body>
+<script type="text/javascript" src="vendor.bundle.js?8afacc4f30ad4134f65f"></script><script type="text/javascript" src="app.bundle.js?8afacc4f30ad4134f65f"></script></body>
 </html>
