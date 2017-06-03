@@ -464,13 +464,42 @@ ul.social {
             border: 1px solid fade(@white, 75);
 
             transition: all .3s;
+
+            .fa-spin { display: none; }
+            .fa-paper-plane { display: inline-block; }
         }
         button:hover {
             color: @white;
             border-color: @white;
         }
+        button[disabled] {
+            opacity: .5;
+            cursor: not-allowed;
+
+            .fa-spin { display: inline-block; }
+            .fa-paper-plane { display: none; }
+        }
+
+    }
+    #submitError {
+        display: none;
+    }
+    #emailTankYou {
+        display: none;
+        font-size: 2.0em;
+        text-align: center;
+        i {
+            font-size: 2.0em;
+            display: block;
+        }
+    }
+
+    .emailSent {
+        #contactForm, header { display: none; }
+        #emailTankYou { display: block; }
     }
 }
+
 
 
 #footer {
@@ -696,6 +725,16 @@ ul.social {
         article.articleOpen > p { display: block; }
     }
 
+    #contactme {
+        ul.social {
+            li {
+                a {
+                    font-size: 1.3em;
+                    margin: 10px;
+                }
+            }
+        }
+    }
 }
 
 

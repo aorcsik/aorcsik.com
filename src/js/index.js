@@ -69,6 +69,8 @@ window.addEventListener("load", event => {
             message = document.querySelector("textarea[name='yourMessage']").value.trim();
 
         if (email && message) {
+            document.getElementById("submitForm").disabled = "disabled";
+            document.getElementById("submitError").style.display = "none";
             fetch('https://formspree.io/aorcsik+formspree@gmail.com', {
                 method: 'POST',
                 headers: {
@@ -80,6 +82,7 @@ window.addEventListener("load", event => {
                     message: message
                 })
             }).then(response => {
+                document.getElementById("submitForm").disabled = "";
                 if (response.status >= 200 && response.status < 300) {
                     return response;
                 } else {
@@ -90,13 +93,10 @@ window.addEventListener("load", event => {
             }).then(response => {
                 return response.json()
             }).then(body => {
-
-                console.log(body);
-
+                document.getElementById("contactFormArticle").className += " emailSent";
             }).catch(error => {
-
+                document.getElementById("submitError").style.display = "block";
                 console.error(error);
-
             });
         }
     });
