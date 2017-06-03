@@ -17,9 +17,9 @@ module.exports = {
     },
     entry: {
         app: "js/index.js",
-        vendor: [
-            "jquery"
-        ],
+        // vendor: [
+        //     "jquery"
+        // ],
     },
     output: {
         path: path.resolve(__dirname, "dist"),
