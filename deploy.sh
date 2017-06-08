@@ -7,7 +7,7 @@ git clone --depth 1 git@github.com:aorcsik/aorcsik.com.git --branch gh-pages dis
 ./build.sh -p
 
 cp CNAME ./dist/CNAME
-cp -R ./public/.well-known ./dist/
+cp -R ./public/keybase.txt ./dist/keybase.txt
 
 cd dist
 git add --all
