@@ -29,17 +29,64 @@ window.addEventListener("load", event => {
         });
     });
 
-    Array.from(document.querySelectorAll("article"), article => {
-        if (article.querySelector(".toggleArticleContent")) {
-            article.querySelector(".toggleArticleContent").addEventListener("click", event => {
-                if (article.className.match(/articleOpen/)) {
-                    article.className = article.className.replace(/articleOpen/, "");
-                } else {
-                    article.className += " articleOpen";
+    var mobileUpdates = false;
+    Array.from(document.querySelectorAll(".main-section"), mainSection => {
+        var sectionId = mainSection.id,
+            updates = {count: 0, latest: null, color: null};
+
+        Array.from(mainSection.querySelectorAll("article"), article => {
+            if (article.querySelector(".toggleArticleContent")) {
+                article.querySelector(".toggleArticleContent").addEventListener("click", event => {
+                    if (article.className.match(/articleOpen/)) {
+                        article.className = article.className.replace(/articleOpen/, "");
+                    } else {
+                        article.className += " articleOpen";
+                    }
+                });
+            }
+
+
+            Array.from(article.querySelectorAll(".updated"), label => {
+                var date = label.innerHTML,
+                    diff = Math.floor(((new Date()) - (new Date(date))) / (1000 * 60 * 60 * 24));
+                if (diff == 0) label.innerHTML = "Today";
+                else if (diff == 1) label.innerHTML = "Yesterday";
+                else label.innerHTML = diff + " days ago";
+                label.style.display = "block";
+
+                var r = 220,
+                    g = Math.min(Math.floor(255 * diff / 30), 255),
+                    b = g,
+                    a = Math.max(0.3, 0.3 + (1 - diff / 30) * 0.7),
+                    backgroundColor = "rgba(" + r + "," + g + "," + b + "," + a + ")";
+                label.style.background = backgroundColor;
+
+                if (diff < 30) {
+                    mobileUpdates = true;
+                    updates.count += 1;
+                    if (updates.latest == null || updates.latest > diff) {
+                        updates.latest = diff;
+                        updates.backgroundColor = backgroundColor;
+                    }
                 }
             });
-        }
+        });
+
+        Array.from(document.querySelectorAll("#header a[href='#" + sectionId + "']"), element => {
+            if (updates.count > 0) {
+                var label = document.createElement("span");
+                label.className = "header-menu-label";
+                label.style.background = updates.backgroundColor;
+                label.innerHTML = updates.count;
+                element.insertBefore(label, element.firstChild.nextSibling);
+            }
+        });
     });
+
+    if (mobileUpdates) {
+        document.getElementById("menuButton").className = "updates";
+    }
+
 
     window.addEventListener("scroll", event => {
         if (window.pageYOffset > 0) {
