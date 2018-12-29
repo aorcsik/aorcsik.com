@@ -1,16 +1,1 @@
-@import url(//fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,latin-ext);
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif; }
-
-.facebook-post, .twitter-post, .instagram-post {
-  display: block;
-  margin: 0 auto;
-  float: left; }
-
-.twitter-tweet {
-  margin: 0 !important; }
-
-.greeting-grid p {
-  margin: 0;
-  line-height: 2.0em; }
-
+@import url(//fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,latin-ext);body{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Ubuntu,Helvetica Neue,sans-serif}.facebook-post,.instagram-post,.twitter-post{display:block;margin:0 auto;float:left}.twitter-tweet{margin:0!important}.greeting-grid p{margin:0;line-height:2em}
