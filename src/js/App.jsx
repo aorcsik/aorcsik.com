@@ -3,8 +3,8 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import PropTypes from "prop-types";
-import classNames from "classnames";
-import { Avatar, Button, CssBaseline, Divider, Grid, Switch, Typography } from "@material-ui/core";
+// import classNames from "classnames";
+import { Button, CssBaseline, Divider, Grid, Switch, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { SocialIcon } from "react-social-icons";
 
@@ -19,11 +19,6 @@ const styles = theme => ({
     flexGrow: 1,
     paddingTop: theme.spacing.unit,
     paddingBottom: theme.spacing.unit * 2
-  },
-  avatar: {
-    margin: 10,
-    width: 128,
-    height: 128
   }
 });
 
@@ -174,7 +169,7 @@ class App extends React.Component
               /> EN
             </Grid>
             <Grid container justify="center" alignItems="center">
-              <Avatar alt="Antal Orcsik (Tony)" src="https://aorcsik.com/images/a72262970767e4fd07a9aea4aad8c360.jpg" className={classes.avatar} />
+              <img className="avatar" alt="Antal Orcsik (Tony)" src="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=256" />
             </Grid>
             <Grid container justify="center" alignItems="center">
               <Typography variant="h4" gutterBottom>
