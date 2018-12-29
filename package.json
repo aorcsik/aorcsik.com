@@ -36,6 +36,8 @@
     "optimize-css-assets-webpack-plugin": "^4.0.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-markdown": "^4.0.4",
+    "react-social-icons": "^4.1.0",
     "sass-loader": "^7.1.0",
     "style-loader": "0.23.1",
     "terser-webpack-plugin": "^1.2.1",

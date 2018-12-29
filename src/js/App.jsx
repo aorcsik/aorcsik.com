@@ -1,74 +1,30 @@
 /* global $ */
 
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { AppBar, CssBaseline, Drawer, IconButton, Toolbar, Typography } from "@material-ui/core";
+import { Avatar, Button, CssBaseline, Divider, Grid, Switch, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import { SocialIcon } from "react-social-icons";
 
 import Post from "./Post.jsx";
 
-
-const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
     display: "flex",
   },
-  appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20,
-  },
-  hide: {
-    display: "none",
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: "flex",
-    alignItems: "center",
-    padding: "0 8px",
-    ...theme.mixins.toolbar,
-    justifyContent: "flex-end",
-  },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
+    paddingTop: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit * 2
   },
-  contentShift: {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
+  avatar: {
+    margin: 10,
+    width: 128,
+    height: 128
+  }
 });
 
 class App extends React.Component
@@ -77,40 +33,91 @@ class App extends React.Component
     super(props);
 
     this.state = {
+      width: null,
       mounted: false,
       loaded: false,
       content: null,
-      menu_open: false,
+      rendered: 0,
+      language_en: false
     };
 
-    this.toggleDrawer = this.toggleDrawer.bind(this);
+    this.handleLanguageChange = this.handleLanguageChange.bind(this);
+    this.loadMorePosts = this.loadMorePosts.bind(this);
+    this.updateListPosition = this.updateListPosition.bind(this);
   }
 
   componentDidMount() {
-    this.setState({mounted: true});
+    this.setState({
+      mounted: true,
+      width: $(window).width()
+    });
     this.request = $.getJSON("content.json", function(data) {
       this.setState({
         loaded: true,
         content: data
       });
     }.bind(this));
+
+    var loadOnScroll = null;
+    $(window).scroll(function() {
+      this.updateListPosition();
+
+      if ($("#load-more-button").length > 0 && $(window).scrollTop() + $(window).height() > $("#load-more-button").offset().top) {
+        window.clearTimeout(loadOnScroll);
+        loadOnScroll = window.setTimeout(function() {
+          $("#load-more-button button").click();
+        }, 200);
+      }
+    }.bind(this));
+
+    window.setInterval(function() {
+      this.updateListPosition();
+    }.bind(this), 200);
   }
 
   // FUNCTIONS
 
-  toggleDrawer(open) {
+  loadMorePosts(rendered) {
     return function() {
       this.setState({
-        menu_open: open,
+        rendered: rendered,
       });
     }.bind(this);
+  }
+
+  handleLanguageChange(event) {
+    this.setState({
+      language_en: event.target.checked,
+    });
+  }
+
+  updateListPosition() {
+    var i = 0, $leftLast, $rightLast;
+    $(".twitter-post, .facebook-post, .instagram-post").each(function() {
+      if (i == 0) {
+        $(this).css("float", "left");
+        $leftLast = $(this);
+      } else if (i == 1) {
+        $(this).css("float", "right");
+        $rightLast = $(this);
+      } else {
+        if ($leftLast.offset().top + $leftLast.height() < $rightLast.offset().top + $rightLast.height()) {
+          $(this).css("float", "left");
+          $leftLast = $(this);
+        } else {
+          $(this).css("float", "right");
+          $rightLast = $(this);
+        }
+      }
+      i++;
+    });
   }
 
   // RENDER
 
   render() {
     const { classes, theme } = this.props;
-    const { mounted, loaded, menu_open, content} = this.state;
+    const { mounted, loaded, content} = this.state;
 
     if (!mounted || !loaded)  {
       return (
@@ -119,53 +126,79 @@ class App extends React.Component
         </div>
       );
     } else {
+
+      const postsPerLoad = 5;
+      const postWidth = this.state.width > 600 ? 500 : 350;
+      const numberOfColumns = this.state.width > 1100 ? 2 : 1;
+
+      var index, columns = [];
+      for (index = 0; index < Math.min(this.state.rendered + postsPerLoad, content.posts.length); index++) {
+        let columnIdx = 0; // index % numberOfColumns;
+        if (!columns[columnIdx]) columns[columnIdx] = [];
+        columns[columnIdx].push(<Post
+          key={"post_" + index}
+          links={content.posts[index].links} width={postWidth}
+          onSocialRender={this.updateListPosition}
+        />);
+      }
+      let contentGrid = (
+        <Grid container spacing={0} style={{width: postWidth * numberOfColumns + 12 * (numberOfColumns - 1), margin: "0 auto"}}>
+          <Grid item xs={12} style={{margin: theme.spacing.unit * 3}}>
+            <Divider variant="middle" />
+          </Grid>
+          {columns.map((column, index) => (
+            <Grid key={"column-" + index} item xs={12/columns.length}>
+              {column}
+            </Grid>
+          ))}
+        </Grid>
+      );
+
+      let loadMorePostsButton = index >= content.posts.length ? null: (
+        <div id="load-more-button" style={{display: "flex", justifyContent: "center"}}>
+          <Button color="primary" className={classes.button} onClick={this.loadMorePosts(index)}>
+            Load {postsPerLoad} more posts...
+          </Button>
+        </div>
+      );
+
       return (
         <div className={classes.root}>
           <CssBaseline />
-          <AppBar
-            position="fixed"
-            className={classNames(classes.appBar, {
-              [classes.appBarShift]: menu_open,
-            })}
-          >
-            <Toolbar disableGutters={!menu_open}>
-              <IconButton
-                color="inherit"
-                aria-label="Open drawer"
-                onClick={this.toggleDrawer(true)}
-                className={classNames(classes.menuButton, menu_open && classes.hide)}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" color="inherit" noWrap>
+          <main className={classes.content}>
+            <Grid container justify="center" alignItems="center">
+              HU <Switch
+                checked={this.state.language_en}
+                onChange={this.handleLanguageChange}
+                color="default"
+              /> EN
+            </Grid>
+            <Grid container justify="center" alignItems="center">
+              <Avatar alt="Antal Orcsik (Tony)" src="https://aorcsik.com/images/a72262970767e4fd07a9aea4aad8c360.jpg" className={classes.avatar} />
+            </Grid>
+            <Grid container justify="center" alignItems="center">
+              <Typography variant="h4" gutterBottom>
                 {content.title}
               </Typography>
-            </Toolbar>
-          </AppBar>
-          <Drawer
-            className={classes.drawer}
-            variant="persistent"
-            anchor="left"
-            open={menu_open}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-          >
-            <div className={classes.drawerHeader}>
-              <IconButton onClick={this.toggleDrawer(false)}>
-                {theme.direction === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-              </IconButton>
-            </div>
-          </Drawer>
-          <main
-            className={classNames(classes.content, {
-              [classes.contentShift]: menu_open,
+            </Grid>
+            {content.greeting[this.state.language_en ? "en" : "hu"].map((line, index) => {
+              return (<Grid key={index} className="greeting-grid" container justify="center" alignItems="center">
+                <ReactMarkdown source={line} />
+              </Grid>);
             })}
-          >
-            <div className={classes.drawerHeader} />
-            {content.posts.map((post, index) => (
-              <Post key={"post_" + index} links={post.links} />
-            ))}
+            <Grid container justify="center" alignItems="center" style={{marginTop: theme.spacing.unit * 2}}>
+              {["http://facebook.com/aorcsik",
+                "http://twitter.com/aorcsik",
+                "http://linkedin.com/in/aorcsik",
+                "https://dribbble.com/aorcsik"
+              ].map((url, index) => {
+                return (
+                  <SocialIcon key={index} url={url} target="_blank" style={{ height: 32, width: 32, margin: theme.spacing.unit / 2 }} />
+                );
+              })}
+            </Grid>
+            {contentGrid}
+            {loadMorePostsButton}
           </main>
         </div>
       );

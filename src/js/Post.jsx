@@ -2,14 +2,14 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-// import classNames from "classnames";
-import { Paper, Typography } from "@material-ui/core";
+import classNames from "classnames";
+import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 
 const styles = theme => ({
   root: {
-    ...theme.mixins.gutters(),
+    //...theme.mixins.gutters(),
     marginBottom: theme.spacing.unit * 2
   },
 });
@@ -24,59 +24,74 @@ class Post extends React.Component
       loaded: false,
       data: {},
     };
+
+    this.loadOEmbedLink = this.loadOEmbedLink.bind(this);
   }
 
   componentDidMount() {
     this.setState({mounted: true});
-
-    this.props.links.forEach((link) => {
-
-      // https://developers.facebook.com/docs/plugins/oembed-endpoints/
-      if (link.match(/facebook\.com/)) {
-        $.ajax({
-          url: "https://www.facebook.com/plugins/post/oembed.json/?maxwidth=350&omitscript=1&url=" + encodeURIComponent(link),
-          dataType: "jsonp",
-          success: (data) => {
-            data.id = data.url.replace(/http.*\//, "");
-            console.log(data);
-            this.setState({
-              loaded: true,
-              data: $.extend(this.state.data, {
-                facebook: data
-              })
-            });
-          }
-        });
-      }
-
-      // https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-oembed
-      if (link.match(/twitter\.com/)) {
-        $.ajax({
-          url: "https://publish.twitter.com/oembed?maxwidth=350&omit_script=1&url=" + encodeURIComponent(link),
-          dataType: "jsonp",
-          success: (data) => {
-            data.id = data.url.replace(/http.*\//, "");
-            console.log(data);
-            this.setState({
-              loaded: true,
-              data: $.extend(this.state.data, {
-                twitter: data
-              })
-            });
-          }
-        });
-      }
-    });
+    this.loadOEmbedLink(this.props.links, 0);
   }
 
   // https://developers.facebook.com/docs/reference/javascript/FB.XFBML.parse/
   // https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/guides/scripting-loading-and-initialization
   componentDidUpdate() {
-    if (this.state.data.facebook) window.FB.XFBML.parse(document.getElementById("facebook-" + this.state.data.facebook.id));
-    if (this.state.data.twitter) window.twttr.widgets.load(document.getElementById("twitter-" + this.state.data.twitter.id));
+    if (this.state.data.facebook && window.FB.XFBML) window.FB.XFBML.parse(document.getElementById("facebook-" + this.state.data.facebook.id));
+    if (this.state.data.twitter && window.twttr.widgets) window.twttr.widgets.load(document.getElementById("twitter-" + this.state.data.twitter.id));
+    if (this.state.data.instagram && window.instgrm) window.instgrm.Embeds.process(document.getElementById("instagram-" + this.state.data.instagram.id));
+    window.setTimeout(function() {
+      this.props.onSocialRender();
+    }.bind(this), 200);
   }
 
   // FUNCTIONS
+
+  loadOEmbedLink(links, idx) {
+    if (!links[idx]) return;
+
+    let link = links[idx];
+    let source = null;
+    if (link.match(/facebook\.com/)) {
+      // https://developers.facebook.com/docs/plugins/oembed-endpoints/
+      source = {
+        url: "https://www.facebook.com/plugins/post/oembed.json/?maxwidth=350&omitscript=1&url=" + encodeURIComponent(link),
+        type: "facebook",
+        dataType: "jsonp"
+      };
+    } else if (link.match(/twitter\.com/)) {
+      // https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-oembed
+      source = {
+        url: "https://publish.twitter.com/oembed?maxwidth=350&omit_script=1&url=" + encodeURIComponent(link),
+        type: "twitter",
+        dataType: "jsonp"
+      };
+    } else if (link.match(/instagram\.com/)) {
+      // https://www.instagram.com/developer/embedding/
+      source = {
+        url: "https://api.instagram.com/oembed?maxwidth=350&omitscript=1&url=" + encodeURIComponent(link),
+        type: "instagram",
+        dataType: "json"
+      };
+    }
+
+    if (source) {
+      $.ajax({
+        url: source.url,
+        dataType: source.dataType,
+        success: (data) => {
+          data.id = data.media_id || data.url.replace(/http.*\//, "");
+          this.setState({
+            loaded: true,
+            data: $.extend(this.state.data, {
+              [source.type]: data
+            })
+          });
+        }
+      });
+    } else {
+      this.loadOEmbedLink(links, idx + 1);
+    }
+  }
 
   // RENDER
 
@@ -87,17 +102,26 @@ class Post extends React.Component
     if (!mounted || !loaded)  {
       return (
         <div className={classes.root}>
-          Loading...
         </div>
       );
     } else {
-      if (data.facebook) {
+      if (data.instagram) {
         return (
-          <div id={"facebook-" + data.facebook.id} className={classes.root} dangerouslySetInnerHTML={{__html: data.facebook.html}} />
+          <Paper className={classNames(classes.root, "instagram-post")} id={"instagram-" + data.instagram.id} style={{width: this.props.width, padding: 0}}>
+            <div dangerouslySetInnerHTML={{__html: data.instagram.html.replace(/max-width:350px/, "max-width:" + this.props.width + "px")}} />
+          </Paper>
+        );
+      } else if (data.facebook) {
+        return (
+          <Paper className={classNames(classes.root, "facebook-post")} id={"facebook-" + data.facebook.id} style={{width: this.props.width, padding: 0}}>
+            <div dangerouslySetInnerHTML={{__html: data.facebook.html.replace(/data-width="350"/, "data-width=\"" + this.props.width + "\"")}} />
+          </Paper>
         );
       } else if (data.twitter){
         return (
-          <div id={"twitter-" + data.twitter.id} className={classes.root} dangerouslySetInnerHTML={{__html: data.twitter.html}} />
+          <Paper className={classNames(classes.root, "twitter-post")} id={"twitter-" + data.twitter.id} style={{width: this.props.width, padding: 0}}>
+            <div dangerouslySetInnerHTML={{__html: data.twitter.html.replace(/data-width="350"/, "data-width=\"" + this.props.width + "\"")}} />
+          </Paper>
         );
       }
     }
@@ -107,7 +131,8 @@ class Post extends React.Component
 Post.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  links: PropTypes.array.isRequired
+  links: PropTypes.array.isRequired,
+  width: PropTypes.number.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(Post);
