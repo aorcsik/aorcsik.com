@@ -1,0 +1,11 @@
+files:
+  include: 'src/client/scss/**/*.s+(a|c)ss'
+rules:
+  indentation:
+    - 2
+    -
+      size: 2
+  no-url-domains:
+    - 0
+  no-url-protocols:
+    - 0
