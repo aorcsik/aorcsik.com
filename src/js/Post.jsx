@@ -36,12 +36,14 @@ class Post extends React.Component
   // https://developers.facebook.com/docs/reference/javascript/FB.XFBML.parse/
   // https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/guides/scripting-loading-and-initialization
   componentDidUpdate() {
-    if (this.state.data.facebook && window.FB.XFBML) window.FB.XFBML.parse(document.getElementById("facebook-" + this.state.data.facebook.id));
-    if (this.state.data.twitter && window.twttr.widgets) window.twttr.widgets.load(document.getElementById("twitter-" + this.state.data.twitter.id));
-    if (this.state.data.instagram && window.instgrm) window.instgrm.Embeds.process(document.getElementById("instagram-" + this.state.data.instagram.id));
-    window.setTimeout(function() {
-      this.props.onSocialRender();
-    }.bind(this), 200);
+    if (this.props.show) {
+      if (this.state.data.facebook && window.FB.XFBML) window.FB.XFBML.parse(document.getElementById("facebook-" + this.state.data.facebook.id));
+      if (this.state.data.twitter && window.twttr.widgets) window.twttr.widgets.load(document.getElementById("twitter-" + this.state.data.twitter.id));
+      if (this.state.data.instagram && window.instgrm) window.instgrm.Embeds.process(document.getElementById("instagram-" + this.state.data.instagram.id));
+      window.setTimeout(function() {
+        this.props.onSocialRender();
+      }.bind(this), 200);
+    }
   }
 
   // FUNCTIONS
@@ -107,19 +109,19 @@ class Post extends React.Component
     } else {
       if (data.instagram) {
         return (
-          <Paper className={classNames(classes.root, "instagram-post")} id={"instagram-" + data.instagram.id} style={{width: this.props.width, padding: 0}}>
+          <Paper className={classNames(classes.root, "instagram-post")} id={"instagram-" + data.instagram.id} style={{display: this.props.show ? "block" : "none", width: this.props.width, padding: 0}}>
             <div dangerouslySetInnerHTML={{__html: data.instagram.html.replace(/max-width:350px/, "max-width:" + this.props.width + "px")}} />
           </Paper>
         );
       } else if (data.facebook) {
         return (
-          <Paper className={classNames(classes.root, "facebook-post")} id={"facebook-" + data.facebook.id} style={{width: this.props.width, padding: 0}}>
+          <Paper className={classNames(classes.root, "facebook-post")} id={"facebook-" + data.facebook.id} style={{display: this.props.show ? "block" : "none", width: this.props.width, padding: 0}}>
             <div dangerouslySetInnerHTML={{__html: data.facebook.html.replace(/data-width="350"/, "data-width=\"" + this.props.width + "\"")}} />
           </Paper>
         );
       } else if (data.twitter){
         return (
-          <Paper className={classNames(classes.root, "twitter-post")} id={"twitter-" + data.twitter.id} style={{width: this.props.width, padding: 0}}>
+          <Paper className={classNames(classes.root, "twitter-post")} id={"twitter-" + data.twitter.id} style={{display: this.props.show ? "block" : "none", width: this.props.width, padding: 0}}>
             <div dangerouslySetInnerHTML={{__html: data.twitter.html.replace(/data-width="350"/, "data-width=\"" + this.props.width + "\"")}} />
           </Paper>
         );

@@ -4,7 +4,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import PropTypes from "prop-types";
 // import classNames from "classnames";
-import { Button, CssBaseline, Divider, Grid, Switch, Typography } from "@material-ui/core";
+import { Button, CssBaseline, Divider, Grid, List, ListItem, ListItemText, Menu, MenuItem, Switch, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { SocialIcon } from "react-social-icons";
 
@@ -33,12 +33,17 @@ class App extends React.Component
       loaded: false,
       content: null,
       rendered: 0,
-      language_en: false
+      category: "all",
+      language_en: false,
+      anchorEl: null
     };
 
     this.handleLanguageChange = this.handleLanguageChange.bind(this);
     this.loadMorePosts = this.loadMorePosts.bind(this);
     this.updateListPosition = this.updateListPosition.bind(this);
+    this.handleOpenCategorySelect = this.handleOpenCategorySelect.bind(this);
+    this.handleSelectCategory = this.handleSelectCategory.bind(this);
+    this.handleCloseCategorySelect = this.handleCloseCategorySelect.bind(this);
   }
 
   componentDidMount() {
@@ -88,7 +93,7 @@ class App extends React.Component
 
   updateListPosition() {
     var i = 0, $leftLast, $rightLast;
-    $(".twitter-post, .facebook-post, .instagram-post").each(function() {
+    $(".twitter-post:visible, .facebook-post:visible, .instagram-post:visible").each(function() {
       if (i == 0) {
         $(this).css("float", "left");
         $leftLast = $(this);
@@ -108,11 +113,25 @@ class App extends React.Component
     });
   }
 
+  handleOpenCategorySelect(event) {
+    this.setState({ anchorEl: event.currentTarget });
+  }
+
+  handleSelectCategory(category) {
+    return function() {
+      this.setState({ category: category, rendered: 0, anchorEl: null });
+    }.bind(this);
+  }
+
+  handleCloseCategorySelect() {
+    this.setState({ anchorEl: null });
+  }
+
   // RENDER
 
   render() {
     const { classes, theme } = this.props;
-    const { mounted, loaded, content} = this.state;
+    const { mounted, loaded, content, anchorEl} = this.state;
 
     if (!mounted || !loaded)  {
       return (
@@ -123,35 +142,66 @@ class App extends React.Component
     } else {
 
       const postsPerLoad = 5;
+      const language = this.state.language_en ? "en" : "hu";
       const postWidth = this.state.width > 600 ? 500 : 350;
       const numberOfColumns = this.state.width > 1100 ? 2 : 1;
 
-      var index, columns = [];
-      for (index = 0; index < Math.min(this.state.rendered + postsPerLoad, content.posts.length); index++) {
-        let columnIdx = 0; // index % numberOfColumns;
-        if (!columns[columnIdx]) columns[columnIdx] = [];
-        columns[columnIdx].push(<Post
-          key={"post_" + index}
-          links={content.posts[index].links} width={postWidth}
-          onSocialRender={this.updateListPosition}
-        />);
+      var index, renderCount = 0, count = 0, column = [];
+      for (index = 0; index < content.posts.length; index++) {
+        let show = this.state.category == "all" || (content.posts[index].category && content.posts[index].category.indexOf(this.state.category) !== -1);
+        if (count < this.state.rendered + postsPerLoad) {
+          column.push(<Post
+            show={show}
+            key={"post_" + index}
+            links={content.posts[index].links} width={postWidth}
+            onSocialRender={this.updateListPosition}
+          />);
+          if (show) renderCount++;
+        }
+        if (show) count++;
       }
       let contentGrid = (
         <Grid container spacing={0} style={{width: postWidth * numberOfColumns + 12 * (numberOfColumns - 1), margin: "0 auto"}}>
-          <Grid item xs={12} style={{margin: theme.spacing.unit * 3}}>
+          <Grid item xs={12}>
+            <List component="nav">
+              <ListItem
+                button
+                onClick={this.handleOpenCategorySelect}
+              >
+                <ListItemText
+                  primary={content.categories[this.state.category][language]}
+                  secondary={count + " " + (count == 1 ? content.one_post[language] : content.many_posts[language])}
+                />
+              </ListItem>
+            </List>
+            <Menu
+              id="lock-menu"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={this.handleCategorySelect}
+            >
+              {Object.keys(content.categories).map((category) => (
+                <MenuItem
+                  key={category}
+                  selected={category === this.state.category}
+                  onClick={this.handleSelectCategory(category)}
+                >
+                  {content.categories[category][language]}
+                </MenuItem>
+              ))}
+            </Menu>
+          </Grid>
+          <Grid item xs={12} style={{marginBottom: theme.spacing.unit * 3}}>
             <Divider variant="middle" />
           </Grid>
-          {columns.map((column, index) => (
-            <Grid key={"column-" + index} item xs={12/columns.length}>
-              {column}
-            </Grid>
-          ))}
+          <Grid item xs={12}>
+            {column}
+          </Grid>
         </Grid>
       );
-
-      let loadMorePostsButton = index >= content.posts.length ? null: (
+      let loadMorePostsButton = renderCount >= count ? null : (
         <div id="load-more-button" style={{display: "flex", justifyContent: "center"}}>
-          <Button color="primary" className={classes.button} onClick={this.loadMorePosts(index)}>
+          <Button color="primary" className={classes.button} onClick={this.loadMorePosts(renderCount)}>
             Load {postsPerLoad} more posts...
           </Button>
         </div>
@@ -176,16 +226,17 @@ class App extends React.Component
                 {content.title}
               </Typography>
             </Grid>
-            {content.greeting[this.state.language_en ? "en" : "hu"].map((line, index) => {
+            {content.greeting[language].map((line, index) => {
               return (<Grid key={index} className="greeting-grid" container justify="center" alignItems="center">
                 <ReactMarkdown source={line} />
               </Grid>);
             })}
             <Grid container justify="center" alignItems="center" style={{marginTop: theme.spacing.unit * 2}}>
-              {["http://facebook.com/aorcsik",
-                "http://twitter.com/aorcsik",
-                "http://linkedin.com/in/aorcsik",
-                "https://dribbble.com/aorcsik"
+              {["https://facebook.com/aorcsik",
+                "https://twitter.com/aorcsik",
+                "https://linkedin.com/in/aorcsik",
+                "https://dribbble.com/aorcsik",
+                "https://github.com/aorcsik"
               ].map((url, index) => {
                 return (
                   <SocialIcon key={index} url={url} target="_blank" style={{ height: 32, width: 32, margin: theme.spacing.unit / 2 }} />
