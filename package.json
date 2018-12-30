@@ -1,6 +1,6 @@
 {
   "name": "aorcsik.com",
-  "version": "5.0.0",
+  "version": "5.0.2",
   "description": "About Antal Orcsik",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
