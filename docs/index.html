@@ -14,10 +14,9 @@
   <!-- <link rel="apple-touch-startup-image" href="startup.png"> -->
   <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-  <link rel="stylesheet" type="text/css" href="app.bundle.css?v5.0.2">
 </head>
 <body>
+  <!-- Facebook -->
   <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function() {
@@ -37,6 +36,8 @@
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
   </script>
+
+  <!-- Twitter -->
   <script>window.twttr = (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0],
       t = window.twttr || {};
@@ -52,9 +53,33 @@
 
     return t;
   }(document, "script", "twitter-wjs"));</script>
+
+  <!-- Instagram -->
   <script async src="//www.instagram.com/embed.js"></script>
+
+  <!-- GitHub Ribbon -->
+  <a href="https://github.com/aorcsik/aorcsik.com"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+  <!-- App -->
   <div id="app" />
-  <script type="text/javascript" src="vendor.bundle.js?v5.0.2" charset="utf-8"></script>
-  <script type="text/javascript" src="app.bundle.js?v5.0.2" charset="utf-8"></script>
+  <script>
+
+  window.__aorcsik_loadScript = function(src, success) {
+    var js, body = document.getElementsByTagName("body")[0];
+    js = document.createElement("script");
+    js.src = src; js.onload = success;
+    body.appendChild(js);
+  }
+
+  window.__aorcsik_loadStylesheet = function(href) {
+    var css, head = document.getElementsByTagName("head")[0];
+    css = document.createElement("link");
+    css.rel = "stylesheet"; css.href = href;
+    head.appendChild(css);
+  }
+
+  window.__aorcsik_loadScript("content.js?_=" + (new Date()).getTime());
+
+  </script>
 </body>
 </html>

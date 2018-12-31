@@ -33,12 +33,16 @@ class App extends React.Component
       loaded: false,
       content: null,
       rendered: 0,
+      load_more_posts_disabled: false,
       category: "all",
       language_en: false,
       anchorEl: null
     };
 
-    this.handleLanguageChange = this.handleLanguageChange.bind(this);
+    this.loadMorePostsDisabledDelay = null;
+
+    this.handleSwitchLanguage = this.handleSwitchLanguage.bind(this);
+    this.handleChangeLanguage = this.handleChangeLanguage.bind(this);
     this.loadMorePosts = this.loadMorePosts.bind(this);
     this.updateListPosition = this.updateListPosition.bind(this);
     this.handleOpenCategorySelect = this.handleOpenCategorySelect.bind(this);
@@ -49,14 +53,10 @@ class App extends React.Component
   componentDidMount() {
     this.setState({
       mounted: true,
-      width: $(window).width()
+      width: $(window).width(),
+      loaded: true,
+      content: window.__aorcsik_content
     });
-    this.request = $.getJSON("content.json", function(data) {
-      this.setState({
-        loaded: true,
-        content: data
-      });
-    }.bind(this));
 
     var loadOnScroll = null;
     $(window).scroll(function() {
@@ -81,14 +81,29 @@ class App extends React.Component
     return function() {
       this.setState({
         rendered: rendered,
+        load_more_posts_disabled: true
       });
+      window.clearTimeout(this.loadMorePostsDisabledDelay);
+      this.loadMorePostsDisabledDelay = window.setTimeout(function() {
+        this.setState({
+          load_more_posts_disabled: false
+        });
+      }.bind(this), 2000);
     }.bind(this);
   }
 
-  handleLanguageChange(event) {
+  handleSwitchLanguage(event) {
     this.setState({
       language_en: event.target.checked,
     });
+  }
+
+  handleChangeLanguage(language) {
+    return function() {
+      this.setState({
+        language_en: language == "en",
+      });
+    }.bind(this);
   }
 
   updateListPosition() {
@@ -201,7 +216,10 @@ class App extends React.Component
       );
       let loadMorePostsButton = renderCount >= count ? null : (
         <div id="load-more-button" style={{display: "flex", justifyContent: "center"}}>
-          <Button color="primary" className={classes.button} onClick={this.loadMorePosts(renderCount)}>
+          <Button 
+            color="primary" className={classes.button}
+            disabled={this.state.load_more_posts_disabled}
+            onClick={this.loadMorePosts(renderCount)}>
             Load {postsPerLoad} more posts...
           </Button>
         </div>
@@ -212,11 +230,14 @@ class App extends React.Component
           <CssBaseline />
           <main className={classes.content}>
             <Grid container justify="center" alignItems="center">
-              HU <Switch
+              <span onClick={this.handleChangeLanguage("hu")} style={{position: "relative", zIndex: 1000}}>HU</span>
+              <Switch
+                style={{position: "relative", zIndex: 1000}}
                 checked={this.state.language_en}
-                onChange={this.handleLanguageChange}
+                onChange={this.handleSwitchLanguage}
                 color="default"
-              /> EN
+              />
+              <span onClick={this.handleChangeLanguage("en")} style={{position: "relative", zIndex: 1000}}>EN</span>
             </Grid>
             <Grid container justify="center" alignItems="center">
               <img className="avatar" alt="Antal Orcsik (Tony)" src="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=256" />
