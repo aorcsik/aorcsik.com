@@ -49,6 +49,8 @@ window.__aorcsik_content = {
   },
 
   posts: [
+    {date: "2018-01-04", links: ["https://www.facebook.com/aorcsik/posts/10157449434687952"]},
+    {date: "2018-01-03", links: ["https://www.facebook.com/aorcsik/posts/10157447224772952"]},
     {date: "2018-12-31", links: ["https://www.facebook.com/aorcsik/posts/10157439259767952"]},
     {date: "2018-12-30", category: ["gaming"], links: ["https://twitter.com/aorcsik/status/1079452357224812544"]},
     {date: "2018-12-30", category: ["running"], links: ["https://twitter.com/aorcsik/status/1079350365059989509"]},
