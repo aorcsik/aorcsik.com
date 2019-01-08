@@ -49,8 +49,11 @@ window.__aorcsik_content = {
   },
 
   posts: [
-    {date: "2018-01-04", links: ["https://www.facebook.com/aorcsik/posts/10157449434687952"]},
-    {date: "2018-01-03", links: ["https://www.facebook.com/aorcsik/posts/10157447224772952"]},
+    {date: "2019-01-08", links: ["https://www.facebook.com/aorcsik/posts/10157458934387952"]},
+    {date: "2019-01-07", category: ["Mozipremierek"], links: ["https://www.facebook.com/Mozipremierek/photos/a.741734732597015/1816361705134307", "https://twitter.com/Mozipremierek/status/1082347326855880712"]},
+    {date: "2019-01-07", links: ["https://www.facebook.com/aorcsik/posts/10157456956197952"]},
+    {date: "2019-01-04", links: ["https://www.facebook.com/aorcsik/posts/10157449434687952"]},
+    {date: "2019-01-03", links: ["https://www.facebook.com/aorcsik/posts/10157447224772952"]},
     {date: "2018-12-31", links: ["https://www.facebook.com/aorcsik/posts/10157439259767952"]},
     {date: "2018-12-30", category: ["gaming"], links: ["https://twitter.com/aorcsik/status/1079452357224812544"]},
     {date: "2018-12-30", category: ["running"], links: ["https://twitter.com/aorcsik/status/1079350365059989509"]},
