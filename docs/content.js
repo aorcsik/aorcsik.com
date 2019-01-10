@@ -58,7 +58,7 @@ window.__aorcsik_content = {
     {date: "2018-12-31", links: ["https://www.facebook.com/aorcsik/posts/10157439259767952"]},
     {date: "2018-12-30", category: ["gaming"], links: ["https://twitter.com/aorcsik/status/1079452357224812544"]},
     {date: "2018-12-30", category: ["running"], links: ["https://twitter.com/aorcsik/status/1079350365059989509"]},
-    {date: "2018-12-28", category: ["gaming"], links: ["https://twitter.com/aorcsik/status/1078649498329600006", "https://www.facebook.com/aorcsik/posts/10157432867492952"]},
+    {date: "2018-12-28", category: ["gaming"], links: ["https://www.facebook.com/aorcsik/posts/10157432867492952", "https://twitter.com/aorcsik/status/1078649498329600006"]},
     {date: "2018-12-24", links: ["https://www.facebook.com/photo.php?fbid=10157423744907952", "https://www.instagram.com/p/BryNf0gAJoF/"]},
     {date: "2018-12-24", links: ["https://twitter.com/aorcsik/status/1077282871931559937"]},
     {date: "2018-12-22", category: ["podcast"], links: ["https://www.facebook.com/aorcsik/posts/10157417883252952"]},
