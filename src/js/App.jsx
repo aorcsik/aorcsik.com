@@ -108,7 +108,7 @@ class App extends React.Component
 
   updateListPosition() {
     var i = 0, $leftLast, $rightLast;
-    $(".twitter-post:visible, .facebook-post:visible, .instagram-post:visible").each(function() {
+    $(".linkedin-post:visible, .twitter-post:visible, .facebook-post:visible, .instagram-post:visible").each(function() {
       if (i == 0) {
         $(this).css("float", "left");
         $leftLast = $(this);
@@ -168,7 +168,9 @@ class App extends React.Component
           column.push(<Post
             show={show}
             key={"post_" + index}
-            links={content.posts[index].links} width={postWidth}
+            links={content.posts[index].links}
+            width={postWidth}
+            height={content.posts[index].height}
             onSocialRender={this.updateListPosition}
           />);
           if (show) renderCount++;
@@ -216,7 +218,7 @@ class App extends React.Component
       );
       let loadMorePostsButton = renderCount >= count ? null : (
         <div id="load-more-button" style={{display: "flex", justifyContent: "center"}}>
-          <Button 
+          <Button
             color="primary" className={classes.button}
             disabled={this.state.load_more_posts_disabled}
             onClick={this.loadMorePosts(renderCount)}>
@@ -253,11 +255,12 @@ class App extends React.Component
               </Grid>);
             })}
             <Grid container justify="center" alignItems="center" style={{marginTop: theme.spacing.unit * 2}}>
-              {["https://facebook.com/aorcsik",
+              {["https://linkedin.com/in/aorcsik",
+                "https://facebook.com/aorcsik",
                 "https://twitter.com/aorcsik",
-                "https://linkedin.com/in/aorcsik",
-                "https://dribbble.com/aorcsik",
-                "https://github.com/aorcsik"
+                "https://instagram.com/aorcsik",
+                "https://github.com/aorcsik",
+                "https://dribbble.com/aorcsik"
               ].map((url, index) => {
                 return (
                   <SocialIcon key={index} url={url} target="_blank" style={{ height: 32, width: 32, margin: theme.spacing.unit / 2 }} />

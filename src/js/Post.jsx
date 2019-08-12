@@ -53,6 +53,7 @@ class Post extends React.Component
 
     let link = links[idx];
     let source = null;
+    let data = null;
     if (link.match(/facebook\.com/)) {
       // https://developers.facebook.com/docs/plugins/oembed-endpoints/
       source = {
@@ -74,9 +75,25 @@ class Post extends React.Component
         type: "instagram",
         dataType: "json"
       };
+    } else {
+      let m = link.match(/linkedin\.com.*share:(\d+)/);
+      if (m) {
+        data = {
+          id: m[1],
+          type: "linkedin",
+          html: "<iframe src=\"" + link + "\" height=\"500\" width=\"350\" frameborder=\"0\" allowfullscreen=\"\" title=\"Embedded post\"></iframe>"
+        };
+      }
     }
 
-    if (source) {
+    if (data) {
+      this.setState({
+        loaded: true,
+        data: $.extend(this.state.data, {
+          [data.type]: data
+        })
+      });
+    } else if (source) {
       $.ajax({
         url: source.url,
         dataType: source.dataType,
@@ -125,6 +142,12 @@ class Post extends React.Component
             <div dangerouslySetInnerHTML={{__html: data.twitter.html.replace(/data-width="350"/, "data-width=\"" + this.props.width + "\"")}} />
           </Paper>
         );
+      } else if (data.linkedin){
+        return (
+          <Paper className={classNames(classes.root, "linkedin-post")} id={"linkedin-" + data.linkedin.id} style={{display: this.props.show ? "block" : "none", width: this.props.width, padding: 0}}>
+            <div dangerouslySetInnerHTML={{__html: data.linkedin.html.replace(/width="350"/, "width=\"" + this.props.width + "\"").replace(/height="500"/, "height=\"" + this.props.height + "\"")}} />
+          </Paper>
+        );
       }
     }
   }
@@ -134,7 +157,8 @@ Post.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   links: PropTypes.array.isRequired,
-  width: PropTypes.number.isRequired
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isOptional
 };
 
 export default withStyles(styles, { withTheme: true })(Post);
