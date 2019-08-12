@@ -45,10 +45,34 @@ window.__aorcsik_content = {
     running: {
       en: "Running",
       hu: "Futás"
+    },
+    ibm: {
+      en: "IBM",
+      hu: "IBM"
+    },
+    management: {
+      en: "Management",
+      hu: "Menedzsment"
+    },
+    productivity: {
+      en: "Productivity",
+      hu: "Hatékonyság"
     }
   },
 
   posts: [
+    {date: "2019-08-10", category: ["ibm"], links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6566024916422930432"], height: 600},
+    {date: "2019-08-05", category: ["productivity"], links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6563351371695837184"], height: 525},
+    {date: "2019-08-05", links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6561925256561389568"], height: 550},
+    {date: "2019-07-29", links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6561153277000466432"], height: 500},
+    {date: "2019-07-29", category: ["management"], links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6561132953529794560"], height: 540},
+    {date: "2019-07-29", category: ["productivity"], links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6559845514051899392"], height: 570},
+    {date: "2019-07-22", category: ["management"], links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6559690234018189312"], height: 525},
+    {date: "2019-07-15", category: ["ibm"], links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6556610894204293120"], height: 500},
+    {date: "2019-07-15", category: ["management"], links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6555140401307627520"], height: 550},
+    {date: "2019-07-15", category: ["productivity"], links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6554616804256292865"], height: 600},
+    {date: "2019-07-15", category: ["productivity"], links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6551424613740490752"], height: 590},
+
     {date: "2019-01-09", links: ["https://www.facebook.com/aorcsik/posts/10157461352642952"]},
     {date: "2019-01-08", links: ["https://www.facebook.com/aorcsik/posts/10157458934387952"]},
     {date: "2019-01-07", category: ["Mozipremierek"], links: ["https://www.facebook.com/Mozipremierek/photos/a.741734732597015/1816361705134307", "https://twitter.com/Mozipremierek/status/1082347326855880712"]},
