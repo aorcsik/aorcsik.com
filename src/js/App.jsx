@@ -4,7 +4,8 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import PropTypes from "prop-types";
 // import classNames from "classnames";
-import { Button, CssBaseline, Divider, Grid, List, ListItem, ListItemText, Menu, MenuItem, Switch, Typography } from "@material-ui/core";
+import { Button, ButtonGroup, CssBaseline, Divider, Grid, List, ListItem, ListItemText, Menu, MenuItem, Typography } from "@material-ui/core";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { withStyles } from "@material-ui/core/styles";
 import { SocialIcon } from "react-social-icons";
 
@@ -35,13 +36,12 @@ class App extends React.Component
       rendered: 0,
       load_more_posts_disabled: false,
       category: "all",
-      language_en: false,
+      language: "hu",
       anchorEl: null
     };
 
     this.loadMorePostsDisabledDelay = null;
 
-    this.handleSwitchLanguage = this.handleSwitchLanguage.bind(this);
     this.handleChangeLanguage = this.handleChangeLanguage.bind(this);
     this.loadMorePosts = this.loadMorePosts.bind(this);
     this.updateListPosition = this.updateListPosition.bind(this);
@@ -92,16 +92,10 @@ class App extends React.Component
     }.bind(this);
   }
 
-  handleSwitchLanguage(event) {
-    this.setState({
-      language_en: event.target.checked,
-    });
-  }
-
   handleChangeLanguage(language) {
     return function() {
       this.setState({
-        language_en: language == "en",
+        language: language,
       });
     }.bind(this);
   }
@@ -157,7 +151,7 @@ class App extends React.Component
     } else {
 
       const postsPerLoad = 5;
-      const language = this.state.language_en ? "en" : "hu";
+      const language = this.state.language;
       const postWidth = this.state.width > 600 ? 500 : 350;
       const numberOfColumns = this.state.width > 1100 ? 2 : 1;
 
@@ -189,6 +183,7 @@ class App extends React.Component
                   primary={content.categories[this.state.category][language]}
                   secondary={count + " " + (count == 1 ? content.one_post[language] : content.many_posts[language])}
                 />
+                <ArrowDropDownIcon />
               </ListItem>
             </List>
             <Menu
@@ -227,19 +222,29 @@ class App extends React.Component
         </div>
       );
 
+      var huButton = this.state.language == "hu" ? (
+        <Button variant="contained" color="primary" onClick={this.handleChangeLanguage("hu")}>HU</Button>
+      ) : (
+        <Button variant="contained" onClick={this.handleChangeLanguage("hu")}>HU</Button>
+      );
+
+      var enButton = this.state.language == "en" ? (
+        <Button variant="contained" color="primary" onClick={this.handleChangeLanguage("en")}>EN</Button>
+      ) : (
+        <Button variant="contained" onClick={this.handleChangeLanguage("en")}>EN</Button>
+      );
+
       return (
         <div className={classes.root}>
           <CssBaseline />
           <main className={classes.content}>
             <Grid container justify="center" alignItems="center">
-              <span onClick={this.handleChangeLanguage("hu")} style={{position: "relative", zIndex: 1000}}>HU</span>
-              <Switch
-                style={{position: "relative", zIndex: 1000}}
-                checked={this.state.language_en}
-                onChange={this.handleSwitchLanguage}
-                color="default"
-              />
-              <span onClick={this.handleChangeLanguage("en")} style={{position: "relative", zIndex: 1000}}>EN</span>
+              <ButtonGroup size="small"
+                aria-label="small outlined button group"
+                style={{position: "relative", zIndex: 1000}}>
+                {huButton}
+                {enButton}
+              </ButtonGroup>
             </Grid>
             <Grid container justify="center" alignItems="center">
               <img className="avatar" alt="Antal Orcsik (Tony)" src="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=256" />
