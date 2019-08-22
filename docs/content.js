@@ -61,6 +61,7 @@ window.__aorcsik_content = {
   },
 
   posts: [
+    {date: "2019-08-22", category: ["management"], links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6570235638098997249"], height: 535},
     {date: "2019-08-10", category: ["ibm"], links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6566024916422930432"], height: 600},
     {date: "2019-08-05", category: ["productivity"], links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6563351371695837184"], height: 525},
     {date: "2019-08-05", links: ["https://www.linkedin.com/embed/feed/update/urn:li:share:6561925256561389568"], height: 550},
