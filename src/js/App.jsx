@@ -246,6 +246,7 @@ class App extends React.Component
                 {enButton}
               </ButtonGroup>
             </Grid>
+            <br />
             <Grid container justify="center" alignItems="center">
               <img className="avatar" alt="Antal Orcsik (Tony)" src="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=256" />
             </Grid>
