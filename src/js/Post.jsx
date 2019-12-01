@@ -10,7 +10,7 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = theme => ({
   root: {
     //...theme.mixins.gutters(),
-    marginBottom: theme.spacing.unit * 2
+    marginBottom: theme.spacing(2)
   },
 });
 
@@ -158,7 +158,7 @@ Post.propTypes = {
   theme: PropTypes.object.isRequired,
   links: PropTypes.array.isRequired,
   width: PropTypes.number.isRequired,
-  height: PropTypes.number.isOptional
+  height: PropTypes.number
 };
 
 export default withStyles(styles, { withTheme: true })(Post);

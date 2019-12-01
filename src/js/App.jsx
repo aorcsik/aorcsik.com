@@ -18,8 +18,8 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit * 2
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(2)
   }
 });
 
@@ -203,7 +203,7 @@ class App extends React.Component
               ))}
             </Menu>
           </Grid>
-          <Grid item xs={12} style={{marginBottom: theme.spacing.unit * 3}}>
+          <Grid item xs={12} style={{marginBottom: theme.spacing(3)}}>
             <Divider variant="middle" />
           </Grid>
           <Grid item xs={12}>
@@ -260,7 +260,7 @@ class App extends React.Component
                 <ReactMarkdown source={line} />
               </Grid>);
             })}
-            <Grid container justify="center" alignItems="center" style={{marginTop: theme.spacing.unit * 2}}>
+            <Grid container justify="center" alignItems="center" style={{marginTop: theme.spacing(2)}}>
               {["https://linkedin.com/in/aorcsik",
                 "https://facebook.com/aorcsik",
                 "https://twitter.com/aorcsik",
@@ -269,10 +269,16 @@ class App extends React.Component
                 "https://dribbble.com/aorcsik"
               ].map((url, index) => {
                 return (
-                  <SocialIcon key={index} url={url} target="_blank" style={{ height: 32, width: 32, margin: theme.spacing.unit / 2 }} />
+                  <SocialIcon key={index} url={url} target="_blank" style={{ height: 32, width: 32, margin: theme.spacing(0.5) }} />
                 );
               })}
             </Grid>
+            <ins className="adsbygoogle"
+              style={{display: "block"}}
+              data-ad-client="ca-pub-7591879250553422"
+              data-ad-slot="3577953018"
+              data-ad-format="auto"
+              data-full-width-responsive="true" />
             {contentGrid}
             {loadMorePostsButton}
           </main>

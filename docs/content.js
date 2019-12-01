@@ -115,5 +115,8 @@ window.__aorcsik_content = {
 
 window.__aorcsik_loadStylesheet("app.bundle.css?_=" + window.__aorcsik_content.posts[0].date + window.__aorcsik_content.version);
 window.__aorcsik_loadScript("vendor.bundle.js?_=" + window.__aorcsik_content.posts[0].date + window.__aorcsik_content.version, function() {
-  window.__aorcsik_loadScript("app.bundle.js?_=" + window.__aorcsik_content.posts[0].date + window.__aorcsik_content.version);
+  window.__aorcsik_loadScript("app.bundle.js?_=" + window.__aorcsik_content.posts[0].date + window.__aorcsik_content.version, function() {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+    window.__aorcsik_loadScript("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js");
+  });
 });
