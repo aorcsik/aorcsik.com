@@ -273,12 +273,14 @@ class App extends React.Component
                 );
               })}
             </Grid>
-            <ins className="adsbygoogle"
-              style={{display: "block", marginTop: "2em 0 1em 0", textAlign: "center"}}
-              data-ad-client="ca-pub-7591879250553422"
-              data-ad-slot="3577953018"
-              data-ad-format="auto"
-              data-full-width-responsive="true" />
+            <div style={{marginTop: "2em 0 1em 0"}}>
+              <ins className="adsbygoogle"
+                style={{display: "block", textAlign: "center"}}
+                data-ad-client="ca-pub-7591879250553422"
+                data-ad-slot="3577953018"
+                data-ad-format="auto"
+                data-full-width-responsive="true" />
+            </div>
             {contentGrid}
             {loadMorePostsButton}
           </main>
