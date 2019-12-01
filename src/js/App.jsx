@@ -274,7 +274,7 @@ class App extends React.Component
               })}
             </Grid>
             <ins className="adsbygoogle"
-              style={{display: "block"}}
+              style={{display: "block", marginTop: "2em 0 1em 0", textAlign: "center"}}
               data-ad-client="ca-pub-7591879250553422"
               data-ad-slot="3577953018"
               data-ad-format="auto"
