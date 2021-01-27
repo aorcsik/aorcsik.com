@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+    <title>PixelArt</title>
+    <style>
+        body {
+            font-family: monospace;
+        }
+
+        p {
+            overflow: auto;
+            padding-bottom: 1em;
+        }
+
+        picture {
+            border: 1px solid #999999;
+            box-shadow: 1px 1px 0px #000000;
+            padding: 5px;
+            background: #f6f6f6;
+            float: left;
+            margin-right: 1em;
+        }
+
+        picture img {
+            image-rendering: optimizeSpeed;             /*                     */
+            image-rendering: -moz-crisp-edges;          /* Firefox             */
+            image-rendering: -o-crisp-edges;            /* Opera               */
+            image-rendering: -webkit-optimize-contrast; /* Chrome (and Safari) */
+            image-rendering: pixelated;                 /* Chrome as of 2019   */
+            image-rendering: optimize-contrast;         /* CSS3 Proposed       */
+            -ms-interpolation-mode: nearest-neighbor;   /* IE8+                */
+        }
+    </style>
+
+</head>
+<body>
+    <h1>PixelArt by Tony</h1>
+
+    <p>
+        <picture><img src="sprites/210127-bear.gif" alt="Bear" width="128"></picture>
+        <strong>BEAR</strong><br>
+        Created: 2020.01.27<br>
+        Tool: Aseprite v1.2.25 (macOS)<br>
+    </p>
+
+    <p>
+        <picture><img src="sprites/210126-angel.png" alt="Angel" width="72"></picture>
+        <strong>ANGEL</strong><br>
+        Created: 2020.01.26<br>
+        Tool: Procreate v5.1.5 (iPadOS)<br>
+    </p>
+
+    <p>
+        <picture><img src="sprites/210126-raincoat.png" alt="Raincoat" width="72"></picture>
+        <strong>RAINCOAT</strong><br>
+        Created: 2020.01.26<br>
+        Tool: Pixelmator Pro v2.0.3 (macOS)<br>
+    </p>
+
+    <p>
+        <picture><img src="sprites/210125-mushroom.png" alt="Mushroom" width="72"></picture>
+        <strong>MUSHROOM</strong><br>
+        Created: 2020.01.25<br>
+        Tool: Pixelmator Pro v2.0.3 (macOS)<br>
+    </p>
+
+</body>
+</html>
