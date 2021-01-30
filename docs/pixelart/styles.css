@@ -1,0 +1,35 @@
+div.sprite {
+    padding: 0 1rem 1rem;
+}
+
+div.sprite picture {
+    border: 2px solid #999999;
+    box-shadow: 2px 2px 0px #000000;
+    margin-bottom: 1rem;
+    background: #f6f6f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    
+}
+
+@media (min-width: 600px) {
+    div.sprite picture {
+        max-width: 256px;
+    }
+}
+
+div.sprite picture img {
+    image-rendering: optimizeSpeed;             /*                     */
+    image-rendering: -moz-crisp-edges;          /* Firefox             */
+    image-rendering: -o-crisp-edges;            /* Opera               */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and Safari) */
+    image-rendering: pixelated;                 /* Chrome as of 2019   */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed       */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                */
+}
+
+div.sprite strong {
+    font-size: 1.2em;
+}

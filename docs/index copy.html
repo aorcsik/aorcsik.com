@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>aorcsik.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
+
+  <link rel="shortcut icon" type="image/png" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=32" />
+  <link rel="apple-touch-icon" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=60">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=76">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=120">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=152">
+  <!-- <link rel="apple-touch-startup-image" href="startup.png"> -->
+  <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+  <!-- Facebook -->
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId            : '1257328841072877',
+        autoLogAppEvents : true,
+        xfbml            : false,
+        version          : 'v3.2'
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <!-- Twitter -->
+  <script>window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+
+    return t;
+  }(document, "script", "twitter-wjs"));</script>
+
+  <!-- Instagram -->
+  <script async src="//www.instagram.com/embed.js"></script>
+
+  <!-- GitHub Ribbon -->
+  <a href="https://github.com/aorcsik/aorcsik.com"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+  <!-- App -->
+  <div id="app" />
+  <script>
+
+  window.__aorcsik_loadScript = function(src, success) {
+    var js, body = document.getElementsByTagName("body")[0];
+    js = document.createElement("script");
+    js.src = src; js.onload = success;
+    body.appendChild(js);
+  }
+
+  window.__aorcsik_loadStylesheet = function(href) {
+    var css, head = document.getElementsByTagName("head")[0];
+    css = document.createElement("link");
+    css.rel = "stylesheet"; css.href = href;
+    head.appendChild(css);
+  }
+
+  window.__aorcsik_loadScript("content.js?_=" + (new Date()).getTime());
+
+  </script>
+</body>
+</html>

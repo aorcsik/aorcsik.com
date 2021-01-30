@@ -1,85 +1,58 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>aorcsik.com</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>aorcsik.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
 
-  <link rel="shortcut icon" type="image/png" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=32" />
-  <link rel="apple-touch-icon" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=60">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=76">
-  <link rel="apple-touch-icon" sizes="120x120" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=120">
-  <link rel="apple-touch-icon" sizes="152x152" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=152">
-  <!-- <link rel="apple-touch-startup-image" href="startup.png"> -->
-  <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="shortcut icon" type="image/png" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=32" />
+    <link rel="apple-touch-icon" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=60">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=76">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=120">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=152">
+    <!-- <link rel="apple-touch-startup-image" href="startup.png"> -->
+    <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <script src="https://kit.fontawesome.com/c39a0791cd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Facebook -->
-  <div id="fb-root"></div>
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId            : '1257328841072877',
-        autoLogAppEvents : true,
-        xfbml            : false,
-        version          : 'v3.2'
-      });
-    };
+    <header>
+        <h1>aorcsik.com</h1>
+    </header>
 
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "https://connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
-  </script>
+    <ul>
+        <li>
+            <a href="pixelart/index.html"><i class="far fa-folder"></i> PixelArt</a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="https://mozipremierek.hu/" target="_blank"><i class="far fa-globe"></i> mozipremierek.hu</a>
+        </li>
+        <li>
+            <a href="https://vilagoskozepkor.hu/" target="_blank"><i class="far fa-podcast"></i> Világos Középkor Podcast</a>
+        </li>
+        <li>
+            <a href="https://88merfoldorankent.hu/" target="_blank"><i class="far fa-podcast"></i> 88 Mérföld Óránként Podcast (archive)</a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="https://twitter.com/aorcsik" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+        </li>
+        <li>
+            <a href="https://github.com/aorcsik" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </li>
+        <li>
+            <a href="https://linkedin.com/in/aorcsik" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </li>
+    </ul>
 
-  <!-- Twitter -->
-  <script>window.twttr = (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-      t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-    js = d.createElement(s); js.id = id;
-    js.src = "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
-
-    t._e = [];
-    t.ready = function(f) {
-      t._e.push(f);
-    };
-
-    return t;
-  }(document, "script", "twitter-wjs"));</script>
-
-  <!-- Instagram -->
-  <script async src="//www.instagram.com/embed.js"></script>
-
-  <!-- GitHub Ribbon -->
-  <a href="https://github.com/aorcsik/aorcsik.com"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-
-  <!-- App -->
-  <div id="app" />
-  <script>
-
-  window.__aorcsik_loadScript = function(src, success) {
-    var js, body = document.getElementsByTagName("body")[0];
-    js = document.createElement("script");
-    js.src = src; js.onload = success;
-    body.appendChild(js);
-  }
-
-  window.__aorcsik_loadStylesheet = function(href) {
-    var css, head = document.getElementsByTagName("head")[0];
-    css = document.createElement("link");
-    css.rel = "stylesheet"; css.href = href;
-    head.appendChild(css);
-  }
-
-  window.__aorcsik_loadScript("content.js?_=" + (new Date()).getTime());
-
-  </script>
+    <footer>
+        <i class="far fa-copyright"></i> <small>2020 Antal Orcsik All Rights Reserved</small>
+    </footer>
 </body>
 </html>
