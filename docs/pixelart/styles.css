@@ -33,3 +33,15 @@ div.sprite picture img {
 div.sprite strong {
     font-size: 1.2em;
 }
+
+.clickable img {
+    transform: translateY(0px);
+    transition: transform .1s;
+}
+.clickable .on { display: none; }
+.clickable .off { display: block; }
+.clickable.clickable-down img {
+    transform: translateY(3px);
+}
+.clickable.clickable-clicked .on { display: block; }
+.clickable.clickable-clicked .off { display: none; }

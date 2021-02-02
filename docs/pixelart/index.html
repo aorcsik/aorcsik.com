@@ -12,6 +12,16 @@
     </header>
 
     <div class="sprite">
+        <picture class="clickable">
+            <img class="off" src="sprites/210202-fire-tile-off.gif" alt="Fire Tile Off" width="256">
+            <img class="on" src="sprites/210202-fire-tile-on.gif" alt="Fire Tile On" width="256">
+        </picture>
+        <strong>FIRE TILE (clickable)</strong><br>
+        Created: 2020.02.02<br>
+        Tool: Aseprite v1.2.25 (macOS)<br>
+    </div>
+
+    <div class="sprite">
         <picture><img src="sprites/210201-coffee.gif" alt="Coffee" width="86"></picture>
         <strong>COFFEE</strong><br>
         Created: 2020.02.01<br>
@@ -86,5 +96,48 @@
       &copy; 2020 Antal Orcsik  All Rights Reserved
     </small>
   </footer>
+
+
+  <script>
+
+    function addPointerDownListener(domElement, onPointerDown) {
+        domElement.addEventListener("pointerdown", onPointerDown, false);
+        domElement.addEventListener("touchstart", onPointerDown, false);
+        domElement.addEventListener("mousedown", onPointerDown, false);
+    }
+
+    function addPointerUpListener(domElement, onPointerUp) {
+        domElement.addEventListener("pointerup", onPointerUp, false);
+        domElement.addEventListener("touchend", onPointerUp, false);
+        domElement.addEventListener("mouseup", onPointerUp, false);
+    }
+
+    document.querySelectorAll(".clickable").forEach(function(el) {
+        var downdelay;
+        addPointerDownListener(el, function(event) {
+            window.clearTimeout(downdelay);
+            downdelay = window.setTimeout(function() {
+                el.className = el.className.replace(/clickable-down/, "") + " clickable-down";
+                el.className = el.className.replace(/\s\s+/, " ");
+                // console.log(el.className);
+            }, 10);
+        });
+        var updelay;
+        addPointerUpListener(el, function(event) {
+            window.clearTimeout(updelay);
+            updelay = window.setTimeout(function() {
+                el.className = el.className.replace(/clickable-down/, "");
+                if (el.className.match(/\bclickable-clicked\b/)) {
+                    el.className = el.className.replace(/clickable-clicked/, "");
+                } else {
+                    el.className = el.className.replace(/clickable-clicked/, "") + " clickable-clicked";
+                }
+                el.className = el.className.replace(/\s\s+/, " ");
+                // console.log(el.className);
+            }, 200);
+        });
+    });
+
+    </script>
 </body>
 </html>
