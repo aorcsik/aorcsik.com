@@ -1,17 +1,26 @@
+.sprite-gallery {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 div.sprite {
     padding: 0 1rem 1rem;
+    font-size: .9em;
 }
 
 div.sprite picture {
-    border: 2px solid #999999;
+    border: 2px solid #322F35;
     box-shadow: 2px 2px 0px #000000;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
     background: #f6f6f6;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100px;
-    
+    height: 256px;
+    min-width: 256px;
+}
+div.sprite.dark picture {
+    background-color: #322F35;
 }
 
 @media (min-width: 600px) {
