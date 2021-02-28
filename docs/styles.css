@@ -1,7 +1,11 @@
-body {
+html, body {
     font-family: "Roboto", monospace;
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #f6f6f6;
+    color: #222033;
 }
 
 header, footer {
