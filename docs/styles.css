@@ -8,8 +8,12 @@ html, body {
     color: #222033;
 }
 
-header, footer {
+header {
     padding: 0 1rem 1rem;
+}
+
+footer {
+    padding: 1rem;
 }
 
 h1 {

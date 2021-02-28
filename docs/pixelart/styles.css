@@ -5,7 +5,7 @@
 
 div.sprite {
     padding: 0 1rem .75rem;
-    margin: .75rem 1rem;
+    margin: .75rem .75rem;
     font-size: .9em;
     font-weight: 400;
     line-height: 1.5em;
@@ -37,7 +37,7 @@ div.sprite.dark picture {
         width: auto;
     }
     div.sprite picture {
-        max-width: 256px;
+        padding: 0 .5rem;
     }
 }
 
@@ -51,9 +51,56 @@ div.sprite picture img {
     -ms-interpolation-mode: nearest-neighbor;   /* IE8+                */
 }
 
-div.sprite strong {
+div.sprite strong.title {
     font-size: 1.2em;
     font-weight: 900;
+}
+
+div.sprite span.created-at {
+    font-size: .9em;
+    color: #666;
+}
+
+div.sprite span.created-with {
+
+}
+
+div.sprite hr {
+    /* border: 0;
+    height: 1px;
+    background: #999;
+    background-image: linear-gradient(to right, #ccc, #999, #ccc); */
+
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+div.sprite a {
+    font-weight: 700;
+}
+
+.clickable {
+    position: relative;
+}
+
+.clickable:after {
+    content: "\f25a";
+    font-family: "Font Awesome 5 Pro";
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    position: absolute;
+    right: .75rem;
+    bottom: .75rem;
+    font-size: 1.5em;
+    color: #fdfdfd;
+    opacity: .75;
+    text-shadow: 0px 1px 3px rgba(0,0,0,.5);
 }
 
 .clickable img {
