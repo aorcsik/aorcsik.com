@@ -39,6 +39,10 @@ div.sprite.dark picture {
     div.sprite picture {
         padding: 0 .5rem;
     }
+    div.sprite .sprite-info {
+        max-width: 240px;
+        max-width: calc(256px - 2*.5rem);
+    }
 }
 
 div.sprite picture img {
@@ -81,6 +85,8 @@ div.sprite a {
     font-weight: 700;
 }
 
+/* CLICKABLE */
+
 .clickable {
     position: relative;
 }
@@ -94,6 +100,7 @@ div.sprite a {
     font-variant: normal;
     text-rendering: auto;
     line-height: 1;
+ 
     position: absolute;
     right: .75rem;
     bottom: .75rem;
@@ -114,3 +121,60 @@ div.sprite a {
 }
 .clickable.clickable-clicked .on { display: block; }
 .clickable.clickable-clicked .off { display: none; }
+
+/* INFO TOGGLE */
+
+input.info-toggle {
+    position: absolute;
+    opacity: 0;
+}
+input.info-toggle + .sprite {
+    position: relative;
+    transition: transform .3s;
+}
+
+input.info-toggle + .sprite picture {
+    overflow: hidden;
+    transition: height .3s;
+}
+
+input.info-toggle + .sprite .sprite-info {
+    background: #fdfdfd;
+    border-radius: 15px;
+    height: 0;
+    overflow: hidden;
+    transition: height .3s;
+}
+input.info-toggle + .sprite label {
+    position: absolute;
+    right: .75rem;
+    top: .75rem;
+    font-size: 1.5em;
+    color: #fdfdfd;
+    opacity: .75;
+    text-shadow: 0px 1px 3px rgba(0,0,0,.5);
+}
+input.info-toggle:checked + .sprite .sprite-info {
+    height: 256px;
+}
+input.info-toggle:checked + .sprite picture {
+    height: 0px;
+}
+input.info-toggle:checked + .sprite label {
+    color: #222033;
+    opacity: .5;
+    text-shadow: none;
+}
+input.info-toggle:checked + .sprite label:before {
+    content: "\f057";
+}
+
+input.info-toggle + .sprite .sprite-info .color {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #999;
+    color: transparent;
+    overflow: hidden;
+    vertical-align: middle;
+}
