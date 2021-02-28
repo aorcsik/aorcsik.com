@@ -1,5 +1,5 @@
 body {
-    font-family: monospace;
+    font-family: "Roboto", monospace;
     margin: 0;
     padding: 0;
 }
@@ -10,10 +10,17 @@ header, footer {
 
 h1 {
     margin-bottom: 0;
+    font-family: "Major Mono Display";
 }
 
 h1 a {
     opacity: .75;
+}
+
+h2 {
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 0;
 }
 
 ul {

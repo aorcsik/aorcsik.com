@@ -4,15 +4,22 @@
 }
 
 div.sprite {
-    padding: 0 1rem 1rem;
+    padding: 0 1rem .75rem;
+    margin: 1rem;
     font-size: .9em;
+    font-weight: 100;
+    line-height: 1.5em;
+
+    border-radius: 15px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
 }
 
 div.sprite picture {
-    border: 2px solid #322F35;
-    box-shadow: 2px 2px 0px #000000;
-    margin-bottom: .5rem;
-    background: #f6f6f6;
+    /* border: 2px solid #322F35;
+    box-shadow: 2px 2px 0px #000000; */
+    border-radius: 15px 15px 0 0;
+    margin: 0 -1rem .75rem -1rem;
+    background: /* #f6f6f6; */ #3B5F7F;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,6 +48,7 @@ div.sprite picture img {
 
 div.sprite strong {
     font-size: 1.2em;
+    font-weight: 900;
 }
 
 .clickable img {
