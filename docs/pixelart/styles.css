@@ -27,6 +27,7 @@ div.sprite picture {
     align-items: center;
     height: 256px;
     min-width: 256px;
+    position: relative;
 }
 div.sprite.dark picture {
     background-color: #322F35;
@@ -45,7 +46,7 @@ div.sprite.dark picture {
     }
 }
 
-div.sprite picture img {
+div.sprite picture {
     image-rendering: optimizeSpeed;             /*                     */
     image-rendering: -moz-crisp-edges;          /* Firefox             */
     image-rendering: -o-crisp-edges;            /* Opera               */
@@ -53,6 +54,18 @@ div.sprite picture img {
     image-rendering: pixelated;                 /* Chrome as of 2019   */
     image-rendering: optimize-contrast;         /* CSS3 Proposed       */
     -ms-interpolation-mode: nearest-neighbor;   /* IE8+                */
+}
+
+.sprite picture::after {
+    content: "";
+    width: 36px;
+    height: 13px;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    background: url(./aorcsixel.png);
+    background-size: cover;
+    opacity: .75;
 }
 
 div.sprite strong.title {
