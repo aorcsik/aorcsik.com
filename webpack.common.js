@@ -1,76 +1,43 @@
-/* eslint-env amd,node,browser:false */
-
-const path = require("path");
-const webpack = require("webpack");
+const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   resolve: {
     modules: [
-      path.resolve(__dirname, "src"),
-      "node_modules"
+        path.resolve(__dirname, "src"),
+        "node_modules"
     ]
   },
   entry: {
-    app:   "js/index.jsx"
+    home: "js/home.js",
   },
   output: {
     path: path.resolve(__dirname, "docs"),
-    filename: "[name].bundle.js"
+    filename: '[name].js',
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      "$": "jquery",
-      "jQuery": "jquery",
-      "window.jQuery": "jquery",
-      "React": "react",
-      "window.React": "react"
-    }),
     new MiniCssExtractPlugin({
-      filename: "[name].bundle.css"
+      filename: "[name].css"
     }),
   ],
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendor",
-          chunks: "all"
-        }
-      }
-    }
-  },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"]
-      },
-      {
-        test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-        include: path.resolve(__dirname, "src/scss")
-      },
-      {
-        test: /\.jsx?/,
-        use: ["babel-loader"],
-        include: path.resolve(__dirname, "src/js")
-      },
-      {
-        test: /\.(png|jpg|gif)/,
         use: [{
-          loader: "file-loader",
-          options: {name: "/images/[hash].[ext]"}
-        }]
+          loader: MiniCssExtractPlugin.loader
+        },{
+          loader: "css-loader"
+        }],
+        include: path.resolve(__dirname, "src/css")
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|otf)(\?v=.*)?$/,
-        use: [{
-          loader: "file-loader",
-          options: {name: "/fonts/[hash].[ext]"}
-        }]
-      }
-    ]
+        test: /\.(png|jpg|gif|webp|svg)/,
+        type: "asset/resource",
+        generator: {
+          filename: "images/[contenthash][ext]"
+        }
+      },
+    ],
   }
 };
