@@ -1,5 +1,4 @@
 {
     "browser": true,
-    "strict": false,
-    "esversion": 6
+    "esversion": 8
 }

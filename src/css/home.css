@@ -1,0 +1,48 @@
+html, body {
+  font-family: "Roboto", monospace;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f6f6f6;
+  color: #222033;
+}
+
+header {
+  padding: 0 1rem 1rem;
+}
+
+footer {
+  padding: 1rem;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-family: "Major Mono Display";
+}
+
+h1 a {
+  opacity: .75;
+}
+
+h2 {
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+ul {
+  line-height: 2em;
+  list-style: none;
+  padding: 0 1rem 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #325CA6;
+}
+
+i.fab, i.far {
+  vertical-align: middle;
+}
+

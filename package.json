@@ -1,53 +1,31 @@
 {
   "name": "aorcsik.com",
-  "version": "5.0.3",
+  "version": "6.0.0",
   "description": "About Antal Orcsik",
-  "scripts": {
-    "start": "node index.js",
-    "watch": "./node_modules/.bin/webpack --config webpack.dev.js --progress --colors --watch",
-    "build": "./node_modules/.bin/webpack --config webpack.prod.js --progress --colors"
-  },
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aorcsik/aorcsik.com.git"
   },
-  "author": "aorcsik@gmail.com",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/aorcsik/aorcsik.com/issues"
   },
-  "private": "true",
+  "author": "aorcsik@gmail.com",
+  "license": "ISC",
   "homepage": "https://aorcsik.com",
-  "engines": {
-    "node": "^8.11.3"
-  },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-react": "^7.0.0",
-    "@material-ui/core": "^4.1.1",
-    "@material-ui/icons": "^4.2.0",
-    "babel-loader": "^8.0.6",
-    "classnames": "^2.2.6",
-    "css-loader": "^3.0.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-react": "^7.13.0",
-    "express": "^4.13.3",
-    "file-loader": "^4.0.0",
-    "jquery": "^3.4.1",
-    "mini-css-extract-plugin": "^0.7.0",
-    "node-sass": "^4.12.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-markdown": "^4.0.4",
-    "react-social-icons": "^4.1.0",
-    "sass-loader": "^7.1.0",
-    "style-loader": "0.23.1",
-    "terser-webpack-plugin": "^1.3.0",
-    "url-loader": "^2.0.0",
-    "webpack": "^4.34.2",
-    "webpack-cli": "^3.3.4",
-    "webpack-merge": "^4.2.1"
+    "css-loader": "^6.8.1",
+    "eslint": "^8.42.0",
+    "eslint-plugin-jsdoc": "^46.2.6",
+    "markdown-it": "^13.0.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "webpack": "^5.86.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-merge": "^5.9.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "build_dev": "./node_modules/.bin/webpack --config webpack.dev.js --progress --color",
+    "build_prod": "./node_modules/.bin/webpack --config webpack.prod.js"
   }
 }
