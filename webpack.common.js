@@ -13,11 +13,11 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "docs"),
-    filename: '[name].js',
+    filename: '[name].bundle.js',
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css"
+      filename: "[name].bundle.css"
     }),
   ],
   module: {
