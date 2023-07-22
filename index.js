@@ -7,7 +7,7 @@ const port = 3000;
 
 const server = http.createServer((req, res) => {
   const url = new URL("http://" + req.hostname + req.url);
-  const filePath = './docs/' + url.pathname;
+  const filePath = './docs' + (url.pathname == "/" ? "/index.html" : url.pathname);
   
   fs.readFile(filePath, (error, content) => {
     if (!error) {
