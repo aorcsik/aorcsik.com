@@ -46,3 +46,28 @@ i.fab, i.far {
   vertical-align: middle;
 }
 
+#logo {
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  padding: .5rem;
+}
+#logo span.logo-head {
+  background: hsla(339, 100%, 55%, 1);
+  background: linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  background: -moz-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  background: -webkit-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF1B6B", endColorstr="#45CAFF", GradientType=1 );
+
+  color: transparent;
+  -webkit-mask-image: url("../images/logo-small.svg");
+  mask-image: url("../images/logo-small.svg");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  display: inline-block;
+  width: 2.45em;
+}
+#logo span.logo-tail {
+  font-size: 0.75em;
+  color: #999;
+}

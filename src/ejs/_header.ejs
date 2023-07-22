@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>aorcsik.com</title>
+    <title><%= page.title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
 
     <link rel="shortcut icon" type="image/png" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=32" />
@@ -18,63 +18,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Roboto:wght@100;400;700;900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c39a0791cd.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="home.bundle.css">
+    <link rel="stylesheet" href="<%= page.bundle %>.bundle.css">
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-59C49R32');</script>
+    })(window,document,'script','dataLayer','<%= common.gtm_id %>');</script>
     <!-- End Google Tag Manager -->
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59C49R32"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= common.gtm_id %>"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <header>
-        <h1>Aorcsik.com</h1>
+    <header id="logo">
+        <span class="logo-head">&nbsp;</span><span class="logo-tail">aorcsik.com</span>
     </header>
-
-    <ul>
-        <li>
-            <a href="pixelart/index.html"><i class="far fa-folder"></i> PixelArt</a>
-        </li>
-        <!-- <li>
-            <a href="gaming/index.html"><i class="far fa-folder"></i> Gaming</a>
-        </li> -->
-    </ul>
-    <ul>
-        <li>
-            <a href="https://mozipremierek.hu/" target="_blank"><i class="far fa-globe"></i> mozipremierek.hu</a>
-        </li>
-        <li>
-            <a href="https://aorcsik.medium.com/" target="_blank"><i class="fab fa-medium"></i> My Blog on Medium</a>
-        </li>
-        <li>
-            <a href="https://vilagoskozepkor.hu/" target="_blank"><i class="far fa-podcast"></i> Világos Középkor Podcast</a>
-        </li>
-        <li>
-            <a href="https://88merfoldorankent.hu/" target="_blank"><i class="far fa-podcast"></i> 88 Mérföld Óránként Podcast (archive)</a>
-        </li>
-    </ul>
-    <ul>
-        <li>
-            <a href="https://twitter.com/aorcsik" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-        </li>
-        <li>
-            <a href="https://github.com/aorcsik" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        </li>
-        <li>
-            <a href="https://linkedin.com/in/aorcsik" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        </li>
-    </ul>
-
-    <footer>
-        <i class="far fa-copyright"></i> <small>2021 Antal Orcsik All Rights Reserved</small>
-    </footer>
-    <link rel="stylesheet" href="home.bundle.js">
-</body>
-</html>
