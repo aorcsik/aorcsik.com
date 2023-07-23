@@ -1,52 +1,58 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><%= page.title %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
-
-    <link rel="shortcut icon" href="<%= config.favicon %>">
-    <link rel="mask-icon" href="<%= config.favicon %>" color="#000000">
-    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Roboto:wght@100;400;700;900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/c39a0791cd.js" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><%= page.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
+  
+  <link rel="shortcut icon" href="<%= config.favicon %>">
+  <link rel="mask-icon" href="<%= config.favicon %>" color="#000000">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Roboto:wght@100;400;700;900&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/c39a0791cd.js" crossorigin="anonymous"></script>
+  
+  
+  <% page.bundle.forEach(bundle => { %>
+    <link rel="stylesheet" href="/<%= bundle %>.bundle.css">
+  <% }); %>
     
-
-    <% page.bundle.forEach(bundle => { %>
-        <link rel="stylesheet" href="/<%= bundle %>.bundle.css">
-    <% }); %>
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','<%= config.gtmID %>');</script>
-    <!-- End Google Tag Manager -->
+  })(window,document,'script','dataLayer','<%= config.gtmID %>');</script>
+  <!-- End Google Tag Manager -->
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= config.gtmID %>"
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= config.gtmID %>"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <input type="checkbox" id="menu-toggle">
-    <header id="header">
-        <div class="container">
-            <h1 id="logo">
-                <a href="/"><span class="logo-head">&nbsp;</span><span class="logo-tail">aorcsik.com</span></a>
-            </h1>
-            <label id="menu-toggle-button" for="menu-toggle"><i class="fa fa-bars"></i></label>
-            <nav>    
-                <ul>
-                    <li><a href="/pixelart.html">pixelart</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
+  <!-- End Google Tag Manager (noscript) -->
+    
+  <input type="checkbox" id="menu-toggle">
+  <header id="header">
     <div class="container">
-                <section id="content">
+      <h1 id="logo">
+        <a href="/"><span class="logo-head">&nbsp;</span><span class="logo-tail">aorcsik.com</span></a>
+      </h1>
+      <label id="menu-toggle-button" for="menu-toggle"><i class="fa fa-bars"></i></label>
+      <nav>    
+        <ul>
+          <li><a href="/pixelart.html">pixelart</a></li>
+          <li class="separator"></li>
+          <li class="social">
+            <a href="https://twitter.com/aorcsik" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/aorcsik" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/aorcsik" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <div class="container">
+    <section id="content">

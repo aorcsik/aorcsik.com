@@ -1,6 +1,7 @@
 :root {
   --background: #f6f6f6;
   --text: #222033;
+  --header-height: 4rem;
 }
 
 html, body {
@@ -40,7 +41,7 @@ html, body {
 #header .container {
   display: flex;
   align-items: center;
-  height: 4rem;
+  height: var(--header-height);
 }
 
 #header .container::before {
@@ -87,7 +88,7 @@ html, body {
   z-index: 1;
   font-size: .75em;
   position: absolute;
-  top: 4rem;
+  top: var(--header-height);
   left: 0;
   right: 0;
   height: 100vh;
@@ -109,12 +110,33 @@ html, body {
 
 #header nav ul li {
   text-align: right;
-  padding: .5rem 1rem;
+  padding: .5rem 1rem .5rem 0;
+}
+
+#header nav ul li.separator:before {
+  content: "";
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  height: 2px;
+  background: var(--text);
 }
 
 #header nav ul li a {
   color: var(--text);
 }
+
+#header nav ul li.social {
+  display: flex;
+  align-items: center;
+}
+#header nav ul li.social a {
+  margin-left: 1rem;
+}
+#header nav ul li.social a:first-child {
+  margin-left: auto;
+}
+
 
 #menu-toggle:checked + #header nav ul li a,
 #header.sticky nav ul li a {
@@ -122,7 +144,7 @@ html, body {
 }
 
 #content {
-  padding-top: 4.5rem;
+  padding-top: var(--header-height);
   /* background-image: url("../images/background2.jpg");
   background-repeat: no-repeat;
   background-size: cover; */
@@ -144,6 +166,13 @@ html, body {
   #header nav ul {
     display: flex;
   }
+
+  #header nav ul li.separator:before {
+    content: "|";
+    background: transparent;
+    height: auto;
+    width: auto;
+  }
 }
 
 
@@ -159,8 +188,7 @@ footer {
 }
 
 a {
-  text-decoration: none;
-  color: #325CA6;
+  color: var(--text);
 }
 
 i.fab, i.far {
@@ -213,4 +241,29 @@ i.fab, i.far {
 
 h2#error {
   text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+  margin: 1rem 1rem;
+  line-height: 1.5em;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 1.5em;
+  margin: 1rem 1rem;
+  line-height: 1.5em;
+  font-weight: normal;
+}
+
+#name {
+  background: hsla(339, 100%, 55%, 1);
+  background: linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  background: -moz-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  background: -webkit-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF1B6B", endColorstr="#45CAFF", GradientType=1 );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
 }
