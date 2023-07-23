@@ -10,6 +10,7 @@ module.exports = {
   },
   entry: {
     client: "js/client.js",
+    pixelart: "js/pixelart.js",
   },
   output: {
     path: path.resolve(__dirname, "docs"),

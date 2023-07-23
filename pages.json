@@ -1,10 +1,14 @@
 {
-  "index": {
-    "title": "aorcsik.com",
-    "bundle": "client"
-  },
   "404": {
     "title": "404 Not Found",
-    "bundle": "client"
+    "bundle": ["client"]
+  },
+  "index": {
+    "title": "aorcsik.com",
+    "bundle": ["client"]
+  },
+  "pixelart": {
+    "title": "pixelart | aorcsik.com",
+    "bundle": ["client", "pixelart"]
   }
 }

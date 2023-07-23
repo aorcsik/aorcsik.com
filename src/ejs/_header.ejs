@@ -13,7 +13,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Roboto:wght@100;400;700;900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c39a0791cd.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<%= page.bundle %>.bundle.css">
+    
+
+    <% page.bundle.forEach(bundle => { %>
+        <link rel="stylesheet" href="<%= bundle %>.bundle.css">
+    <% }); %>
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -29,6 +33,20 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <header id="logo">
-        <span class="logo-head">&nbsp;</span><span class="logo-tail">aorcsik.com</span>
+    <input type="checkbox" id="menu-toggle">
+    <header id="header">
+        <div class="container">
+            <h1 id="logo">
+                <a href="/"><span class="logo-head">&nbsp;</span><span class="logo-tail">aorcsik.com</span></a>
+            </h1>
+            <label id="menu-toggle-button" for="menu-toggle"><i class="fa fa-bars"></i></label>
+            <nav>    
+                <ul>
+                    <li><a href="/pixelart.html">pixelart</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+
+    <div class="container">
+                <section id="content">

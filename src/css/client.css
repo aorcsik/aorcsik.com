@@ -1,40 +1,161 @@
+:root {
+  --background: #f6f6f6;
+  --text: #222033;
+}
+
 html, body {
   font-family: "Roboto", monospace;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f6f6f6;
-  color: #222033;
+  background: var(--background);
+  color: var(--text);
 }
 
-header {
-  padding: 0 1rem 1rem;
+
+.container {
+  position: relative;
 }
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 992px;
+    margin: 0 auto;
+  }
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  font-size: 2rem;
+}
+
+#menu-toggle:checked + #header,
+#header.sticky {
+  background: var(--background);
+}
+#header .container {
+  display: flex;
+  align-items: center;
+  height: 4rem;
+}
+
+#header .container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  right: 2rem;
+  height: 10px;
+
+  background: hsla(339, 100%, 55%, 1);
+  background: linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  background: -moz-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  background: -webkit-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF1B6B", endColorstr="#45CAFF", GradientType=1 );
+
+  filter: blur(30px);
+  z-index: 0;
+}
+
+#header #logo {
+  margin-left: .5rem;
+  font-weight: normal;
+  z-index: 1;
+}
+
+#menu-toggle {
+  position: absolute;
+  transform: translate(-1000px, -1000px);
+}
+#header #menu-toggle-button {
+  margin-left: auto;
+  margin-right: 1rem;
+  font-size: .75em;
+  color: var(--text);
+  z-index: 1;
+}
+#menu-toggle:checked + #header #menu-toggle-button,
+#header.sticky #menu-toggle-button {
+  
+}
+
+#header nav {
+  z-index: 1;
+  font-size: .75em;
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background: #f6f6f6;
+  transform: translateX(+100%);
+
+  transition: transform ease-in-out .2s;
+}
+
+#menu-toggle:checked + #header nav {
+  transform: translateY(0);
+}
+
+#header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#header nav ul li {
+  text-align: right;
+  padding: .5rem 1rem;
+}
+
+#header nav ul li a {
+  color: var(--text);
+}
+
+#menu-toggle:checked + #header nav ul li a,
+#header.sticky nav ul li a {
+  
+}
+
+#content {
+  padding-top: 4.5rem;
+  /* background-image: url("../images/background2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; */
+}
+
+@media only screen and (min-width: 768px) {
+  #header #menu-toggle-button {
+    display: none;
+  }
+
+  #header nav {
+    position: static;
+    margin-left: auto;
+    transform: translateX(0);
+    height: auto;
+    background-color: transparent;
+  }
+
+  #header nav ul {
+    display: flex;
+  }
+}
+
 
 footer {
   padding: 1rem;
 }
 
-h1 {
-  margin-bottom: 0;
-  font-family: "Major Mono Display";
-}
-
-h1 a {
-  opacity: .75;
-}
-
-h2 {
-  font-weight: 900;
-  text-transform: uppercase;
-  margin-bottom: 0;
-}
-
-ul {
+#content ul {
   line-height: 2em;
   list-style: none;
   padding: 0 1rem 1rem;
+  margin: 0;
 }
 
 a {
@@ -46,11 +167,18 @@ i.fab, i.far {
   vertical-align: middle;
 }
 
+
+
+/* LOGO */
+
 #logo {
-  font-size: 3rem;
+  font-size: 1em;
+  margin: 0;
+}
+#logo a {
+  display: block;
   display: flex;
   align-items: center;
-  padding: .5rem;
 }
 #logo span.logo-head {
   background: hsla(339, 100%, 55%, 1);
@@ -69,5 +197,16 @@ i.fab, i.far {
 }
 #logo span.logo-tail {
   font-size: 0.75em;
-  color: #999;
+  margin-left: .25rem;
+  color: var(--text);
+}
+
+#menu-toggle:checked + #header #logo span.logo-head,
+#header.sticky #logo span.logo-head {
+  
+}
+
+#menu-toggle:checked + #header #logo span.logo-tail,
+#header.sticky #logo span.logo-tail {
+  
 }

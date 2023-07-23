@@ -1,6 +1,12 @@
-    <footer>
-        <i class="far fa-copyright"></i> <small><%= (new Date()).getFullYear() %> Antal Orcsik All Rights Reserved</small>
-    </footer>
-    <link rel="stylesheet" href="<%= page.bundle %>.bundle.js">
+        </section>
+        
+        <footer>
+            <i class="far fa-copyright"></i> <small><%= (new Date()).getFullYear() %> Antal Orcsik All Rights Reserved</small><br>
+        </footer>
+    </div>
+
+    <% page.bundle.forEach(bundle => { %>
+        <script src="<%= bundle %>.bundle.js"></script>
+    <% }); %>
 </body>
 </html>
