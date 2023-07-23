@@ -9,7 +9,7 @@ module.exports = {
     ]
   },
   entry: {
-    home: "js/home.js",
+    client: "js/client.js",
   },
   output: {
     path: path.resolve(__dirname, "docs"),
@@ -35,7 +35,7 @@ module.exports = {
         test: /\.(png|jpg|gif|webp|svg)/,
         type: "asset/resource",
         generator: {
-          filename: "images/[contenthash][ext]"
+          filename: "images/[name][ext]"
         }
       },
     ],

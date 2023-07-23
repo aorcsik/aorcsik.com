@@ -1,40 +1,34 @@
 const fs = require('fs');
-const path = require('path');
-const ejs = require('ejs');
-const pages = require('./pages');
+const { readFile, renderTemplate, writeFile } = require('./tools');
 
 /**
-* 
-* @param {string} templatePath 
-* @param {ejs.Data} data 
-* @param {ejs.Options} options 
-* @returns {Promise<string>}
-*/
-async function renderTemplate(templatePath, data, options) {
-  return new Promise((resolve, reject) => {
-    ejs.renderFile(templatePath, data, options, function(err, str){
-      if (err) reject(err);
-      resolve(str);
-    });
-  });
-}
+ * 
+ * @param {string} configPath 
+ */
+async function buildPages(configPath) {
+  const config = JSON.parse(await readFile(configPath));
+  const pages = JSON.parse(await readFile(config.pagesJson));
 
-Object.keys(pages).forEach(async (page) => {
-  if (pages[page].title) {
+  Object.keys(pages).forEach(async (page) => {
     try {
 
       const templatePath = `./src/ejs/${page}.ejs`;
-      const targetFile = `./docs/${page}.html`;
+      const targetFile = `${config.webDir}/${page}.html`;
       const content = await renderTemplate(templatePath, {
-        common: pages.common,
+        config: config,
         page: pages[page],
       });
-      fs.writeFile(targetFile, content, (err) => {
-        if (err) throw err;
-      });
+      await writeFile(targetFile, content);
+      console.log(targetFile);
 
     } catch (error) {
       console.log(error);
     }
-  }
-});
+  });  
+}
+
+if (process.argv[2] && process.argv[2] === '--config' && process.argv[3]) {
+  buildPages(process.argv[3]);
+} else {
+  throw Error("Missing configuration!");
+}

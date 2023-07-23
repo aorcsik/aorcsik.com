@@ -1,40 +1,17 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const ejs = require('ejs');
-const { Buffer } = require('node:buffer');
-const pages = require('./pages');
+const { readFile, renderTemplate } = require('./tools');
+
 
 const hostname = '127.0.0.1';
 const port = 3000;
 
-/**
- * @param {string} filePath 
- * @returns {Promise<Buffer>}
- */
-async function readFile(filePath) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filePath, (error, content) => {
-      if (error) reject(error);
-      resolve(content);
-    });
-  });
-}
-
-/**
- * 
- * @param {string} templatePath 
- * @param {ejs.Data} data 
- * @param {ejs.Options} options 
- * @returns {Promise<string>}
- */
-async function renderTemplate(templatePath, data, options) {
-  return new Promise((resolve, reject) => {
-    ejs.renderFile(templatePath, data, options, function(err, str){
-      if (err) reject(err);
-      resolve(str);
-    });
-  });
+let configPath = "";
+if (process.argv[2] && process.argv[2] === '--config' && process.argv[3]) {
+  configPath = process.argv[3];
+} else {
+  throw Error("Missing configuration!");
 }
 
 /**
@@ -42,17 +19,22 @@ async function renderTemplate(templatePath, data, options) {
  * @param {http.ServerResponse} res
  */
 const handleRequest = async (req, res) => {
+  const config = JSON.parse(await readFile(configPath));
+  const pages = JSON.parse(await readFile(config.pagesJson));
+
   const url = new URL("http://" + req.hostname + req.url);
-  const filePath = './docs' + url.pathname + (url.pathname.match(/\/$/) ? "index.html" : "");
+  const filePath = config.webDir + url.pathname + (url.pathname.match(/\/$/) ? "index.html" : "");
   const extname = path.extname(filePath);
 
   if (extname == ".html") {
     try {
 
-      const templateName = filePath.replace(/^\.\/docs\//, "").replace(/.html$/, "");
+      const templateName = filePath.replace(`${config.webDir}/`, "").replace(/.html$/, "");
+      if (!pages[templateName]) throw new Error("Page configuration missing!");
+
       const templatePath = `./src/ejs/${templateName}.ejs`;
       const content = await renderTemplate(templatePath, {
-        common: pages.common,
+        config: config,
         page: pages[templateName],
       });
       res.statusCode = 200;
@@ -82,6 +64,21 @@ const handleRequest = async (req, res) => {
 
   } catch (error) {
 
+    try {
+
+      const content = await renderTemplate("./src/ejs/404.ejs", {
+        config: config,
+        page: pages["404"],
+      });
+      res.statusCode = 404;
+      res.end(content);
+      return;
+
+    } catch (error) {
+      console.log(error);
+    }
+
+    res.statusCode = 500;
     res.end(`<script>console.error("Server error: ${error.message}");</script>`);
     return;
 

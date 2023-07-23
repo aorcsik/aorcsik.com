@@ -1,0 +1,10 @@
+{
+  "index": {
+    "title": "aorcsik.com",
+    "bundle": "client"
+  },
+  "404": {
+    "title": "404 Not Found",
+    "bundle": "client"
+  }
+}

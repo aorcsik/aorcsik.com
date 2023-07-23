@@ -6,14 +6,9 @@
     <title><%= page.title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
 
-    <link rel="shortcut icon" type="image/png" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=32" />
-    <link rel="apple-touch-icon" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=60">
-    <link rel="apple-touch-icon" sizes="76x76" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=76">
-    <link rel="apple-touch-icon" sizes="120x120" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=120">
-    <link rel="apple-touch-icon" sizes="152x152" href="https://s.gravatar.com/avatar/42be615fb210779dbb3752714e14c3ec?s=152">
-    <!-- <link rel="apple-touch-startup-image" href="startup.png"> -->
-    <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="shortcut icon" href="<%= config.favicon %>">
+    <link rel="mask-icon" href="<%= config.favicon %>" color="#000000">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Roboto:wght@100;400;700;900&display=swap" rel="stylesheet">
@@ -25,12 +20,12 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','<%= common.gtm_id %>');</script>
+    })(window,document,'script','dataLayer','<%= config.gtmID %>');</script>
     <!-- End Google Tag Manager -->
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= common.gtm_id %>"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= config.gtmID %>"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
