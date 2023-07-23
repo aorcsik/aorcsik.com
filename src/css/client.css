@@ -210,3 +210,7 @@ i.fab, i.far {
 #header.sticky #logo span.logo-tail {
   
 }
+
+h2#error {
+  text-align: center;
+}
