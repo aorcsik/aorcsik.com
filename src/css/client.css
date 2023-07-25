@@ -1,5 +1,5 @@
 :root {
-  --background: #f6f6f6;
+  --background: #fafafa;
   --text: #222033;
   --header-height: 4rem;
 }
@@ -12,6 +12,14 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   background: var(--background);
   color: var(--text);
+}
+
+a {
+  color: var(--text);
+}
+
+i.fab, i.far {
+  vertical-align: middle;
 }
 
 
@@ -187,14 +195,6 @@ footer {
   margin: 0;
 }
 
-a {
-  color: var(--text);
-}
-
-i.fab, i.far {
-  vertical-align: middle;
-}
-
 
 
 /* LOGO */
@@ -207,6 +207,7 @@ i.fab, i.far {
   display: block;
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 #logo span.logo-head {
   background: hsla(339, 100%, 55%, 1);
@@ -264,6 +265,7 @@ h3 {
   background: -webkit-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF1B6B", endColorstr="#45CAFF", GradientType=1 );
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   white-space: nowrap;
 }
