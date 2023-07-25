@@ -1,23 +1,35 @@
 const fs = require('fs');
 const { readFile, renderTemplate, writeFile } = require('./tools');
 
+const templateDir = "./src/ejs";
+
+/**
+ * @param {string} templateDir
+ * @returns {Promise<string[]>}
+ */
+async function getPages(templateDir) {
+  return new Promise((resolve, reject) => {
+    fs.readdir(templateDir, function (err, files) {
+      if (err) reject(err);
+      resolve(files.filter(filename => filename[0] != "_"));
+    });
+  });
+}
+
 /**
  * 
  * @param {string} configPath 
  */
 async function buildPages(configPath) {
   const config = JSON.parse(await readFile(configPath));
-  const pages = JSON.parse(await readFile(config.pagesJson));
+  const pages = await getPages(config.templateDir);
 
-  Object.keys(pages).forEach(async (page) => {
+  pages.forEach(async (page) => {
     try {
 
-      const templatePath = `./src/ejs/${page}.ejs`;
-      const targetFile = `${config.webDir}/${page}.html`;
-      const content = await renderTemplate(templatePath, {
-        config: config,
-        page: pages[page],
-      });
+      const templatePath = `${config.templateDir}/${page}`;
+      const targetFile = `${config.webDir}/${page.replace(/\.ejs$/, ".html")}`;
+      const content = await renderTemplate(templatePath, { config: config });
       await writeFile(targetFile, content);
       console.log(targetFile);
 

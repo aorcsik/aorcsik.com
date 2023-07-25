@@ -1,4 +1,11 @@
-<%- include('_header', {config: config, page: page}); %>
+<%
+
+const page = {
+  title: "aorcsik.com",
+  bundle: ["client"]
+};
+
+%><%- include('_header', {config: config, page: page}); %>
 
 <h2>
   Hi 👋🏻, my name is

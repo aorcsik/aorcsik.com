@@ -1,4 +1,11 @@
-<%- include('_header', {config: config, page: page}); %>
+<%
+
+const page = {
+  title: "pixelart | aorcsik.com",
+  bundle: ["client", "pixelart"]
+};
+
+%><%- include('_header', {config: config, page: page}); %>
 
 <header>
   <h2>April 2020</h2>

@@ -1,4 +1,11 @@
-<%- include('_header', {config: config, page: page}); %>
+<%
+
+const page = {
+  title: "404 Not Found",
+  bundle: ["client"]
+};
+
+%><%- include('_header', {config: config, page: page}); %>
 
 <h2 id="error"><%= page.title %></h2>
 

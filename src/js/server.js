@@ -20,7 +20,6 @@ if (process.argv[2] && process.argv[2] === '--config' && process.argv[3]) {
  */
 const handleRequest = async (req, res) => {
   const config = JSON.parse(await readFile(configPath));
-  const pages = JSON.parse(await readFile(config.pagesJson));
 
   const url = new URL("http://" + req.hostname + req.url);
   const filePath = config.webDir + url.pathname + (url.pathname.match(/\/$/) ? "index.html" : "");
@@ -30,13 +29,9 @@ const handleRequest = async (req, res) => {
     try {
 
       const templateName = filePath.replace(`${config.webDir}/`, "").replace(/.html$/, "");
-      if (!pages[templateName]) throw new Error("Page configuration missing!");
 
       const templatePath = `./src/ejs/${templateName}.ejs`;
-      const content = await renderTemplate(templatePath, {
-        config: config,
-        page: pages[templateName],
-      });
+      const content = await renderTemplate(templatePath, { config: config });
       res.statusCode = 200;
       res.setHeader('Content-Type', "text/html");
       res.end(content);
@@ -66,10 +61,7 @@ const handleRequest = async (req, res) => {
 
     try {
 
-      const content = await renderTemplate("./src/ejs/404.ejs", {
-        config: config,
-        page: pages["404"],
-      });
+      const content = await renderTemplate("./src/ejs/404.ejs", { config: config });
       res.statusCode = 404;
       res.end(content);
       return;
