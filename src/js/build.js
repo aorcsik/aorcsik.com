@@ -9,9 +9,25 @@ const templateDir = "./src/ejs";
  */
 async function getPages(templateDir) {
   return new Promise((resolve, reject) => {
-    fs.readdir(templateDir, function (err, files) {
+    fs.readdir(templateDir, async (err, files) => {
       if (err) reject(err);
-      resolve(files.filter(filename => filename[0] != "_"));
+
+      const pages = [];
+      for (let filename of files) {
+        if (filename[0] !== "_") {
+          const stats = fs.lstatSync(`${templateDir}/${filename}`);
+          if (stats.isFile()) {
+            pages.push(filename);
+          } else if (stats.isDirectory()) {
+            const pagesInDir = await getPages(`${templateDir}/${filename}`);
+            for (let page of pagesInDir) {
+              pages.push(`${filename}/${page}`);
+            }
+          }  
+        }
+      }
+
+      resolve(pages);
     });
   });
 }
@@ -24,19 +40,32 @@ async function buildPages(configPath) {
   const config = JSON.parse(await readFile(configPath));
   const pages = await getPages(config.templateDir);
 
-  pages.forEach(async (page) => {
+  for (let page of pages) {
     try {
 
       const templatePath = `${config.templateDir}/${page}`;
-      const targetFile = `${config.webDir}/${page.replace(/\.ejs$/, ".html")}`;
+      const pagePath = page.split("/");
+      let filename = pagePath.pop();
+      const directory = pagePath.join("/");
+
+      if (directory) {
+        const targetDirectory = `${config.webDir}/${directory}`;
+        await fs.promises.mkdir(targetDirectory, { recursive: true });
+        console.log("+", targetDirectory);
+
+        filename = `${directory}/${filename}`;
+      }
+
+      const targetFile = `${config.webDir}/${filename.replace(/\.ejs$/, ".html")}`;
       const content = await renderTemplate(templatePath, { config: config });
       await writeFile(targetFile, content);
-      console.log(targetFile);
+      
+      console.log("+", targetFile);
 
     } catch (error) {
       console.log(error);
     }
-  });  
+  }
 }
 
 if (process.argv[2] && process.argv[2] === '--config' && process.argv[3]) {

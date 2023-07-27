@@ -40,6 +40,8 @@ i.fab, i.far {
   right: 0;
   z-index: 3;
   font-size: 2rem;
+
+  transition: background-color .2s;
 }
 
 #menu-toggle:checked + #header,
@@ -64,7 +66,6 @@ i.fab, i.far {
   background: linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
   background: -moz-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
   background: -webkit-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF1B6B", endColorstr="#45CAFF", GradientType=1 );
 
   filter: blur(30px);
   z-index: 0;
@@ -86,10 +87,15 @@ i.fab, i.far {
   font-size: .75em;
   color: var(--text);
   z-index: 1;
+
+  transition: color .2s;
+}
+.has-background #header #menu-toggle-button {
+  color: var(--background);
 }
 #menu-toggle:checked + #header #menu-toggle-button,
 #header.sticky #menu-toggle-button {
-  
+  color: var(--text);
 }
 
 #header nav {
@@ -119,6 +125,8 @@ i.fab, i.far {
 #header nav ul li {
   text-align: right;
   padding: .5rem 1rem .5rem 0;
+
+  transition: color .2s;
 }
 
 #header nav ul li.separator:before {
@@ -132,6 +140,13 @@ i.fab, i.far {
 
 #header nav ul li a {
   color: var(--text);
+
+  transition: color .2s;
+}
+
+.has-background #header nav ul li,
+.has-background #header nav ul li a {
+  color: var(--background);
 }
 
 #header nav ul li.social {
@@ -146,9 +161,11 @@ i.fab, i.far {
 }
 
 
+#menu-toggle:checked + #header nav ul li,
 #menu-toggle:checked + #header nav ul li a,
+#header.sticky nav ul li,
 #header.sticky nav ul li a {
-  
+  color: var(--text);
 }
 
 #content {
@@ -214,7 +231,6 @@ footer {
   background: linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
   background: -moz-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
   background: -webkit-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF1B6B", endColorstr="#45CAFF", GradientType=1 );
 
   color: transparent;
   -webkit-mask-image: url("../images/logo-small.svg");
@@ -223,37 +239,62 @@ footer {
   mask-size: contain;
   display: inline-block;
   width: 2.45em;
+  position: relative;
+}
+#logo span.logo-head:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  background-color: var(--background);
+
+  transition: opacity .2s;
 }
 #logo span.logo-tail {
   font-size: 0.75em;
   margin-left: .25rem;
   color: var(--text);
+
+  transition: color .2s;
 }
 
-#menu-toggle:checked + #header #logo span.logo-head,
-#header.sticky #logo span.logo-head {
-  
+.has-background #logo span.logo-head::after {
+  opacity: 1;
+}
+.has-background #logo span.logo-tail {
+  color: var(--background);
+}
+
+#menu-toggle:checked + #header #logo span.logo-head::after,
+#header.sticky #logo span.logo-head::after {
+  opacity: 0;
 }
 
 #menu-toggle:checked + #header #logo span.logo-tail,
 #header.sticky #logo span.logo-tail {
-  
+  color: var(--text);
 }
 
 h2#error {
   text-align: center;
 }
 
+#content {
+}
+
 h2 {
   font-size: 2em;
-  margin: 1rem 1rem;
+  margin: 1rem 0;
   line-height: 1.5em;
   font-weight: normal;
 }
 
 h3 {
   font-size: 1.5em;
-  margin: 1rem 1rem;
+  margin: 1rem 0;
   line-height: 1.5em;
   font-weight: normal;
 }
@@ -263,9 +304,111 @@ h3 {
   background: linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
   background: -moz-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
   background: -webkit-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF1B6B", endColorstr="#45CAFF", GradientType=1 );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   white-space: nowrap;
+}
+
+
+
+
+
+.blog-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100px;
+  padding-top: var(--header-height);
+  padding-bottom: var(--header-height);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: calc(-1 * var(--header-height)) 0 0 0;
+  position: relative;
+  opacity: .75;
+  overflow: hidden;
+}
+.blog-header:before {
+  content:"";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: hsla(339, 100%, 55%, 1);
+  background: linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  background: -moz-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  background: -webkit-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  mix-blend-mode: color;
+  z-index: 1;
+}
+.blog-header:after {
+  content:"";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--background);
+  background: linear-gradient(270deg, var(--text) var(--header-height), var(--background) 95%);
+  background: -moz-linear-gradient(270deg, var(--text) var(--header-height), var(--background) 95%);
+  background: -webkit-linear-gradient(270deg, var(--text) var(--header-height), var(--background) 95%);
+  mix-blend-mode: hard-light;
+  z-index: 1;
+}
+
+.blog-title {
+  text-align: center;
+  color: var(--background);
+  width: 100%;
+  margin: 0;
+  text-shadow: 0 0 5px var(--text);
+  z-index: 2;
+  margin-top: auto;
+  font-weight: bold;
+}
+.blog-meta {
+  margin-bottom: auto;
+  text-align: center;
+  color: var(--background);
+  text-shadow: 0 0 10px var(--text);
+  z-index: 2;
+}
+
+.blog-content p {
+  line-height: 1.6em;
+  margin: 1rem;
+  font-size: 1.1rem;
+}
+
+.blog-content blockquote {
+  position: relative;
+  margin-left: 0;
+  margin: 1rem;
+}
+.blog-content blockquote:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: var(--text);
+  opacity: .1;
+}
+
+.blog-lead {
+  font-weight: bold;
+}
+
+.blog-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: blur(5px);
+  z-index: 0;
 }

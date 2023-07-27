@@ -2,5 +2,5 @@ node_modules
 yarn-error.log
 docs/*.bundle.js
 docs/*.bundle.css
-docs/*.html
+docs/**/*.html
 docs/images/**

@@ -27,7 +27,11 @@
   })(window,document,'script','dataLayer','<%= config.gtmID %>');</script>
   <!-- End Google Tag Manager -->
 </head>
+<% if (page.background) { %>
+<body class="has-background">
+<% } else { %>
 <body>
+<%} %>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= config.gtmID %>"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
