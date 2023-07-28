@@ -1,0 +1,120 @@
+
+.blog-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 200px;
+  padding-top: var(--header-height);
+  padding-bottom: var(--header-height);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: calc(-1 * var(--header-height) + .5rem) 0 0 0;
+  position: relative;
+  opacity: .75;
+  overflow: hidden;
+  border-radius: 1rem 1rem 0 0;
+}
+.blog-header:before {
+  content:"";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: hsla(339, 100%, 55%, 1);
+  background: linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  background: -moz-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  background: -webkit-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  mix-blend-mode: color;
+  z-index: 1;
+}
+.blog-header:after {
+  content:"";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--background);
+  background: linear-gradient(270deg, var(--text) var(--header-height), var(--background) 95%);
+  background: -moz-linear-gradient(270deg, var(--text) var(--header-height), var(--background) 95%);
+  background: -webkit-linear-gradient(270deg, var(--text) var(--header-height), var(--background) 95%);
+  mix-blend-mode: hard-light;
+  z-index: 1;
+}
+
+.blog-title {
+  text-align: center;
+  color: var(--background);
+  width: 100%;
+  margin: 0;
+  text-shadow: 0 0 5px var(--text);
+  z-index: 2;
+  margin-top: auto;
+  font-weight: bold;
+  font-size: 2.5rem;
+  line-height: 1.25em;
+}
+.blog-meta {
+  margin-bottom: auto;
+  text-align: center;
+  color: var(--background);
+  text-shadow: 0 0 10px var(--text);
+  z-index: 2;
+  margin-top: 1rem;
+}
+
+.blog-content p {
+  line-height: 1.6em;
+  margin: 1rem;
+  font-size: 1.1rem;
+}
+
+.blog-content blockquote {
+  position: relative;
+  margin: 1rem;
+  padding-left: .5rem;
+}
+.blog-content blockquote:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: var(--text);
+  opacity: .1;
+}
+
+.blog-content picture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 1rem;
+  text-align: center;
+  color: #aaa;
+}
+
+.blog-content picture img {
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0,0,0,.1);
+  margin-bottom: 1rem;
+  max-width: 500px;
+  width: 100%;
+}
+
+.blog-lead {
+  font-weight: bold;
+}
+
+.blog-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: blur(5px);
+  z-index: 0;
+}

@@ -9,6 +9,7 @@ module.exports = {
     ]
   },
   entry: {
+    blog: "js/blog.js",
     client: "js/client.js",
     pixelart: "js/pixelart.js",
   },

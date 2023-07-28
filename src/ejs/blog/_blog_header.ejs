@@ -1,0 +1,9 @@
+<%- include('../_header', {config: config, page: page}); %>
+
+<header class="blog-header">
+  <!-- <img class="blog-background" src="<%= page.background %>"> -->
+  <h2 class="blog-title"><%= page.title %></h2>
+  <aside class="blog-meta"><%= page.author %> | <%= page.published_at.toDateString() %>
+</header>
+
+<secion class="blog-content">

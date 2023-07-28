@@ -4,23 +4,22 @@ const page = {
   title: "Mystery of the Power-Saving Outlets",
   author: "aorcsik",
   published_at: new Date("2022-07-26"),
-  bundle: ["client"],
+  bundle: ["client", "blog"],
   background: "https://static.aorcsik.com/blog/be550g-gr-10122954.webp"
 };
 
-%><%- include('../_header', {config: config, page: page}); %>
+if (config.listView) { %>
 
-<header class="blog-header">
-  <img class="blog-background" src="<%= page.background %>">
-  <h2 class="blog-title"><%= page.title %></h2>
-  <aside class="blog-meta"><%= page.author %> | <%= page.published_at.toDateString() %>
-</header>
-
-<secion class="blog-content">
+<% } else { %><%- include('_blog_header', {config: config, page: page}); %>
 
   <p class="blog-lead">A few weeks ago, I noticed something strange around my desk. The LED indicator on the MacBook Pro charger was off. Also, a smart outlet was frequently offline, which resulted in the connected light going out and on randomly (spooky). I checked, and both of them were plugged in. They were supposed to get power from the lower row of power outlets on my UPS Back-Ups ES 550VA, the surge-protect-only outlets. They were all dead. No reason… it must be broken, again… or at least I thought it was at the time.</p>
 
   <p>I had this UPS (uninterruptible power supply) since 2011. I like it because it has traditional power outlets to connect to any regular electronic device. There were two rows of outlets, the upper one battery-powered and the lower one surge-protect. It can protect ethernet, too, but only 10/100, which is a little outdated for today's gigabit networks.</p>
+
+  <picture>
+    <img alt="APC Back-Ups ES 550VA" src="https://static.aorcsik.com/blog/apc-power-saving-es-8-outlet-550va.webp">
+    APC Back-Ups ES 550VA
+  </picture>
 
   <p>It worked flawlessly for nine years, but by 2020, the battery degraded so much that the unit started to warn me about it. I had this for a reason, so leaving it broken was impossible. After some research, I managed to buy a replacement battery (APC RBC110). Interestingly, the battery cost a little more in 2020 than the entire unit in 2011, and today, the exact battery costs almost twice that price… that's inflation for you. Anyway. The new battery was a perfect fit, and the UPS was working again… until recently.</p>
 
@@ -35,10 +34,8 @@ const page = {
     To conserve electricity, configure the Back-UPS to recognize a Master device, such as a desktop computer or an A/V receiver, and Controlled peripheral devices, such as a printer, speakers, or a scanner. When the Master device goes into Sleep or Standby mode, or turns OFF, the Controlled device(s) will shut down as well, saving electricity.</p>
   </blockquote>
 
-  <p>So, it wasn't just marketing. I must have accidentally enabled this feature, and whenever my desktop computer went to sleep, the controlled outlets turned off. I must say, this is a very clever thing for a UPS. Unfortunately, I have stuffed plugged in there that I need on, even if the computer is asleep. So the Power-saving mode stays off &ndash; again, sorry, economy &ndash; and the riddle is finally solved.</p>
+  <p>So, it wasn't just marketing. I must have accidentally enabled this feature, and whenever my desktop computer went to sleep, the controlled outlets turned off. I must say, this is a very clever thing for a UPS. Unfortunately, I have stuff plugged in there that I need on, even if the computer is asleep. So the Power-saving mode stays off &ndash; again, sorry, economy &ndash; and the riddle is finally solved.</p>
 
   <p>PS.: While looking for a good cover photo, I noticed that only the first three outlets in the lower row are controlled by the power-saving feature, so the smart outlet on the right has been working all the time since I moved it there.</p>
 
-</secion>
-
-<%- include('../_footer', {config: config, page: page}); %>
+<%- include('../_footer', {config: config, page: page}); %><% } %>
