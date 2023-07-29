@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { readFile, renderTemplate } = require('./tools');
+const { readFile, renderTemplate, getPages } = require('./tools');
 
 
 const hostname = '127.0.0.1';
@@ -20,6 +20,7 @@ if (process.argv[2] && process.argv[2] === '--config' && process.argv[3]) {
  */
 const handleRequest = async (req, res) => {
   const config = JSON.parse(await readFile(configPath));
+  config.blogPages = await getPages(`${config.templateDir}/blog`);
 
   const url = new URL("http://" + req.hostname + req.url);
   const filePath = config.webDir + url.pathname + (url.pathname.match(/\/$/) ? "index.html" : "");
@@ -30,8 +31,8 @@ const handleRequest = async (req, res) => {
 
       const templateName = filePath.replace(`${config.webDir}/`, "").replace(/.html$/, "");
 
-      const templatePath = `./src/ejs/${templateName}.ejs`;
-      const content = await renderTemplate(templatePath, { config: config });
+      const templatePath = `${config.templateDir}/${templateName}.ejs`;
+      const content = await renderTemplate(templatePath, {context: {...config, bundle: ["client"]}});
       res.statusCode = 200;
       res.setHeader('Content-Type', "text/html");
       res.end(content);

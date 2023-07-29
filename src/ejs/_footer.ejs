@@ -5,7 +5,7 @@
     </footer>
   </div>
       
-  <% page.bundle.forEach(bundle => { %>
+  <% context.bundle.forEach(bundle => { %>
     <script src="/<%= bundle %>.bundle.js"></script>
   <% }); %>
 </body>

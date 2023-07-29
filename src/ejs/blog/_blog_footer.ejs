@@ -1,3 +1,9 @@
 </secion>
 
-<%- include('../_footer', {config: config, page: page}); %>
+<%
+
+context = {...context,
+  bundle: [...context.bundle, "blog"],
+};
+
+%><%- include('../_footer', {context: context}); %>

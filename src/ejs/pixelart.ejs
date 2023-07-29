@@ -1,11 +1,11 @@
 <%
 
-const page = {
+context = {...context,
   title: "pixelart | aorcsik.com",
-  bundle: ["client", "pixelart"]
+  bundle: [...context.bundle, "pixelart"]
 };
 
-%><%- include('_header', {config: config, page: page}); %>
+%><%- include('_header', {context: context}); %>
 
 <header>
   <h2>April 2020</h2>
@@ -479,4 +479,4 @@ const page = {
   
 </div>
 
-<%- include('_footer', {config: config, page: page}); %>
+<%- include('_footer', {context: context}); %>

@@ -219,15 +219,6 @@ footer {
   padding: 1rem;
 }
 
-#content ul {
-  line-height: 2em;
-  list-style: none;
-  padding: 0 1rem 1rem;
-  margin: 0;
-}
-
-
-
 /* LOGO */
 
 #logo {
@@ -316,10 +307,47 @@ h2#error {
 .main-content h3 {
   margin: 2rem 1rem;
 }
+.main-content h4 {
+  margin: 1rem 1rem;
+  text-transform: uppercase;
+  color: #aaa;
+}
 
 .main-content hr {
   margin: 2rem 1rem;
   background: #ddd;
   height: 2px;
   border: 0;
+}
+
+ul.blog-list {
+  list-style: none;
+  margin: 1rem;
+  padding: 0;
+  line-height: 1.5em;
+}
+ul.blog-list a {
+  text-decoration: none;
+  display: block;
+  padding: .5rem 0;
+  border-radius: .5rem;
+
+  transition: background-color .2s;
+}
+
+ul.blog-list .blog-list-title {
+  font-weight: bold;
+  font-size: 1.25em;
+}
+ul.blog-list .blog-list-meta {
+  color: #aaa;
+}
+
+@media only screen and (min-width: 768px) {
+  ul.blog-list a {
+    padding: .5rem 1rem;
+  }
+  ul.blog-list a:hover {
+    background: rgba(0,0,0,.05);
+  }
 }

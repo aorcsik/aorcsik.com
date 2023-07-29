@@ -46,8 +46,38 @@ async function writeFile(filePath, content) {
   })
 }
 
+/**
+ * @param {string} templateDir
+ * @returns {Promise<string[]>}
+ */
+async function getPages(templateDir) {
+  return new Promise((resolve, reject) => {
+    fs.readdir(templateDir, async (err, files) => {
+      if (err) reject(err);
+
+      const pages = [];
+      for (let filename of files) {
+        if (filename[0] !== "_") {
+          const stats = fs.lstatSync(`${templateDir}/${filename}`);
+          if (stats.isFile()) {
+            pages.push(filename);
+          } else if (stats.isDirectory()) {
+            const pagesInDir = await getPages(`${templateDir}/${filename}`);
+            for (let page of pagesInDir) {
+              pages.push(`${filename}/${page}`);
+            }
+          }  
+        }
+      }
+
+      resolve(pages);
+    });
+  });
+}
+
 module.exports = {
   readFile: readFile,
   renderTemplate: renderTemplate,
   writeFile: writeFile,
+  getPages: getPages,
 };

@@ -1,11 +1,10 @@
 <%
 
-const page = {
+context = {...context,
   title: "aorcsik.com",
-  bundle: ["client"]
 };
 
-%><%- include('_header', {config: config, page: page}); %>
+%><%- include('_header', {context: context}); %>
 
 <section class="main-content">
   <h2>
@@ -21,7 +20,17 @@ const page = {
     and Sophie the siamese cat.
   </h3>
 
-  
+  <hr>
+
+  <h4>Latest blog posts</h4>
+  <ul class="blog-list">
+    <% for (let blogPage of context.blogPages) { %>
+      <%- include(`blog/${blogPage.replace(".ejs", "")}`, {context: {...context, listView: {
+        url: `/blog/${blogPage.replace(".ejs", ".html")}`
+      }}}); %>
+    <% } %>
+  </ul>
+
 </section>
 
-<%- include('_footer', {config: config, page: page}); %>
+<%- include('_footer', {context: context}); %>

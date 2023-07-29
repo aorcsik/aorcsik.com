@@ -1,16 +1,14 @@
 <%
 
-const page = {
+context = {...context,
   title: "Mystery of the Power-Saving Outlets",
   author: "aorcsik",
   published_at: new Date("2022-07-26"),
-  bundle: ["client", "blog"],
-  background: "https://static.aorcsik.com/blog/be550g-gr-10122954.webp"
 };
 
-if (config.listView) { %>
-
-<% } else { %><%- include('_blog_header', {config: config, page: page}); %>
+if (context.listView) { %>
+  <%- include('_blog_list_item', {context: context}); %>
+<% } else { %><%- include('_blog_header', {context: context}); %>
 
   <p class="blog-lead">A few weeks ago, I noticed something strange around my desk. The LED indicator on the MacBook Pro charger was off. Also, a smart outlet was frequently offline, which resulted in the connected light going out and on randomly (spooky). I checked, and both of them were plugged in. They were supposed to get power from the lower row of power outlets on my UPS Back-Ups ES 550VA, the surge-protect-only outlets. They were all dead. No reason… it must be broken, again… or at least I thought it was at the time.</p>
 
@@ -38,4 +36,4 @@ if (config.listView) { %>
 
   <p>PS.: While looking for a good cover photo, I noticed that only the first three outlets in the lower row are controlled by the power-saving feature, so the smart outlet on the right has been working all the time since I moved it there.</p>
 
-<%- include('../_footer', {config: config, page: page}); %><% } %>
+<%- include('../_footer', {context: context}); %><% } %>

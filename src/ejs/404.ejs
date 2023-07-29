@@ -1,12 +1,11 @@
 <%
 
-const page = {
+context = {...context,
   title: "404 Not Found",
-  bundle: ["client"]
 };
 
-%><%- include('_header', {config: config, page: page}); %>
+%><%- include('_header', {context: context}); %>
 
-<h2 id="error"><%= page.title %></h2>
+<h2 id="error"><%= context.title %></h2>
 
-<%- include('_footer', {config: config, page: page}); %>
+<%- include('_footer', {context: context}); %>

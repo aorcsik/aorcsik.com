@@ -1,43 +1,14 @@
 const fs = require('fs');
-const { readFile, renderTemplate, writeFile } = require('./tools');
+const { getPages, readFile, renderTemplate, writeFile } = require('./tools');
 
-const templateDir = "./src/ejs";
-
-/**
- * @param {string} templateDir
- * @returns {Promise<string[]>}
- */
-async function getPages(templateDir) {
-  return new Promise((resolve, reject) => {
-    fs.readdir(templateDir, async (err, files) => {
-      if (err) reject(err);
-
-      const pages = [];
-      for (let filename of files) {
-        if (filename[0] !== "_") {
-          const stats = fs.lstatSync(`${templateDir}/${filename}`);
-          if (stats.isFile()) {
-            pages.push(filename);
-          } else if (stats.isDirectory()) {
-            const pagesInDir = await getPages(`${templateDir}/${filename}`);
-            for (let page of pagesInDir) {
-              pages.push(`${filename}/${page}`);
-            }
-          }  
-        }
-      }
-
-      resolve(pages);
-    });
-  });
-}
 
 /**
- * 
  * @param {string} configPath 
  */
 async function buildPages(configPath) {
   const config = JSON.parse(await readFile(configPath));
+  config.blogPages = await getPages(`${config.templateDir}/blog`);
+
   const pages = await getPages(config.templateDir);
 
   for (let page of pages) {
@@ -57,7 +28,7 @@ async function buildPages(configPath) {
       }
 
       const targetFile = `${config.webDir}/${filename.replace(/\.ejs$/, ".html")}`;
-      const content = await renderTemplate(templatePath, { config: config });
+      const content = await renderTemplate(templatePath, {context: {...config, bundle: ["client"]}});
       await writeFile(targetFile, content);
       
       console.log("+", targetFile);
