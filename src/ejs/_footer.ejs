@@ -6,7 +6,7 @@
   </div>
       
   <% context.bundle.forEach(bundle => { %>
-    <script src="/<%= bundle %>.bundle.js"></script>
+    <script src="/<%= bundle %>.bundle.js?_=<%= (new Date()).getTime()%>"></script>
   <% }); %>
 </body>
 </html>

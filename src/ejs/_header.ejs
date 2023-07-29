@@ -16,7 +16,7 @@
   
   
   <% context.bundle.forEach(bundle => { %>
-    <link rel="stylesheet" href="/<%= bundle %>.bundle.css">
+    <link rel="stylesheet" href="/<%= bundle %>.bundle.css?_=<%= (new Date()).getTime()%>">
   <% }); %>
     
   <!-- Google Tag Manager -->
