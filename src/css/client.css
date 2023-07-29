@@ -97,7 +97,7 @@ h3 {
 }
 #header #menu-toggle-button {
   margin-left: auto;
-  margin-right: 1rem;
+  margin-right: 1.25rem;
   font-size: .75em;
   color: var(--text);
   z-index: 1;
@@ -120,7 +120,7 @@ h3 {
   left: 0;
   right: 0;
   height: 100vh;
-  background: #f6f6f6;
+  background: var(--background);
   transform: translateX(+100%);
 
   transition: transform ease-in-out .2s;
@@ -311,6 +311,36 @@ h2#error {
   margin: 1rem 1rem;
   text-transform: uppercase;
   color: #aaa;
+}
+
+.main-content #avatar {
+  position: relative;
+}
+.main-content #avatar img {
+  display: block;
+  width: 70%;
+  border-radius: 42% 58% 73% 27% / 74% 59% 41% 26%;
+  margin: 1rem auto;
+  box-shadow: 0 0 20px rgba(0,0,0,.25);
+}
+.main-content #avatar::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: hsla(339, 100%, 55%, 1);
+  background: linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  background: -moz-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  background: -webkit-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  mix-blend-mode: color;
+}
+
+@media only screen and (min-width: 768px) {
+  .main-content #avatar {
+    float: right;
+  }
 }
 
 .main-content hr {
