@@ -10,6 +10,7 @@ context = {...context,
 <header class="blog-header">
   <!-- <img class="blog-background" src="<%= context.background %>"> -->
   <h2 class="blog-title"><%= context.title %></h2>
+  <%- include('../_avatar', {context: context}); %>
   <aside class="blog-meta"><%= context.author %> | <%= context.published_at.toDateString() %>
 </header>
 
