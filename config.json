@@ -3,5 +3,8 @@
   "webDir": "./docs",
   "favicon": "/images/logo-small.svg",
   "templateDir": "./src/ejs",
-  "markdownDir": "./src/md"
+  "markdownDir": "./src/md",
+  "avatars": {
+    "aorcsik": "https://en.gravatar.com/userimage/175614/163f01c257da8d210188b5fd0669ec1c.jpeg?size=512"
+  }
 }

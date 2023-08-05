@@ -8,7 +8,7 @@ context = {...context,
 
 <section class="main-content">
 
-  <%- include('_avatar', {context: context}); %>
+  <%- include('_avatar', {context: { ...context, author: "aorcsik" }}); %>
   
   <h2>
     Hi 👋🏻, my name is
