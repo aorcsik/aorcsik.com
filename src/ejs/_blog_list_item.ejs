@@ -1,4 +1,4 @@
-<li><a href="<%= context.url %>" title="<%= context.title %>">
-  <span class="blog-list-title"><%= context.title %></span><br>
-  <span class="blog-list-meta"><%= context.author %> | <%= context.published_at.toDateString() %></span>
+<li class="blog-list-item"><a href="<%= context.url %>" title="<%= context.title %>">
+  <span class="blog-title"><%= context.title %></span><br>
+  <%- include('_blog_meta', {context: context}); %>
 </a></li>

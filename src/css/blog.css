@@ -52,7 +52,7 @@
   margin: .5rem auto 0 auto;
 }
 
-.blog-title {
+.blog-header .blog-title {
   text-align: center;
   color: var(--background);
   width: 90%;
@@ -65,12 +65,11 @@
   line-height: 1.25em;
   max-width: 680px;
 }
-.blog-meta {
-  margin-bottom: auto;
+.blog-header .blog-meta {
   text-align: center;
-  color: var(--text);
+  color: #666;
   z-index: 2;
-  margin-top: 1rem;
+  margin: 1rem 1rem auto 1rem;
 }
 
 .blog-content {
@@ -103,8 +102,6 @@
   flex-direction: column;
   align-items: center;
   margin: 2rem 1rem;
-  text-align: center;
-  color: #aaa;
 }
 
 .blog-content figure img {
@@ -115,8 +112,10 @@
   width: 100%;
 }
 
-.blog-lead {
-  font-weight: bold;
+.blog-content figure figcaption {
+  font-family: var(--sans-serif-font);
+  text-align: center;
+  color: #888;
 }
 
 .blog-background {

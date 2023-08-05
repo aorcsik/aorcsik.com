@@ -247,7 +247,7 @@ footer {
 }
 #logo span.logo-head {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  
+
   background: hsla(339, 100%, 55%, 1);
   background: linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
   background: -moz-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
@@ -397,11 +397,17 @@ ul.blog-list a {
   transition: background-color .2s;
 }
 
-ul.blog-list .blog-list-title {
+.blog-meta span:first-child::after,
+.blog-meta span:last-child::before {
+  content: "\2022";
+  margin: 0 .5em;
+}
+
+ul.blog-list .blog-title {
   font-weight: bold;
   font-size: 1.25em;
 }
-ul.blog-list .blog-list-meta {
+ul.blog-list .blog-meta {
   color: #888;
 }
 

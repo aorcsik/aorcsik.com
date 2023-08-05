@@ -23,17 +23,17 @@ if (process.argv[2] && process.argv[2] === '--config' && process.argv[3]) {
 const handleRequest = async (req, res) => {
   let config = JSON.parse(await readFile(configPath));
   
-  config.blogPages = [];
-  const blogPages = await getPages(`${config.markdownDir}/blog`);
-  for (let blogPagePath of blogPages) {
-    config.blogPages.push(await BlogPage.fromFile(config.markdownDir, `blog/${blogPagePath}`));
-  }
-
   const url = new URL("http://" + req.hostname + req.url);
   const filePath = config.webDir + url.pathname + (url.pathname.match(/\/$/) ? "index.html" : "");
   const extname = path.extname(filePath);
 
   if (extname == ".html") {
+    config.blogPages = [];
+    const blogPages = await getPages(`${config.markdownDir}/blog`);
+    for (let blogPagePath of blogPages) {
+      config.blogPages.push(await BlogPage.fromFile(config.markdownDir, `blog/${blogPagePath}`));
+    }
+
     try {
 
       let templateName = filePath.replace(`${config.webDir}/`, "").replace(/.html$/, "");

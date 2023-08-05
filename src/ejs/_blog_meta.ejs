@@ -1,0 +1,7 @@
+<span class="blog-meta">
+  <span><%= context.author %></span>
+  <time datetime="<%= context.published_at.format("YYYY-MM-DD") %>">
+    <%= context.published_at.format("MMM D, YYYY") %><!-- (<%= context.published_at.fromNow() %>) -->
+  </time>
+  <span><%= context.readingTime %> min read</span>
+</span>
