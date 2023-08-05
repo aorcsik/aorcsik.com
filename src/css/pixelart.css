@@ -8,6 +8,7 @@ h2 {
 .sprite-gallery {
   display: flex;
   flex-wrap: wrap;
+  font-family: var(--sans-serif-font);
 }
 
 div.sprite {
@@ -84,10 +85,10 @@ div.sprite span.created-at {
   font-size: .9em;
   color: #666;
 }
-
+/* 
 div.sprite span.created-with {
   
-}
+} */
 
 div.sprite hr {
   /* border: 0;

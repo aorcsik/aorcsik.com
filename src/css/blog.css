@@ -56,13 +56,14 @@
   text-align: center;
   color: var(--background);
   width: 90%;
-  margin: 0;
+  margin: auto auto 0 auto;
   text-shadow: 0 0 5px var(--text);
   z-index: 2;
   margin-top: auto;
   font-weight: bold;
   font-size: 2.5rem;
   line-height: 1.25em;
+  max-width: 680px;
 }
 .blog-meta {
   margin-bottom: auto;
@@ -72,10 +73,13 @@
   margin-top: 1rem;
 }
 
+.blog-content {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
 .blog-content p {
-  line-height: 1.6em;
-  margin: 1rem;
-  font-size: 1.1rem;
+  margin: 2.5rem 1rem;
 }
 
 .blog-content blockquote {

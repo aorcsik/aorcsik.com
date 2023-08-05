@@ -6,7 +6,7 @@ context = {...context,
 
 %><%- include('_header', {context: context}); %>
 
-<section class="main-content">
+<div class="main-content">
 
   <%- include('_avatar', {context: { ...context, author: "aorcsik" }}); %>
   
@@ -15,13 +15,13 @@ context = {...context,
     <span id="name"><strong>Tony</strong> (Antal Orcsik)</span>,
   </h2>
 
-  <h3>
+  <p>
     I'm managing frontend engineers at <a href="https://bitrise.io" title="Bitrise.io" target="_blank">Bitrise</a>,
     creating <a href="https://mozipremierek.hu/" title="Mozipremierek.hu" target="_blank">mozipremierek.hu</a> and
     co-hosting <a href="https://vilagoskozepkor.hu/" title="Világos Középkor Podcast" target="_blank">Világos Középkor Podcast</a>.
     I live in Budapest, Hungary with my dear <a href="https://sugarfreedots.hu/" title="Sugarfree Dots - csakis cukormentesen" target="_blank">Helga</a>, our son Áron 
     and Sophie the siamese cat.
-  </h3>
+  </p>
 
   <hr>
 
@@ -32,6 +32,6 @@ context = {...context,
     <% } %>
   </ul>
 
-</section>
+</div>
 
 <%- include('_footer', {context: context}); %>

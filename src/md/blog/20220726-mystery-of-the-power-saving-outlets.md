@@ -2,7 +2,7 @@
 
 ### aorcsik | 2023-07-26
 
-**A few weeks ago, I noticed something strange around my desk. The LED indicator on the MacBook Pro charger was off. Also, a smart outlet was frequently offline, which resulted in the connected light going out and on randomly (spooky). I checked, and both of them were plugged in. They were supposed to get power from the lower row of power outlets on my UPS Back-Ups ES 550VA, the surge-protect-only outlets. They were all dead. No reason… it must be broken, again… or at least I thought it was at the time.**
+A few weeks ago, I noticed something strange around my desk. The LED indicator on the MacBook Pro charger was off. Also, a smart outlet was frequently offline, which resulted in the connected light going out and on randomly (spooky). I checked, and both of them were plugged in. They were supposed to get power from the lower row of power outlets on my UPS Back-Ups ES 550VA, the surge-protect-only outlets. They were all dead. No reason… it must be broken, again… or at least I thought it was at the time.
 
 I had this UPS (uninterruptible power supply) since 2011. I like it because it has traditional power outlets to connect to any regular electronic device. There were two rows of outlets, the upper one battery-powered and the lower one surge-protect. It can protect ethernet, too, but only 10/100, which is a little outdated for today's gigabit networks.
 

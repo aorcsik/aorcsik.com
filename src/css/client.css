@@ -2,10 +2,12 @@
   --background: #fafafa;
   --text: #222033;
   --header-height: 5rem;
+  --serif-font: "IBM Plex Serif", Georgia, Cambria, "Times New Roman", Times, serif;
+  --sans-serif-font: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 html, body {
-  font-family: "Roboto", monospace;
+  font-family: var(--serif-font);
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
@@ -22,6 +24,10 @@ i.fab, i.far {
   vertical-align: middle;
 }
 
+header, h2, h3, h4 {
+  font-family: var(--sans-serif-font);
+}
+
 h2 {
   font-size: 2em;
   margin: 1rem 0;
@@ -34,6 +40,12 @@ h3 {
   margin: 1rem 0;
   line-height: 1.5em;
   font-weight: normal;
+}
+
+p {
+  line-height: 1.6em;
+  margin: 1rem;
+  font-size: 1.25rem;
 }
 
 
@@ -217,6 +229,8 @@ h3 {
 
 footer {
   padding: 1rem;
+  font-family: var(--sans-serif-font);
+  text-align: center;
 }
 
 /* LOGO */
@@ -232,6 +246,8 @@ footer {
   text-decoration: none;
 }
 #logo span.logo-head {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
   background: hsla(339, 100%, 55%, 1);
   background: linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
   background: -moz-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
@@ -304,7 +320,7 @@ h2#error {
 .main-content h2 {
   margin: 2rem 1rem;
 }
-.main-content h3 {
+.main-content p {
   margin: 2rem 1rem;
 }
 .main-content h4 {
@@ -339,6 +355,12 @@ h2#error {
   background: -webkit-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
   mix-blend-mode: color;
 }
+.avatar::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
 .main-content .avatar {
   width: 80%;
@@ -360,6 +382,7 @@ h2#error {
 }
 
 ul.blog-list {
+  font-family: var(--sans-serif-font);
   list-style: none;
   margin: 1rem;
   padding: 0;
@@ -379,7 +402,7 @@ ul.blog-list .blog-list-title {
   font-size: 1.25em;
 }
 ul.blog-list .blog-list-meta {
-  color: #aaa;
+  color: #888;
 }
 
 @media only screen and (min-width: 768px) {

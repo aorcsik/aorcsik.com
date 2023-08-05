@@ -14,10 +14,10 @@ context = {...context,
   <aside class="blog-meta"><%= context.author %> | <%= context.published_at.toDateString() %>
 </header>
 
-<secion class="blog-content">
+<div class="blog-content">
 
     <%- context.content %>
   
-</secion>
+</div>
 
 <%- include('_footer', {context: context}); %>
