@@ -28,7 +28,7 @@ context = {...context,
   <h4>Latest blog posts</h4>
   <ul class="blog-list">
     <% for (let blogPage of context.blogPages) { %>
-      <%- include(`blog/_blog_list_item.ejs`, {context: {...context, ...blogPage }}); %>
+      <%- include(`_blog_list_item.ejs`, {context: {...context, ...blogPage }}); %>
     <% } %>
   </ul>
 

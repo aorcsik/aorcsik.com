@@ -41,7 +41,7 @@ const handleRequest = async (req, res) => {
       try {
         const blogPage = await BlogPage.fromFile(config.markdownDir, `${templateName}.md`);
         config = {...config, ...blogPage};
-        templateName = "blog/_blog_post";
+        templateName = "_blog_post";
       } catch (error) {
         
       }

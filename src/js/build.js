@@ -34,7 +34,7 @@ async function buildPages(configPath) {
       if (directory == "blog") {
         const blogPage = await BlogPage.fromFile(config.markdownDir, markdownPage);
         const targetFile = `${config.webDir}/${filename.replace(/\.md$/, ".html")}`;
-        const content = await renderTemplate(`${config.templateDir}/blog/_blog_post.ejs`, {context: {...config, bundle: ['client'], ...blogPage}});
+        const content = await renderTemplate(`${config.templateDir}/_blog_post.ejs`, {context: {...config, bundle: ['client'], ...blogPage}});
         await writeFile(targetFile, content);
         console.log("+", targetFile);
       }
