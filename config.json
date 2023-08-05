@@ -2,5 +2,6 @@
   "gtmID": "GTM-59C49R32",
   "webDir": "./docs",
   "favicon": "/images/logo-small.svg",
-  "templateDir": "./src/ejs"
+  "templateDir": "./src/ejs",
+  "markdownDir": "./src/md"
 }
