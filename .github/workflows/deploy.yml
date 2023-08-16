@@ -11,6 +11,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
@@ -21,20 +26,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Setup NodeJS with yarn
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
           cache: 'yarn'
-      - name: Install NodeJS dependencies
-        run: yarn install
-      - name: Build
-        run: yarn build_prod
-
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v3
+  
+      - name: Build
+        run: yarn install && yarn build_prod
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
@@ -42,10 +48,6 @@ jobs:
 
   deploy:
     needs: build
-
-    permissions:
-      pages: write
-      id-token: write
 
     environment:
       name: github-pages
