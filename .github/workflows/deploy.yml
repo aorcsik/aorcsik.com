@@ -38,8 +38,10 @@ jobs:
         id: pages
         uses: actions/configure-pages@v3
   
+      - name: Install dependencies
+        run: yarn install
       - name: Build
-        run: yarn install && yarn build_prod
+        run: yarn build_prod
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
