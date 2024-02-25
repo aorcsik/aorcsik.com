@@ -18,6 +18,26 @@ class BlogPage
   }
 
   /**
+   * @param {BlogPage} page1
+   * @param {BlogPage} page2
+   * @returns {number}
+   */
+  static compare(page1, page2) {
+    if (page1.published_at > page2.published_at) return 1;
+    if (page1.published_at < page2.published_at) return -1;
+    return 0;
+  }
+
+  /**
+   * @param {BlogPage} page1
+   * @param {BlogPage} page2
+   * @returns {number}
+   */
+  static compareReverse(page1, page2) {
+    return -1 * BlogPage.compare(page1, page2);
+  }
+
+  /**
    * @param {string} markdownContent 
    * @param {string} markdownPath
    */
@@ -39,6 +59,8 @@ class BlogPage
     this.url = markdownPath.replace(/\.md$/, ".html");
     /** @type {number} */
     this.readingTime = this.calculateReadingTime(markdownContent.toString());
+    /** @type {boolean} */
+    this.draft = !!markdownPath.match(/^draft/);
   }
 
   /**

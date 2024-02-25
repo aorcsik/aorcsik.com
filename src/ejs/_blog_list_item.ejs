@@ -1,4 +1,5 @@
 <li class="blog-list-item"><a href="<%= context.url %>" title="<%= context.title %>">
+  <% if (context.draft) { %>[DRAFT]<% } %>
   <span class="blog-title"><%= context.title %></span><br>
   <%- include('_blog_meta', {context: context}); %>
 </a></li>

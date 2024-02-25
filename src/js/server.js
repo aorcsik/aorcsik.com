@@ -33,6 +33,12 @@ const handleRequest = async (req, res) => {
     for (let blogPagePath of blogPages) {
       config.blogPages.push(await BlogPage.fromFile(config.markdownDir, `blog/${blogPagePath}`));
     }
+    const draftBlogPages = await getPages(`${config.markdownDir}/draft`);
+    for (let draftBlogPagePath of draftBlogPages) {
+      config.blogPages.push(await BlogPage.fromFile(config.markdownDir, `draft/${draftBlogPagePath}`));
+    }
+
+    config.blogPages.sort(BlogPage.compareReverse);
 
     try {
 
