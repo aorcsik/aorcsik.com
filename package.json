@@ -13,8 +13,11 @@
   "author": "aorcsik@gmail.com",
   "license": "ISC",
   "homepage": "https://aorcsik.com",
+  "engines": {
+    "node": "^20.0.0"
+  },
   "devDependencies": {
-    "css-loader": "6.10.0",
+    "css-loader": "^6.10.0",
     "dayjs": "1.11.9",
     "ejs": "3.1.9",
     "eslint": "8.45.0",
@@ -27,7 +30,7 @@
   },
   "scripts": {
     "start": "node ./src/js/server.js",
-    "build_dev": "./node_modules/.bin/webpack --config webpack.dev.js --progress --color",
-    "build_prod": "./node_modules/.bin/webpack --config webpack.prod.js && node ./src/js/build.js --config config.json"
+    "build_dev": "npx webpack --config webpack.dev.js --progress --color",
+    "build_prod": "npx webpack --config webpack.prod.js && node ./src/js/build.js --config config.json"
   }
 }
