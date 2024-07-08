@@ -11,7 +11,7 @@ async function buildPages(configPath) {
   
   config.blogPages = [];
   const blogPages = await getPages(`${config.markdownDir}/blog`);
-  for (let blogPagePath of blogPages) {
+  for (let blogPagePath of blogPages.filter(path => !path.match(/README\.md$/))) {
     config.blogPages.push(await BlogPage.fromFile(config.markdownDir, `blog/${blogPagePath}`));
   }
 
