@@ -137,3 +137,47 @@
   filter: blur(5px);
   z-index: 0;
 }
+
+
+body.tag-elden-ring {
+  --background: #020202;
+  --text: #fff;
+  --accent: #C7A770;
+  --nav-color: #C7A770;
+  --nav-color-invert: #C7A770;
+  --text-secondary: var(--accent)
+}
+body.tag-elden-ring #header {
+  text-shadow: 0 0 5px var(--background);
+}
+body.tag-elden-ring #menu-toggle:checked + #header #logo span.logo-head::after,
+body.tag-elden-ring #header.sticky #logo span.logo-head::after {
+  opacity: 1;
+}
+
+
+body.tag-elden-ring .blog-header:before {
+  background-image: url("https://static.aorcsik.com/blog/elden-ring-background2.webp");
+  background-position: center bottom;
+  margin-bottom: 75px;
+}
+body.tag-elden-ring .blog-header:after {
+  display: none;
+}
+body.tag-elden-ring .blog-header .blog-title {
+  color: var(--text);
+  text-shadow: 0 0 5px var(--background);
+}
+body.tag-elden-ring .blog-header .blog-subtitle {
+  color: var(--accent);
+  text-shadow: 0 0 5px var(--background);
+}
+body.tag-elden-ring .blog-header .avatar {
+  display: none;
+}
+
+body.tag-elden-ring h4 {
+  font-size: 1.5em;
+  text-align: center;
+  color: var(--accent);
+}
