@@ -29,11 +29,11 @@
   })(window,document,'script','dataLayer','<%= context.gtmID %>');</script>
   <!-- End Google Tag Manager -->
 </head>
-<% if (context.background) { %>
-<body class="has-background">
+<% if (context.body_class) { %>
+<body class="<%= context.body_class %>">
 <% } else { %>
 <body>
-<%} %>
+<% } %>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= context.gtmID %>"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -49,6 +49,12 @@
       <nav>    
         <ul>
           <li><a href="/pixelart.html">pixelart</a></li>
+          <li class="separator"></li>
+          <li><span>games</span>
+            <ul>
+              <li><a href="/blog/elden-ring.html">Elden Ring</a></li>
+            </ul>
+          </li>
           <li class="separator"></li>
           <li class="social">
             <a href="https://twitter.com/aorcsik" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>

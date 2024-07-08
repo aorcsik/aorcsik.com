@@ -53,7 +53,7 @@ async function writeFile(filePath, content) {
 async function getPages(templateDir) {
   return new Promise((resolve, reject) => {
     fs.readdir(templateDir, async (err, files) => {
-      if (err) reject(err);
+      if (err) return reject(err);
 
       const pages = [];
       for (let filename of files) {

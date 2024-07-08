@@ -1,12 +1,15 @@
 :root {
   --background: #fafafa;
   --text: #222033;
+  --text-secondary: #666;
   --header-height: 5rem;
   --serif-font: "Merriweather", Georgia, Cambria, "Times New Roman", Times, serif;
   --sans-serif-font: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --nav-color: var(--text);
+  --nav-color-invert: var(--background);
 }
 
-html, body {
+body {
   font-family: var(--serif-font);
   margin: 0;
   padding: 0;
@@ -44,8 +47,8 @@ h3 {
 
 p {
   line-height: 1.6em;
-  margin: 1rem;
-  font-size: 1.25rem;
+  margin: 1rem 0;
+  font-size: 1rem;
 }
 
 
@@ -98,7 +101,7 @@ p {
 }
 
 #header #logo {
-  margin-left: .75rem;
+  margin-left: 1.3rem;
   font-weight: normal;
   z-index: 1;
 }
@@ -110,18 +113,24 @@ p {
 #header #menu-toggle-button {
   margin-left: auto;
   margin-right: 1.25rem;
+  width: 48px;
+  text-align: center;
+  height: 48px;
   font-size: .75em;
-  color: var(--text);
+  color: var(--nav-color);
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   transition: color .2s;
 }
 .has-background #header #menu-toggle-button {
-  color: var(--background);
+  color: var(--nav-color-invert);
 }
 #menu-toggle:checked + #header #menu-toggle-button,
 #header.sticky #menu-toggle-button {
-  color: var(--text);
+  color: var(--nav-color);
 }
 
 #header nav {
@@ -161,23 +170,28 @@ p {
   width: 50%;
   margin-left: auto;
   height: 2px;
-  background: var(--text);
+  background: var(--nav-color);
 }
 
 #header nav ul li a {
-  color: var(--text);
+  color: var(--nav-color);
 
   transition: color .2s;
 }
 
 .has-background #header nav ul li,
 .has-background #header nav ul li a {
-  color: var(--background);
+  color: var(--nav-color-invert);
+}
+.has-background #header nav ul li ul li,
+.has-background #header nav ul li ul li a {
+  color: var(--nav-color);
 }
 
 #header nav ul li.social {
   display: flex;
   align-items: center;
+  padding-right: 1.5rem;
 }
 #header nav ul li.social a {
   margin-left: 1rem;
@@ -186,12 +200,20 @@ p {
   margin-left: auto;
 }
 
+#header nav ul li span {
+  display: none;
+}
+
+#header nav ul li ul li {
+  padding-right: 0;
+  font-size: 1.25rem;
+}
 
 #menu-toggle:checked + #header nav ul li,
 #menu-toggle:checked + #header nav ul li a,
 #header.sticky nav ul li,
 #header.sticky nav ul li a {
-  color: var(--text);
+  color: var(--nav-color);
 }
 
 #content {
@@ -223,6 +245,30 @@ p {
     background: transparent;
     height: auto;
     width: auto;
+  }
+
+  #header nav ul li span {
+    display: block;
+    text-decoration: underline;
+  }  
+
+  #header nav ul li ul {
+    position: absolute;
+    background: var(--background);
+    padding: .5rem 1rem;
+    margin-top: .5rem;
+    margin-left: -1rem;
+    border-radius: .5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,.25);
+
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: opacity .3s, transform .3s;
+  }
+
+  #header nav ul li:hover ul {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -271,7 +317,7 @@ footer {
   left: 0;
   opacity: 0;
 
-  background-color: var(--background);
+  background-color: var(--nav-color-invert);
 
   transition: opacity .2s;
 }
@@ -287,7 +333,7 @@ footer {
   opacity: 1;
 }
 .has-background #logo span.logo-tail {
-  color: var(--background);
+  color: var(--nav-color-invert);
 }
 
 #menu-toggle:checked + #header #logo span.logo-head::after,
@@ -297,7 +343,7 @@ footer {
 
 #menu-toggle:checked + #header #logo span.logo-tail,
 #header.sticky #logo span.logo-tail {
-  color: var(--text);
+  color: var(--nav-color);
 }
 
 h2#error {
@@ -305,6 +351,10 @@ h2#error {
 }
 
 /* MAIN */
+
+.main-content {
+  padding: 0 1.5rem;
+}
 
 .main-content #name {
   background: hsla(339, 100%, 55%, 1);
@@ -318,13 +368,14 @@ h2#error {
 }
 
 .main-content h2 {
-  margin: 2rem 1rem;
+  margin: 2rem 0;
 }
-.main-content p {
-  margin: 2rem 1rem;
+
+.main-content h3 {
+  margin: 2rem 0;
 }
+
 .main-content h4 {
-  margin: 1rem 1rem;
   text-transform: uppercase;
   color: #aaa;
 }
@@ -384,7 +435,6 @@ h2#error {
 ul.blog-list {
   font-family: var(--sans-serif-font);
   list-style: none;
-  margin: 1rem;
   padding: 0;
   line-height: 1.5em;
 }

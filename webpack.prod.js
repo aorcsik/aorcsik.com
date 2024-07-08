@@ -1,6 +1,5 @@
-const { merge } = require('webpack-merge');
+/* eslint-env amd,node,browser:false */
+
 const common = require('./webpack.common.js');
 
-module.exports = merge(common, {
-  mode: 'production',
-});
+module.exports = common('production');

@@ -5,6 +5,11 @@ const { readFile, renderTemplate, getPages } = require('./tools');
 const MarkdownIt = require('markdown-it');
 const BlogPage = require('./BlogPage');
 const md = new MarkdownIt({html: true});
+const express = require('express');
+const webpack = require('webpack');
+const devMiddleware = require('webpack-dev-middleware');
+const hotMiddleware = require('webpack-hot-middleware');
+const webpackConfig = require('../../webpack.dev.js');
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -30,12 +35,20 @@ const handleRequest = async (req, res) => {
   if (extname == ".html") {
     config.blogPages = [];
     const blogPages = await getPages(`${config.markdownDir}/blog`);
-    for (let blogPagePath of blogPages) {
-      config.blogPages.push(await BlogPage.fromFile(config.markdownDir, `blog/${blogPagePath}`));
+    for (let blogPagePath of blogPages.filter(path => !path.match(/README\.md$/))) {
+      try {
+        config.blogPages.push(await BlogPage.fromFile(config.markdownDir, `blog/${blogPagePath}`));
+      } catch (err) {
+        console.log(err);
+      }
     }
     const draftBlogPages = await getPages(`${config.markdownDir}/draft`);
-    for (let draftBlogPagePath of draftBlogPages) {
-      config.blogPages.push(await BlogPage.fromFile(config.markdownDir, `draft/${draftBlogPagePath}`));
+    for (let draftBlogPagePath of draftBlogPages.filter(path => !path.match(/README\.md$/))) {
+      try {
+        config.blogPages.push(await BlogPage.fromFile(config.markdownDir, `draft/${draftBlogPagePath}`));
+      } catch (err) {
+        console.log(err);
+      }
     }
 
     config.blogPages.sort(BlogPage.compareReverse);
@@ -99,7 +112,17 @@ const handleRequest = async (req, res) => {
   }
 };
 
-const server = http.createServer(handleRequest);
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+const compiler = webpack(webpackConfig);
+const devMiddlewareOptions = {
+  // writeToDisk: true,
+};
+const app = express();
+
+app.use(devMiddleware(compiler, devMiddlewareOptions));
+if (webpackConfig.mode === 'development') app.use(hotMiddleware(compiler));
+
+app.get(/\/.*/, handleRequest);
+
+app.listen(port, hostname, () => {
+  process.stdout.write(`Server running at http://${hostname}:${port}/\n`);
 });

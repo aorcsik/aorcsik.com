@@ -43,15 +43,31 @@ class BlogPage
    */
   constructor(markdownContent, markdownPath) {
     const titleMatch = markdownContent.toString().match(/## (.*)/);
+    if (!titleMatch) throw new Error("Invalid Blog Post - Missing title");
+
     /** @type {string} */
-    this.title = titleMatch[1];
+    this.title = titleMatch[1].split("|")[0];
+    if (titleMatch[1].split("|").length > 1) {
+      this.subtitle = titleMatch[1].split("|")[1];
+    } else {
+      this.subtitle = null;
+    }
     markdownContent = markdownContent.replace(titleMatch[0], "");
+
     const metaDataMatch = markdownContent.toString().match(/### (.*)/);
+    if (!metaDataMatch) throw new Error("Invalid Blog Post - Missing meta data");
+
     /** @type {string} */
     this.author = metaDataMatch[1].split("|")[0].trim();
     /** @type {dayjs.Dayjs} */
     this.published_at = dayjs(metaDataMatch[1].split("|")[1].trim());
     markdownContent = markdownContent.replace(metaDataMatch[0], "");
+    if (metaDataMatch[1].split("|").length > 2) {
+      this.tags = metaDataMatch[1].split("|")[2].split(",").map(tag => tag.trim());
+    } else {
+      this.tags = [];
+    }
+
     const md = new MarkdownIt({html: true});
     /** @type {string} */
     this.content = md.render(markdownContent.toString());

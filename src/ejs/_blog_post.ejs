@@ -2,7 +2,7 @@
 
 context = {...context,
   bundle: [...context.bundle, "blog"],
-  background: true,
+  body_class: ['has-background', ...(context.tags ? context.tags.map(tag => `tag-${tag}`) : [])].join(" ")
 };
 
 %><%- include('_header', {context: context}); %>
@@ -10,6 +10,7 @@ context = {...context,
 <header class="blog-header">
   <!-- <img class="blog-background" src="<%= context.background %>"> -->
   <h2 class="blog-title"><%= context.title %></h2>
+  <% if (context.subtitle) { %><h3 class="blog-subtitle"><%= context.subtitle %></h3><% } %>
   <%- include('_avatar', {context: context}); %>
   <%- include('_blog_meta', {context: context}); %>
 </header>
