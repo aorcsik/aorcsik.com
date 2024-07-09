@@ -26,10 +26,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: hsla(339, 100%, 55%, 1);
-  background: linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
-  background: -moz-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
-  background: -webkit-linear-gradient(45deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+  background: var(--accent);
+  background: linear-gradient(45deg, var(--accent) 0%, var(--accent-alt) 100%);
+  background: -moz-linear-gradient(45deg, var(--accent) 0%, var(--accent-alt) 100%);
+  background: -webkit-linear-gradient(45deg, var(--accent) 0%, var(--accent-alt) 100%);
   z-index: 1;
 }
 .blog-header:after {
@@ -91,8 +91,8 @@
 
 .blog-content blockquote {
   position: relative;
-  margin: 1rem;
-  padding-left: .5rem;
+  margin: 1rem 1.5rem;
+  padding-left: 1.5rem;
 }
 .blog-content blockquote:before {
   content: "";
@@ -109,7 +109,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2rem 1rem;
+  margin: 2rem 0;
 }
 
 .blog-content figure img {
@@ -123,7 +123,7 @@
 .blog-content figure figcaption {
   font-family: var(--sans-serif-font);
   text-align: center;
-  color: #888;
+  color: var(--text-secondary);
 }
 
 .blog-background {
@@ -143,26 +143,29 @@ body.tag-elden-ring {
   --background: #020202;
   --text: #fff;
   --accent: #C7A770;
+  --accent-alt: #587263;
   --nav-color: #C7A770;
   --nav-color-invert: #C7A770;
   --text-secondary: var(--accent)
-}
-body.tag-elden-ring #header {
-  text-shadow: 0 0 5px var(--background);
 }
 body.tag-elden-ring #menu-toggle:checked + #header #logo span.logo-head::after,
 body.tag-elden-ring #header.sticky #logo span.logo-head::after {
   opacity: 1;
 }
-
-
+body.tag-elden-ring #logo span.logo-head {
+  filter: blur(4px);
+}
 body.tag-elden-ring .blog-header:before {
   background-image: url("https://static.aorcsik.com/blog/elden-ring-background2.webp");
   background-position: center bottom;
   margin-bottom: 75px;
 }
 body.tag-elden-ring .blog-header:after {
-  display: none;
+  background: var(--background);
+  background: linear-gradient(270deg, var(--background) 0%, transparent 15%);
+  background: -moz-linear-gradient(270deg, var(--background) 0%, transparent 15%);
+  background: -webkit-linear-gradient(270deg, var(--background) 0%, transparent 15%);
+  mix-blend-mode: normal;
 }
 body.tag-elden-ring .blog-header .blog-title {
   color: var(--text);
