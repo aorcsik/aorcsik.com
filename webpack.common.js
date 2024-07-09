@@ -20,10 +20,13 @@ module.exports = (mode) => {
           "node_modules"
       ]
     },
+    optimization: {
+      runtimeChunk: 'single'
+    },
     entry: {
-      blog: "js/blog.js",
-      client: "js/client.js",
-      pixelart: "js/pixelart.js",
+      blog: ['webpack-hot-middleware/client', "js/blog.js"],
+      client: ['webpack-hot-middleware/client', "js/client.js"],
+      pixelart: ['webpack-hot-middleware/client', "js/pixelart.js"],
     },
     output: {
       path: path.resolve(__dirname, "docs"),

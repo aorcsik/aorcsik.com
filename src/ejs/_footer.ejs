@@ -8,5 +8,6 @@
   <% context.bundle.forEach(bundle => { %>
     <script src="/<%= bundle %>.bundle.js?_=<%= (new Date()).getTime()%>"></script>
   <% }); %>
+  <script src="/runtime.bundle.js?_=<%= (new Date()).getTime()%>"></script>
 </body>
 </html>

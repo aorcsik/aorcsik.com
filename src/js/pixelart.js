@@ -1,11 +1,19 @@
 import "../css/pixelart.css";
 
+/**
+ * @param {HTMLElement} domElement
+ * @param {Function} onPointerDown
+ */
 function addPointerDownListener(domElement, onPointerDown) {
   domElement.addEventListener("pointerdown", onPointerDown, false);
   domElement.addEventListener("touchstart", onPointerDown, false);
   domElement.addEventListener("mousedown", onPointerDown, false);
 }
 
+/**
+ * @param {HTMLElement} domElement
+ * @param {Function} onPointerUp
+ */
 function addPointerUpListener(domElement, onPointerUp) {
   domElement.addEventListener("pointerup", onPointerUp, false);
   domElement.addEventListener("touchend", onPointerUp, false);
@@ -37,3 +45,5 @@ document.querySelectorAll(".clickable").forEach(function(el) {
     }, 200);
   });
 });
+
+if (import.meta.webpackHot) import.meta.webpackHot.accept();
