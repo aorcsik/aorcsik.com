@@ -44,17 +44,18 @@ class BlogPage
   constructor(markdownContent, markdownPath) {
     const titleMatch = markdownContent.toString().match(/## (.*)/);
     if (!titleMatch) throw new Error("Invalid Blog Post - Missing title");
-
     /** @type {string} */
-    this.title = titleMatch[1].split("|")[0];
-    if (titleMatch[1].split("|").length > 1) {
-      this.subtitle = titleMatch[1].split("|")[1];
-    } else {
-      this.subtitle = null;
-    }
+    this.title = titleMatch[1].trim();
     markdownContent = markdownContent.replace(titleMatch[0], "");
 
-    const metaDataMatch = markdownContent.toString().match(/### (.*)/);
+    const subtitleMatch = markdownContent.toString().match(/### (.*)/);
+    if (subtitleMatch) {
+      /** @type {string} */
+      this.subtitle = subtitleMatch ? subtitleMatch[1].trim() : null
+      markdownContent = markdownContent.replace(subtitleMatch[0], "");
+    }
+
+    const metaDataMatch = markdownContent.toString().match(/\[(.*?)\]\(#meta\)/);
     if (!metaDataMatch) throw new Error("Invalid Blog Post - Missing meta data");
 
     /** @type {string} */
@@ -62,10 +63,10 @@ class BlogPage
     /** @type {dayjs.Dayjs} */
     this.published_at = dayjs(metaDataMatch[1].split("|")[1].trim());
     markdownContent = markdownContent.replace(metaDataMatch[0], "");
+    /** @type {string[]} */
+    this.tags = [];
     if (metaDataMatch[1].split("|").length > 2) {
       this.tags = metaDataMatch[1].split("|")[2].split(",").map(tag => tag.trim());
-    } else {
-      this.tags = [];
     }
 
     const md = new MarkdownIt({html: true});

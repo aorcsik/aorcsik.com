@@ -1,6 +1,8 @@
-## Sir Oakheart, the vagabond | Adventures in Elden Ring
+## Sir Oakheart
 
-### aorcsik | 2024-07-08 | elden-ring
+### Adventures in Elden Ring
+
+[aorcsik | 2024-07-08 | elden-ring](#meta)
 
 #### Day 1
 
