@@ -2,16 +2,19 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = (mode) => {
-  const plugins = [
-    new MiniCssExtractPlugin({
-      filename: "[name].bundle.css"
-    }),
-  ];
+const getEntryPoint = (mode, entryPoint) => {
+  return mode === "development" ? ['webpack-hot-middleware/client', entryPoint] : entryPoint;
+};
+
+const getPlugins = (mode, plugins) => {
+  plugins = plugins || [];
   if (mode === 'development') {
     plugins.push(new webpack.HotModuleReplacementPlugin());
   }
+  return plugins;
+};
 
+module.exports = (mode) => {
   return {
     mode,
     resolve: {
@@ -24,15 +27,19 @@ module.exports = (mode) => {
       runtimeChunk: 'single'
     },
     entry: {
-      blog: ['webpack-hot-middleware/client', "js/blog.js"],
-      client: ['webpack-hot-middleware/client', "js/client.js"],
-      pixelart: ['webpack-hot-middleware/client', "js/pixelart.js"],
+      blog: getEntryPoint(mode, "js/blog.js"),
+      client: getEntryPoint(mode, "js/client.js"),
+      pixelart: getEntryPoint(mode, "js/pixelart.js"),
     },
     output: {
       path: path.resolve(__dirname, "docs"),
       filename: '[name].bundle.js',
     },
-    plugins,
+    plugins: getPlugins(mode, [
+      new MiniCssExtractPlugin({
+        filename: "[name].bundle.css"
+      }),
+    ]),
     module: {
       rules: [
         {
