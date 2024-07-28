@@ -3,6 +3,19 @@ const fs = require('fs');
 const { Buffer } = require('node:buffer');
 
 /**
+ * @typedef {{
+ *  gtmID: string;
+ *  webDir: string;
+ *  favicon: string;
+ *  templateDir: string;
+ *  markdownDir: string;
+ *  avatars: {
+ *    [user: string]: string;
+ *  };
+ * }} Config
+ */
+
+/**
  * 
  * @param {string} templatePath 
  * @param {ejs.Data} data 

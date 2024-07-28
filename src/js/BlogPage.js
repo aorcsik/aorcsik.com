@@ -1,6 +1,7 @@
+const ejs = require('ejs');
 const dayjs = require("dayjs");
 const relativeTime = require('dayjs/plugin/relativeTime');
-const { readFile } = require("./tools");
+const { readFile, renderTemplate } = require("./tools");
 const MarkdownIt = require('markdown-it');
 
 dayjs.extend(relativeTime)
@@ -8,13 +9,13 @@ dayjs.extend(relativeTime)
 class BlogPage
 {
   /**
-   * @param {string} markdownDir 
+   * @param {import('./tools').Config} config 
    * @param {string} markdownPath 
    * @returns {Promise<BlogPage>}
    */
-  static async fromFile(markdownDir, markdownPath) {
-    let markdownContent = await readFile(`${markdownDir}/${markdownPath}`);
-    return new BlogPage(markdownContent.toString(), markdownPath);
+  static async fromFile(config, markdownPath) {
+    const markdownContent = await readFile(`${config.markdownDir}/${markdownPath}`);
+    return await BlogPage.parseMarkdownContent(config, markdownContent, markdownPath);
   }
 
   /**
@@ -38,58 +39,85 @@ class BlogPage
   }
 
   /**
+   * @param {import('./tools').Config} config 
    * @param {string} markdownContent 
    * @param {string} markdownPath
+   * @returns {Promise<BlogPage>}
    */
-  constructor(markdownContent, markdownPath) {
-    const titleMatch = markdownContent.toString().match(/## (.*)/);
-    if (!titleMatch) throw new Error("Invalid Blog Post - Missing title");
-    /** @type {string} */
-    this.title = titleMatch[1].trim();
-    markdownContent = markdownContent.replace(titleMatch[0], "");
+  static async parseMarkdownContent(config, markdownContent, markdownPath) {
+    const data = new BlogPage();
+    let markdownString = markdownContent.toString();
 
-    const subtitleMatch = markdownContent.toString().match(/### (.*)/);
+    const titleMatch = markdownString.match(/## (.*)/);
+    if (!titleMatch) throw new Error("Invalid Blog Post - Missing title");
+    data.title = titleMatch[1].trim();
+    markdownString = markdownString.replace(titleMatch[0], "");
+
+    const subtitleMatch = markdownString.match(/### (.*)/);
     if (subtitleMatch) {
-      /** @type {string} */
-      this.subtitle = subtitleMatch ? subtitleMatch[1].trim() : null
-      markdownContent = markdownContent.replace(subtitleMatch[0], "");
+      data.subtitle = subtitleMatch ? subtitleMatch[1].trim() : null
+      markdownString = markdownString.replace(subtitleMatch[0], "");
     }
 
-    const metaDataMatch = markdownContent.toString().match(/\[(.*?)\]\(#meta\)/);
+    const metaDataMatch = markdownString.match(/\[(.*?)\]\(#meta\)/);
     if (!metaDataMatch) throw new Error("Invalid Blog Post - Missing meta data");
 
-    /** @type {string} */
-    this.author = metaDataMatch[1].split("|")[0].trim();
-    /** @type {dayjs.Dayjs} */
-    this.published_at = dayjs(metaDataMatch[1].split("|")[1].trim());
-    markdownContent = markdownContent.replace(metaDataMatch[0], "");
-    /** @type {string[]} */
-    this.tags = [];
+    data.author = metaDataMatch[1].split("|")[0].trim();
+    data.published_at = dayjs(metaDataMatch[1].split("|")[1].trim());
+    markdownString = markdownString.replace(metaDataMatch[0], "");
+    data.tags = [];
     if (metaDataMatch[1].split("|").length > 2) {
-      this.tags = metaDataMatch[1].split("|")[2].split(",").map(tag => tag.trim());
+      data.tags = metaDataMatch[1].split("|")[2].split(",").map(tag => tag.trim());
+    }
+
+    const imageMatches = markdownString.matchAll(/!\[(.*?)\]\((https?:\/\/.*?)\)/gm);
+    if (imageMatches) {
+      (await Promise.all([...imageMatches].map(async imageMatch => {
+        return [imageMatch[0], await renderTemplate(`${config.templateDir}/_blog_image.ejs`, {
+            imageUrl: imageMatch[2],
+            imageTitle: imageMatch[1],
+          })
+        ];
+      }))).map(([match, image]) => {
+        markdownString = markdownString.replace(match, image);
+      });
+    }
+
+
+    const videoMatches = markdownString.matchAll(/\[(.*?)\]\(https:\/\/www\.youtube\.com\/embed\/(.*?)\)/gm);
+    if (videoMatches) {
+      (await Promise.all([...videoMatches].map(async videoMatch => {
+        return [videoMatch[0], await renderTemplate(`${config.templateDir}/_blog_video.ejs`, {
+            videoId: videoMatch[2],
+            videoTitle: videoMatch[1],
+          })
+        ];
+      }))).map(([match, video]) => {
+        markdownString = markdownString.replace(match, video);
+      });
     }
 
     const md = new MarkdownIt({html: true});
-    /** @type {string} */
-    this.content = md.render(markdownContent.toString());
-    /** @type {string} */
-    this.url = markdownPath.replace(/\.md$/, ".html");
-    /** @type {number} */
-    this.readingTime = this.calculateReadingTime(markdownContent.toString());
-    /** @type {boolean} */
-    this.draft = !!markdownPath.match(/^draft/);
+    data.content = md.render(markdownString);
+    data.url = markdownPath.replace(/\.md$/, ".html");
+    data.readingTime = BlogPage.calculateReadingTime(markdownString);
+    data.draft = !!markdownPath.match(/^draft/);
+
+    return data;
   }
 
   /**
    * @param {string} text
    * @returns {number}
    */
-  calculateReadingTime(text) {
+  static calculateReadingTime(text) {
     text = text.replace(/<[^>]+>/, "");
     const wpm = 225;
     const words = text.trim().split(/\s+/).length;
     return Math.ceil(words / wpm);
   }
+
+  constructor() {}
 }
 
 module.exports = BlogPage;

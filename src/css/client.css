@@ -1,9 +1,9 @@
 :root {
   --background: #fafafa;
   --text: #222033;
+  --text-secondary: #666;
   --accent: hsla(339, 100%, 55%, 1);
   --accent-alt: hsla(197, 100%, 64%, 1);
-  --text-secondary: #666;
   --header-height: 5rem;
   --serif-font: "Merriweather", Georgia, Cambria, "Times New Roman", Times, serif;
   --sans-serif-font: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;

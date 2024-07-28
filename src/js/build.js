@@ -7,13 +7,18 @@ const BlogPage = require('./BlogPage');
  * @param {string} configPath 
  */
 async function buildPages(configPath) {
+  /** @type {import('./tools').Config} */
   const config = JSON.parse(await readFile(configPath));
+
+  let context = {...config};
   
-  config.blogPages = [];
+  context.blogPages = [];
   const blogPages = await getPages(`${config.markdownDir}/blog`);
   for (let blogPagePath of blogPages.filter(path => !path.match(/README\.md$/))) {
-    config.blogPages.push(await BlogPage.fromFile(config.markdownDir, `blog/${blogPagePath}`));
+    context.blogPages.push(await BlogPage.fromFile(config, `blog/${blogPagePath}`));
   }
+
+  context.blogPages.sort(BlogPage.compareReverse);
 
   const markdownPages = await getPages(config.markdownDir);
   for (let markdownPage of markdownPages) {
@@ -32,9 +37,9 @@ async function buildPages(configPath) {
       }
 
       if (directory == "blog") {
-        const blogPage = await BlogPage.fromFile(config.markdownDir, markdownPage);
+        const blogPage = await BlogPage.fromFile(config, markdownPage);
         const targetFile = `${config.webDir}/${filename.replace(/\.md$/, ".html")}`;
-        const content = await renderTemplate(`${config.templateDir}/_blog_post.ejs`, {context: {...config, bundle: ['client'], ...blogPage}});
+        const content = await renderTemplate(`${config.templateDir}/_blog_post.ejs`, {context: {...context, ...blogPage, bundle: ['client']}});
         await writeFile(targetFile, content);
         console.log("+", targetFile);
       }
@@ -62,7 +67,7 @@ async function buildPages(configPath) {
       }
 
       const targetFile = `${config.webDir}/${filename.replace(/\.ejs$/, ".html")}`;
-      const content = await renderTemplate(templatePath, {context: {...config, bundle: ["client"]}});
+      const content = await renderTemplate(templatePath, {context: {...context, bundle: ["client"]}});
       await writeFile(targetFile, content);
       
       console.log("+", targetFile);

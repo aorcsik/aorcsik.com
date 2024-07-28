@@ -26,18 +26,21 @@ if (process.argv[2] && process.argv[2] === '--config' && process.argv[3]) {
  * @param {http.ServerResponse} res
  */
 const handleRequest = async (req, res) => {
-  let config = JSON.parse(await readFile(configPath));
+  /** @type {import('./tools').Config} */
+  const config = JSON.parse(await readFile(configPath));
   
   const url = new URL("http://" + req.hostname + req.url);
   const filePath = config.webDir + url.pathname + (url.pathname.match(/\/$/) ? "index.html" : "");
   const extname = path.extname(filePath);
 
+  let context = {...config};
+
   if (extname == ".html") {
-    config.blogPages = [];
+    context.blogPages = [];
     const blogPages = await getPages(`${config.markdownDir}/blog`);
     for (let blogPagePath of blogPages.filter(path => !path.match(/README\.md$/))) {
       try {
-        config.blogPages.push(await BlogPage.fromFile(config.markdownDir, `blog/${blogPagePath}`));
+        context.blogPages.push(await BlogPage.fromFile(config, `blog/${blogPagePath}`));
       } catch (err) {
         console.log(err);
       }
@@ -45,28 +48,28 @@ const handleRequest = async (req, res) => {
     const draftBlogPages = await getPages(`${config.markdownDir}/draft`);
     for (let draftBlogPagePath of draftBlogPages.filter(path => !path.match(/README\.md$/))) {
       try {
-        config.blogPages.push(await BlogPage.fromFile(config.markdownDir, `draft/${draftBlogPagePath}`));
+        context.blogPages.push(await BlogPage.fromFile(config, `draft/${draftBlogPagePath}`));
       } catch (err) {
         console.log(err);
       }
     }
 
-    config.blogPages.sort(BlogPage.compareReverse);
+    context.blogPages.sort(BlogPage.compareReverse);
 
     try {
 
       let templateName = filePath.replace(`${config.webDir}/`, "").replace(/.html$/, "");
 
       try {
-        const blogPage = await BlogPage.fromFile(config.markdownDir, `${templateName}.md`);
-        config = {...config, ...blogPage};
+        const blogPage = await BlogPage.fromFile(config, `${templateName}.md`);
+        context = {...context, ...blogPage};
         templateName = "_blog_post";
       } catch (error) {
         
       }
 
       const templatePath = `${config.templateDir}/${templateName}.ejs`;
-      const content = await renderTemplate(templatePath, {context: {...config, bundle: ["client"]}});
+      const content = await renderTemplate(templatePath, {context: {...context, bundle: ["client"]}});
       res.statusCode = 200;
       res.setHeader('Content-Type', "text/html");
       res.end(content);
