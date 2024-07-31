@@ -3,6 +3,7 @@
 ### Adventures in Elden Ring - Part 2
 
 <!-- {
+  "description": "I cleared the Weeping Peninsula dungeons, checked some Evergaols and then started exploring Liurnia all the way up to Caria Manor.",
   "image": "https://static.aorcsik.com/blog/elden-ring-social.webp",
   "author": "aorcsik",
   "published_at": "2024-07-11",

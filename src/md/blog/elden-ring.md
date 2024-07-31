@@ -3,6 +3,7 @@
 ### Adventures in Elden Ring - Part 1
 
 <!-- {
+  "description": "My first days in the Lands Between, early boss encounters, leveling my character and defeating the first shardbearer.",
   "image": "https://static.aorcsik.com/blog/elden-ring-social.webp",
   "author": "aorcsik",
   "published_at": "2024-07-08",

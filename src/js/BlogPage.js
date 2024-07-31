@@ -71,8 +71,6 @@ class BlogPage
       }
     });
 
-    if (!data.description) data.description = data.subtitle;
-
     // const varMatches = markdownString.matchAll(/\[(.*?)\]\(#var:(.*)\)/gm);
     // if (varMatches) {
     //   [...varMatches].forEach(varMatch => {

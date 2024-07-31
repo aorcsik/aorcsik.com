@@ -3,18 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title><%= context.title %></title>
+  <title><%= context.title %><% if (context.subtitle) { %> - <%= context.subtitle %><% } %> | aorcsik.com</title>
   <meta name="description" content="<%= context.description %>">
   <link rel="canonical" href="<%= context.basePath %><%= context.path %>">
 
-  <meta property="og:title" content="<%= context.title %>">
+  <meta property="og:title" content="<%= context.title %><% if (context.subtitle) { %> - <%= context.subtitle %><% } %>">
   <meta property="og:url" content="<%= context.basePath %><%= context.path %>">
   <meta property="og:description" content="<%= context.description %>">
   <% if (context.image) { %><meta property="og:image" content="<%= context.image %>"><% } %>
 
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@aorcsik">
   <meta name="twitter:creator" content="@aorcsik">
+  <meta name="twitter:title" content="<%= context.title %><% if (context.subtitle) { %> - <%= context.subtitle %><% } %>">
+  <meta name="twitter:description" content="<%= context.description %>">
+  <% if (context.image) { %><meta name="twitter:image" content="<%= context.image %>"><% } %>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

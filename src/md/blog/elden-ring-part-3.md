@@ -3,6 +3,7 @@
 ### Adventures in Elden Ring - Part 3
 
 <!-- {
+  "description": "I started exploring Caelid, tied some loose ends in Limgrave and went back to Liurnia to kill a dragon.",
   "image": "https://static.aorcsik.com/blog/elden-ring-social.webp",
   "author": "aorcsik",
   "published_at": "2024-07-16",
@@ -77,6 +78,7 @@ I was tired, had to go back to Roundtable Hold and maybe tell people about my ad
 [video]
 
 I felt restless, so I decided to take a look at the eastern side of Liurnia. I hate the soldiers with four hands, they shoot arrows like crazy and when you get close it feels like in a blender. Damn.
+
 There are also a lot of wolves around here. And they are tougher. While I was escaping a pack I stumbled upon a Tibia Mariner, the death creature with the boat. I liked this fight in Limgrave before so I decided to give it a try. It want well and I got skeletal bandit ashes too. Nice ending of a long day. Time to rest.
 
 [video]
