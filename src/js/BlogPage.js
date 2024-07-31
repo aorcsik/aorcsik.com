@@ -49,7 +49,7 @@ class BlogPage
     let markdownString = markdownContent.toString();
 
     const titleMatch = markdownString.match(/## (.*)/);
-    if (!titleMatch) throw new Error("Invalid Blog Post - Missing title");
+    if (!titleMatch) throw new Error(`Invalid Blog Post (${markdownPath}) - Missing title`);
     data.title = titleMatch[1].trim();
     markdownString = markdownString.replace(titleMatch[0], "");
 
@@ -60,7 +60,7 @@ class BlogPage
     }
 
     const metaDataMatch = markdownString.match(/<!-- (\{.*?\}) -->/s);
-    if (!metaDataMatch) throw new Error("Invalid Blog Post - Missing meta data");
+    if (!metaDataMatch) throw new Error(`Invalid Blog Post (${markdownPath}) - Missing meta data`);
     markdownString = markdownString.replace(metaDataMatch[0], '');
     const metaData = JSON.parse(metaDataMatch[1]);
     Object.keys(metaData).forEach(key => {

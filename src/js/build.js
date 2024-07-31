@@ -23,24 +23,22 @@ async function buildPages(configPath) {
 
   const markdownPages = await getPages(config.markdownDir);
   for (let markdownPage of markdownPages) {
+    if (markdownPage.match(/\/README.md$/)) continue;
+
     try {
-
-      const pagePath = markdownPage.split("/");
-      let filename = pagePath.pop();
-      const directory = pagePath.join("/");
-
+      const directory = markdownPage.split("/").slice(0, -1).join("/");
       if (directory) {
         const targetDirectory = `${config.webDir}/${directory}`;
-        await fs.promises.mkdir(targetDirectory, { recursive: true });
-        console.log("+", targetDirectory);
-
-        filename = `${directory}/${filename}`;
+        const result = await fs.promises.mkdir(targetDirectory, { recursive: true });
+        if (result) console.log("+", result);
       }
 
       if (directory == "blog") {
+        const templatePath = `${config.templateDir}/_blog_post.ejs`;
         const blogPage = await BlogPage.fromFile(config, markdownPage);
-        const targetFile = `${config.webDir}/${filename.replace(/\.md$/, ".html")}`;
-        const content = await renderTemplate(`${config.templateDir}/_blog_post.ejs`, {context: {...context, ...blogPage, bundle: ['client']}});
+        const content = await renderTemplate(templatePath, {context: {...context, ...blogPage, bundle: ['client']}});
+
+        const targetFile = `${config.webDir}/${markdownPage.replace(/\.md$/, ".html")}`;
         await writeFile(targetFile, content);
         console.log("+", targetFile);
       }
@@ -56,15 +54,15 @@ async function buildPages(configPath) {
       const directory = page.split("/").slice(0, -1).join("/");
       if (directory) {
         const targetDirectory = `${config.webDir}/${directory}`;
-        await fs.promises.mkdir(targetDirectory, { recursive: true });
-        console.log("+", targetDirectory);
+        const result = console.log(await fs.promises.mkdir(targetDirectory, { recursive: true }));
+        if (result) console.log("+", result);
       }
 
       const templatePath = `${config.templateDir}/${page}`;
       context.path = `/${page.replace(/\.ejs$/, ".html")}`;
       const content = await renderTemplate(templatePath, {context: {...context, bundle: ["client"]}});
 
-      const targetFile = `${config.webDir}/${context.path}`;
+      const targetFile = `${config.webDir}${context.path}`;
       await writeFile(targetFile, content);
       console.log("+", targetFile);
 
