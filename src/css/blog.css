@@ -222,10 +222,10 @@ body.tag-elden-ring .blog-header:before {
   margin-bottom: 75px;
 }
 body.tag-elden-ring .blog-header:after {
-  background: var(--background);
-  background: linear-gradient(270deg, var(--background) 0%, transparent 12.5%);
-  background: -moz-linear-gradient(270deg, var(--background) 0%, transparent 12.5%);
-  background: -webkit-linear-gradient(270deg, var(--background) 0%, transparent 12.5%);
+  background: transparent;
+  background: linear-gradient(270deg, var(--background) 0%, transparent 12.5%, transparent 65%, var(--background) 95%);
+  background: -moz-linear-gradient(270deg, var(--background) 0%, transparent 12.5%, transparent 65%, var(--background) 95%);
+  background: -webkit-linear-gradient(270deg, var(--background) 0%, transparent 12.5%, transparent 65%, var(--background) 95%);
   mix-blend-mode: normal;
 }
 body.tag-elden-ring .blog-header .blog-title {

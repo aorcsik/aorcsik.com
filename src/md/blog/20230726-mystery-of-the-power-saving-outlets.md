@@ -1,6 +1,10 @@
 ## Mystery of the Power-Saving Outlets
 
-[aorcsik | 2023-07-26](#meta)
+<!-- {
+  "image": "https://static.aorcsik.com/blog/apc-power-saving-es-8-outlet-550va.webp",
+  "author": "aorcsik",
+  "published_at": "2023-07-26"
+} -->
 
 A few weeks ago, I noticed something strange around my desk. The LED indicator on the MacBook Pro charger was off. Also, a smart outlet was frequently offline, which resulted in the connected light going out and on randomly (spooky). I checked, and both of them were plugged in. They were supposed to get power from the lower row of power outlets on my UPS Back-Ups ES 550VA, the surge-protect-only outlets. They were all dead. No reason… it must be broken, again… or at least I thought it was at the time.
 

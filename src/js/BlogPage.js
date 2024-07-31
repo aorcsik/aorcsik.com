@@ -59,16 +59,19 @@ class BlogPage
       markdownString = markdownString.replace(subtitleMatch[0], "");
     }
 
-    const metaDataMatch = markdownString.match(/\[(.*?)\]\(#meta\)/);
+    const metaDataMatch = markdownString.match(/<!-- (\{.*?\}) -->/s);
     if (!metaDataMatch) throw new Error("Invalid Blog Post - Missing meta data");
+    markdownString = markdownString.replace(metaDataMatch[0], '');
+    const metaData = JSON.parse(metaDataMatch[1]);
+    Object.keys(metaData).forEach(key => {
+      if (key === 'published_at') {
+        data[key] = dayjs(metaData[key]);
+      } else {
+        data[key] = metaData[key];
+      }
+    });
 
-    data.author = metaDataMatch[1].split("|")[0].trim();
-    data.published_at = dayjs(metaDataMatch[1].split("|")[1].trim());
-    markdownString = markdownString.replace(metaDataMatch[0], "");
-    data.tags = [];
-    if (metaDataMatch[1].split("|").length > 2) {
-      data.tags = metaDataMatch[1].split("|")[2].split(",").map(tag => tag.trim());
-    }
+    if (!data.description) data.description = data.subtitle;
 
     // const varMatches = markdownString.matchAll(/\[(.*?)\]\(#var:(.*)\)/gm);
     // if (varMatches) {
@@ -114,9 +117,8 @@ class BlogPage
 
     const md = new MarkdownIt({html: true});
     data.content = md.render(markdownString);
-    data.url = markdownPath.replace(/\.md$/, ".html");
+    data.path = `/${markdownPath.replace(/\.md$/, ".html")}`;
     data.readingTime = BlogPage.calculateReadingTime(markdownString);
-    data.draft = !!markdownPath.match(/^draft/);
 
     return data;
   }
@@ -132,7 +134,40 @@ class BlogPage
     return Math.ceil(words / wpm);
   }
 
-  constructor() {}
+  constructor() {
+    /** @type {string} */
+    this.title = '';
+
+    /** @type {string} */
+    this.subtitle = '';
+
+    /** @type {string} */
+    this.description = '';
+
+    /** @type {string} */
+    this.author = '';
+
+    /** @type {dayjs.Dayjs} */
+    this.published_at = '';
+
+    /** @type {string[]} */
+    this.tags = [];
+
+    /** @type {string} */
+    this.content = '';
+
+    /** @type {string} */
+    this.path = '';
+
+    /** @type {number?} */
+    this.readingTime = null;
+
+    /** @type {boolean} */
+    this.draft = false;
+
+    /** @type {string?} */
+    this.image = null;
+  }
 }
 
 module.exports = BlogPage;

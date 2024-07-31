@@ -29,11 +29,11 @@ const handleRequest = async (req, res) => {
   /** @type {import('./tools').Config} */
   const config = JSON.parse(await readFile(configPath));
   
-  const url = new URL("http://" + req.hostname + req.url);
+  const url = new URL(`${req.protocol}://${req.hostname}${req.url}`);
   const filePath = config.webDir + url.pathname + (url.pathname.match(/\/$/) ? "index.html" : "");
   const extname = path.extname(filePath);
 
-  let context = {...config};
+  let context = {...config, basePath: `${req.protocol}://${req.hostname}:${port}`};
 
   if (extname == ".html") {
     context.blogPages = [];
@@ -41,14 +41,6 @@ const handleRequest = async (req, res) => {
     for (let blogPagePath of blogPages.filter(path => !path.match(/README\.md$/))) {
       try {
         context.blogPages.push(await BlogPage.fromFile(config, `blog/${blogPagePath}`));
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    const draftBlogPages = await getPages(`${config.markdownDir}/draft`);
-    for (let draftBlogPagePath of draftBlogPages.filter(path => !path.match(/README\.md$/))) {
-      try {
-        context.blogPages.push(await BlogPage.fromFile(config, `draft/${draftBlogPagePath}`));
       } catch (err) {
         console.log(err);
       }
@@ -69,6 +61,7 @@ const handleRequest = async (req, res) => {
       }
 
       const templatePath = `${config.templateDir}/${templateName}.ejs`;
+      context.path = context.path || `/${templateName}.html`;
       const content = await renderTemplate(templatePath, {context: {...context, bundle: ["client"]}});
       res.statusCode = 200;
       res.setHeader('Content-Type', "text/html");

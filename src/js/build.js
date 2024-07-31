@@ -10,12 +10,13 @@ async function buildPages(configPath) {
   /** @type {import('./tools').Config} */
   const config = JSON.parse(await readFile(configPath));
 
-  let context = {...config};
+  let context = {...config, basePath: "https://aorcsik.com"};
   
   context.blogPages = [];
   const blogPages = await getPages(`${config.markdownDir}/blog`);
   for (let blogPagePath of blogPages.filter(path => !path.match(/README\.md$/))) {
-    context.blogPages.push(await BlogPage.fromFile(config, `blog/${blogPagePath}`));
+    const blogPage = await BlogPage.fromFile(config, `blog/${blogPagePath}`)
+    if (!blogPage.draft) context.blogPages.push(blogPage);
   }
 
   context.blogPages.sort(BlogPage.compareReverse);
@@ -52,24 +53,19 @@ async function buildPages(configPath) {
   const pages = await getPages(config.templateDir);
   for (let page of pages) {
     try {
-
-      const templatePath = `${config.templateDir}/${page}`;
-      const pagePath = page.split("/");
-      let filename = pagePath.pop();
-      const directory = pagePath.join("/");
-
+      const directory = page.split("/").slice(0, -1).join("/");
       if (directory) {
         const targetDirectory = `${config.webDir}/${directory}`;
         await fs.promises.mkdir(targetDirectory, { recursive: true });
         console.log("+", targetDirectory);
-
-        filename = `${directory}/${filename}`;
       }
 
-      const targetFile = `${config.webDir}/${filename.replace(/\.ejs$/, ".html")}`;
+      const templatePath = `${config.templateDir}/${page}`;
+      context.path = `/${page.replace(/\.ejs$/, ".html")}`;
       const content = await renderTemplate(templatePath, {context: {...context, bundle: ["client"]}});
+
+      const targetFile = `${config.webDir}/${context.path}`;
       await writeFile(targetFile, content);
-      
       console.log("+", targetFile);
 
     } catch (error) {

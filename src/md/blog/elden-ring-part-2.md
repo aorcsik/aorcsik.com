@@ -2,7 +2,12 @@
 
 ### Adventures in Elden Ring - Part 2
 
-[aorcsik | 2024-07-11 | elden-ring](#meta)
+<!-- {
+  "image": "https://static.aorcsik.com/blog/elden-ring-social.webp",
+  "author": "aorcsik",
+  "published_at": "2024-07-11",
+  "tags": ["elden-ring"] 
+} -->
 
 <div class="blog-info">
   <i class="fa-light fa-circle-exclamation"></i>
