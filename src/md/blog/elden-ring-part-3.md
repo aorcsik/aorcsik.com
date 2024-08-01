@@ -7,7 +7,8 @@
   "image": "https://static.aorcsik.com/blog/elden-ring-social.webp",
   "author": "aorcsik",
   "published_at": "2024-07-16",
-  "tags": ["elden-ring"] 
+  "tags": ["elden-ring"],
+  "draft": true
 } -->
 
 <div class="blog-info">
