@@ -4,7 +4,7 @@
 
 <!-- {
   "description": "I cleared the Weeping Peninsula dungeons, checked some Evergaols and then started exploring Liurnia all the way up to Caria Manor.",
-  "image": "https://static.aorcsik.com/blog/beyond-limgrave-cover.webp",
+  "image": "https://static.aorcsik.com/blog/beyond-limgrave-cover2.webp",
   "author": "aorcsik",
   "published_at": "2024-07-11",
   "tags": ["elden-ring"] 

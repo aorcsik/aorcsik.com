@@ -4,7 +4,7 @@
 
 <!-- {
   "description": "My first days in the Lands Between, early boss encounters, leveling my character and defeating the first shardbearer.",
-  "image": "https://static.aorcsik.com/blog/first-steps-cover2.webp",
+  "image": "https://static.aorcsik.com/blog/first-steps-cover3.webp",
   "author": "aorcsik",
   "published_at": "2024-07-08",
   "tags": ["elden-ring"] 
