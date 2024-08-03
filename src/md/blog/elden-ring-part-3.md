@@ -1,15 +1,19 @@
+---
+description: I started exploring Caelid, tied some loose ends in Limgrave and went back to Liurnia to kill a dragon.
+image: https://static.aorcsik.com/blog/elden-ring-social.webp
+author: aorcsik
+published_at: 2024.07.16
+tags:
+ - elden-ring
+previous: /blog/elden-ring-part-2.html
+next: /blog/elden-ring-part-4.html
+draft: true
+collection: elden-ring
+---
+
 ## I'm not strong enough
 
 ### Adventures in Elden Ring - Part 3
-
-<!-- {
-  "description": "I started exploring Caelid, tied some loose ends in Limgrave and went back to Liurnia to kill a dragon.",
-  "image": "https://static.aorcsik.com/blog/elden-ring-social.webp",
-  "author": "aorcsik",
-  "published_at": "2024-07-16",
-  "tags": ["elden-ring"],
-  "draft": true
-} -->
 
 <div class="blog-info">
   <i class="fa-light fa-circle-exclamation"></i>
@@ -131,14 +135,3 @@ Ok, this time I set up Latenna up on a smaller rock, so she has a clean shot on 
 So, full off ambition I trotted in the middle of Temple Quarter and hit the lonely guy in the middle... suddenly a whole village was cartwheeling toward me, and I'm dead. What the hell!? Next time I carefully removed every hiding enemy around the middle one, still on attack three small ones emerged from the water, but still it was much easier. Also I'm using the Demi-human group now, these boys are tough and aggressive. I like them.
 
 After killing everyone I looted a Frost Hatchet from a chest, and called it a day.
-
----
-
-<ul class="blog-pagination">
-  <li class="blog-pagination-previous">
-    <a href="/blog/elden-ring-part-2.html" title="Previous"><i class="fa-regular fa-arrow-left"></i> Previous</a>
-  </li>
-  <li class="blog-pagination-next">
-    <a href="/blog/elden-ring-part-4.html" title="Previous">Next <i class="fa-regular fa-arrow-right"></i></a>
-  </li>
-</ul>

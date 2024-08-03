@@ -1,14 +1,18 @@
+---
+description: I cleared the Weeping Peninsula dungeons, checked some Evergaols and then started exploring Liurnia all the way up to Caria Manor.
+image: https://static.aorcsik.com/blog/beyond-limgrave-cover2.webp
+author: aorcsik
+published_at: 2024.07.11
+tags:
+ - elden-ring 
+previous: /blog/elden-ring.html
+next: /blog/elden-ring-part-3.html
+collection: elden-ring
+---
+
 ## Beyond Limgrave
 
-### Adventures in Elden Ring - Part 2
-
-<!-- {
-  "description": "I cleared the Weeping Peninsula dungeons, checked some Evergaols and then started exploring Liurnia all the way up to Caria Manor.",
-  "image": "https://static.aorcsik.com/blog/beyond-limgrave-cover2.webp",
-  "author": "aorcsik",
-  "published_at": "2024-07-11",
-  "tags": ["elden-ring"] 
-} -->
+### Adventures in Elden Ring - Part   2
 
 <div class="blog-info">
   <i class="fa-light fa-circle-exclamation"></i>
@@ -106,14 +110,3 @@ Past the shack, I found [Cuckoo's Evergaol](https://eldenring.wiki.fextralife.co
 [Sir Oakheart vs. Bold, Carian Knight](https://youtu.be/gmAtywJeJHs#embed)
 
 I followed the road, fought some agitated [Spirit Jellyfish](https://eldenring.wiki.fextralife.com/Spirit+Jellyfish), and found a [Jellyfish Shield](https://eldenring.wiki.fextralife.com/Jellyfish+Shield). I was walking around with a huge translucent blob on my back from then on. From here I didn't stop until [Caria Manor](https://eldenring.wiki.fextralife.com/Caria+Manor). There, I was dealt a bunch of [hands](https://eldenring.wiki.fextralife.com/Fingercreeper), that I had to deal with. These creatures frequently drop [Somber Smithing Stones](https://eldenring.wiki.fextralife.com/Somber+Smithing+Stones). This place was full of magic and dangerous enemies like [Raya Lucaria Soldier](https://eldenring.wiki.fextralife.com/Raya+Lucaria+Soldier) puppets, [Direwolves](https://eldenring.wiki.fextralife.com/Direwolf), and even a [Troll Knight](https://eldenring.wiki.fextralife.com/Troll+Knight), like the one who I fought in the Evergaol. I might not be strong enough for this place yet. *(At the time I didn't know I was just a few steps away from the boss, but leaving to get stronger was a good decision.)*
-
----
-
-<ul class="blog-pagination">
-  <li class="blog-pagination-previous">
-    <a href="/blog/elden-ring.html" title="Previous"><i class="fa-regular fa-arrow-left"></i> Previous</a>
-  </li>
-  <li class="blog-pagination-next">
-    <a href="/blog/elden-ring-part-3.html" title="Previous">Next <i class="fa-regular fa-arrow-right"></i></a>
-  </li>
-</ul>

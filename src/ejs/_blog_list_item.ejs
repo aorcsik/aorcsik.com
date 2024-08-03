@@ -1,6 +1,17 @@
-<li class="blog-list-item"><a href="<%= context.path %>" title="<%= context.title %>">
-  <% if (context.draft) { %>[DRAFT]<% } %>
-  <span class="blog-title"><%= context.title %></span><br>
-  <% if (context.subtitle) { %><span class="blog-subtitle"><%= context.subtitle %></span><br><% } %>
-  <%- include('_blog_meta', {context: context}); %>
-</a></li>
+<li class="blog-list-item<% if (context.draft) { %> blog-draft<% } %>">
+  <a href="<%= context.path %>" title="<%= context.title %>">
+    <% if (context.image) { %>
+      <img class="blog-image" src="<%= context.image %>" alt="<%= context.title %>">
+    <% } else { %>
+      <span class="blog-image"><i class="fa-regular fa-image-slash"></i></span>
+    <% } %>
+    <span class="blog-data">
+      <span class="blog-title">
+        <% if (context.draft) { %><span class="badge small">draft</span><% } %>
+        <%= context.title %>
+      </span><br>
+      <% if (context.subtitle) { %><span class="blog-subtitle"><%= context.subtitle %></span><br><% } %>
+      <%- include('_blog_meta', {context: context}); %>
+    </span>
+  </a>
+</li>

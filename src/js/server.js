@@ -54,6 +54,9 @@ const handleRequest = async (req, res) => {
 
       try {
         const blogPage = await BlogPage.fromFile(config, `${templateName}.md`);
+        if (blogPage.collection) {
+          context.pages = context.blogPages.filter(bP => bP.collection === blogPage.collection).sort(BlogPage.compare);
+        }
         context = {...context, ...blogPage};
         templateName = "_blog_post";
       } catch (error) {

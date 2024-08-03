@@ -10,27 +10,31 @@ context = {...context,
 
   <%- include('_avatar', {context: { ...context, author: "aorcsik" }}); %>
   
-  <h2>
-    Hi 👋🏻, my name is
-    <span id="name"><strong>Tony</strong> (Antal Orcsik)</span>,
-  </h2>
+  <section id="intro">
+    <h2>
+      Hi 👋🏻, my name is
+      <span id="name"><strong>Tony</strong> (Antal Orcsik)</span>,
+    </h2>
 
-  <p>
-    I'm managing frontend engineers at <a href="https://bitrise.io" title="Bitrise.io" target="_blank">Bitrise</a>,
-    creating <a href="https://mozipremierek.hu/" title="Mozipremierek.hu" target="_blank">mozipremierek.hu</a> and
-    co-hosting <a href="https://vilagoskozepkor.hu/" title="Világos Középkor Podcast" target="_blank">Világos Középkor Podcast</a>.
-    I live in Budapest, Hungary with my dear <a href="https://sugarfreedots.hu/" title="Sugarfree Dots - csakis cukormentesen" target="_blank">Helga</a>, our son Áron 
-    and Sophie the siamese cat.
-  </p>
+    <p>
+      I'm managing frontend engineers at <a href="https://bitrise.io" title="Bitrise.io" target="_blank">Bitrise</a>,
+      creating <a href="https://mozipremierek.hu/" title="Mozipremierek.hu" target="_blank">mozipremierek.hu</a> and
+      co-hosting <a href="https://vilagoskozepkor.hu/" title="Világos Középkor Podcast" target="_blank">Világos Középkor Podcast</a>.
+      I live in Budapest, Hungary with my dear <a href="https://sugarfreedots.hu/" title="Sugarfree Dots - csakis cukormentesen" target="_blank">Helga</a>, our son Áron 
+      and Sophie the siamese cat.
+    </p>
 
-  <hr>
+    <hr>
+  </section>
 
-  <h4>Latest blog posts</h4>
-  <ul class="blog-list">
-    <% for (let blogPage of context.blogPages) { %>
-      <%- include(`_blog_list_item.ejs`, {context: {...context, ...blogPage }}); %>
-    <% } %>
-  </ul>
+  <section id="articles">
+    <h4>Latest blog posts</h4>
+    <ul class="blog-list">
+      <% for (let blogPage of context.blogPages) { %>
+        <%- include(`_blog_list_item.ejs`, {context: {...context, ...blogPage }}); %>
+      <% } %>
+    </ul>
+  </section>
 
 </div>
 

@@ -1,0 +1,35 @@
+<ul class="blog-pagination">
+  <li class="blog-pagination-previous">
+    <% if (context.previous) { %><a href="<%= context.previous %>" title="Previous"><i class="fa-regular fa-arrow-left"></i> Previous</a><% } %>
+  </li>
+  <li class="blog-pagination-list">
+    <% if (context.pages) { %>
+      <label class="dropdown-toggle">
+        <i class="fa-regular fa-list"></i> Episodes
+        <input type="checkbox">
+        <div class="dropdown">
+          <ul>
+          <% context.pages.forEach(collectionPage => { %>
+            <li><a href="<%= collectionPage.path %>" title="<%= collectionPage.title %>">
+              <span class="dropdown-list-item-bullet">
+                <% if (collectionPage.path === context.path) { %>
+                  <i class="fa-regular fa-circle-dot"></i>
+                <% } else { %>
+                  <i class="fa-regular fa-circle"></i>
+                <% } %>
+              </span>
+              <span class="dropdown-list-item-data">
+                <span class="dropdown-list-item-title"><%= collectionPage.title %></span>
+                <% if (collectionPage.subtitle) { %><span class="dropdown-list-item-subtitle"><%= collectionPage.subtitle %></span><% } %>
+              </span>
+            </a></li>
+          <% }); %>
+          </ul>
+        </div>
+      </label>
+    <% } %>
+  </li>
+  <li class="blog-pagination-next">
+    <% if (context.next) { %><a href="<%= context.next %>" title="Previous">Next <i class="fa-regular fa-arrow-right"></i></a><% } %>
+  </li>
+</ul>

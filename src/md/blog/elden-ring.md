@@ -1,14 +1,18 @@
+---
+description: My first days in the Lands Between, early boss encounters, leveling my character and defeating the first shardbearer.
+image: https://static.aorcsik.com/blog/first-steps-cover3.webp
+author: aorcsik
+published_at: 2024.07.08
+tags:
+ - elden-ring
+next: /blog/elden-ring-part-2.html
+collection: elden-ring
+
+---
+
 ## First Steps
 
 ### Adventures in Elden Ring - Part 1
-
-<!-- {
-  "description": "My first days in the Lands Between, early boss encounters, leveling my character and defeating the first shardbearer.",
-  "image": "https://static.aorcsik.com/blog/first-steps-cover3.webp",
-  "author": "aorcsik",
-  "published_at": "2024-07-08",
-  "tags": ["elden-ring"] 
-} -->
 
 <div class="blog-info">
   <i class="fa-light fa-circle-exclamation"></i>
@@ -132,12 +136,3 @@ At the top of the bridge, there were three(!) [golems](https://eldenring.wiki.fe
 [Godrick’s Great Rune Restored](https://youtu.be/MJbq4m9Gk2s#embed)
 
 Back in the [Roundtable Hold](https://eldenring.wiki.fextralife.com/Roundtable+Hold), I was admitted to the inner chamber, where [Enia](https://eldenring.wiki.fextralife.com/Enia) told me the message of the two fingers... they are fingers, huge fingers. I was offered the option to trade the [Remembrance of the Grafted](https://eldenring.wiki.fextralife.com/Remembrance+of+the+Grafted) for one of his weapons, but I decided to hold on to it for now since I didn't have the necessary stats to use either of the weapons.
-
----
-
-<ul class="blog-pagination">
-  <li class="blog-pagination-previous"></li>
-  <li class="blog-pagination-next">
-    <a href="/blog/elden-ring-part-2.html" title="Next">Next <i class="fa-regular fa-arrow-right"></i></a>
-  </li>
-</ul>

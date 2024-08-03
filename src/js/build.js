@@ -36,6 +36,9 @@ async function buildPages(configPath) {
       if (directory == "blog") {
         const templatePath = `${config.templateDir}/_blog_post.ejs`;
         const blogPage = await BlogPage.fromFile(config, markdownPage);
+        if (blogPage.collection) {
+          context.pages = context.blogPages.filter(bP => bP.collection === blogPage.collection).sort(BlogPage.compare);
+        }
         const content = await renderTemplate(templatePath, {context: {...context, ...blogPage, bundle: ['client']}});
 
         const targetFile = `${config.webDir}/${markdownPage.replace(/\.md$/, ".html")}`;

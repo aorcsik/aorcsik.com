@@ -1,4 +1,5 @@
 const ejs = require('ejs');
+const YAML = require('yaml');
 const dayjs = require("dayjs");
 const relativeTime = require('dayjs/plugin/relativeTime');
 const { readFile, renderTemplate } = require("./tools");
@@ -59,10 +60,23 @@ class BlogPage
       markdownString = markdownString.replace(subtitleMatch[0], "");
     }
 
-    const metaDataMatch = markdownString.match(/<!-- (\{.*?\}) -->/s);
-    if (!metaDataMatch) throw new Error(`Invalid Blog Post (${markdownPath}) - Missing meta data`);
-    markdownString = markdownString.replace(metaDataMatch[0], '');
-    const metaData = JSON.parse(metaDataMatch[1]);
+    let metaData;
+    const metaDataYamlMatch = markdownString.match(/^---\n(.*?)\n---/s);
+    if (metaDataYamlMatch) {
+      markdownString = markdownString.replace(metaDataYamlMatch[0], '');
+      metaData = YAML.parse(metaDataYamlMatch[1]);
+    }
+
+    const metaDataJsonMatch = markdownString.match(/<!--\s+(\{.*?\})\s+-->/s);
+    if (metaDataJsonMatch) {
+      markdownString = markdownString.replace(metaDataJsonMatch[0], '');
+      metaData = JSON.parse(metaDataJsonMatch[1]);
+    }
+
+    if (!metaData) {
+      throw new Error(`Invalid Blog Post (${markdownPath}) - Missing meta data`);
+    }
+
     Object.keys(metaData).forEach(key => {
       if (key === 'published_at') {
         data[key] = dayjs(metaData[key]);
