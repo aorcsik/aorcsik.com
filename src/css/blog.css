@@ -216,7 +216,7 @@ body.tag-elden-ring {
   --accent: var(--accent50);
   --accent-alt: var(--accent70);
 
-  --background: var(--accent95);
+  --background: #040302;
   --text: var(--accent10);
   --text-secondary: var(--accent-alt);
 
