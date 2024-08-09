@@ -32,8 +32,11 @@
     "yaml": "^2.5.0"
   },
   "scripts": {
-    "start": "node ./src/js/server.js --config ./config.json",
+    "start": "node ./src/js/server/server.js --config ./config.json",
     "build_dev": "npx webpack --config webpack.dev.js --progress --color",
-    "build_prod": "npx webpack --config webpack.prod.js && node ./src/js/build.js --config config.json"
+    "build_prod": "npx webpack --config webpack.prod.js && node ./src/js/server/build.js --config config.json"
+  },
+  "dependencies": {
+    "tiny-markdown-editor": "^0.1.23"
   }
 }

@@ -1,15 +1,12 @@
 const http = require('http');
-const fs = require('fs');
 const path = require('path');
-const { readFile, renderTemplate, getPages } = require('./tools');
-const MarkdownIt = require('markdown-it');
-const BlogPage = require('./BlogPage');
-const md = new MarkdownIt({html: true});
+const { readFile, renderTemplate } = require('./tools');
+const { renderHtml } = require('./common');
 const express = require('express');
 const webpack = require('webpack');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
-const webpackConfig = require('../../webpack.dev.js');
+const webpackConfig = require('../../../webpack.dev.js');
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -21,6 +18,7 @@ if (process.argv[2] && process.argv[2] === '--config' && process.argv[3]) {
   throw Error("Missing configuration!");
 }
 
+
 /**
  * @param {http.IncomingMessage} req 
  * @param {http.ServerResponse} res
@@ -30,55 +28,33 @@ const handleRequest = async (req, res) => {
   const config = JSON.parse(await readFile(configPath));
   
   const url = new URL(`${req.protocol}://${req.hostname}${req.url}`);
-  const filePath = config.webDir + url.pathname + (url.pathname.match(/\/$/) ? "index.html" : "");
+  const filePath = url.pathname + (url.pathname.match(/\/$/) ? "index.html" : "");
   const extname = path.extname(filePath);
 
-  let context = {...config, basePath: `${req.protocol}://${req.hostname}:${port}`};
-
   if (extname == ".html") {
-    context.blogPages = [];
-    const blogPages = await getPages(`${config.markdownDir}/blog`);
-    for (let blogPagePath of blogPages.filter(path => !path.match(/README\.md$/))) {
-      try {
-        context.blogPages.push(await BlogPage.fromFile(config, `blog/${blogPagePath}`));
-      } catch (err) {
-        console.log(err);
-      }
+    let templateName = filePath.replace(/\.html$/, "");
+
+    let content;
+    if (req.query.edit) {
+      content = await renderTemplate(`${config.templateDir}/editor.ejs`, {context: {
+        rawContent: await readFile(`${config.markdownDir}/${templateName}.md`),
+        path: `${templateName}.html`,
+        filename: `${templateName}.md`,
+        bundle: ["editor"]
+      }});
+    } else {
+      content = await renderHtml(config, templateName, `${req.protocol}://${req.hostname}:${port}`);
     }
 
-    context.blogPages.sort(BlogPage.compareReverse);
-
-    try {
-
-      let templateName = filePath.replace(`${config.webDir}/`, "").replace(/.html$/, "");
-
-      try {
-        const blogPage = await BlogPage.fromFile(config, `${templateName}.md`);
-        if (blogPage.collection) {
-          context.pages = context.blogPages.filter(bP => bP.collection === blogPage.collection).sort(BlogPage.compare);
-        }
-        context = {...context, ...blogPage};
-        templateName = "_blog_post";
-      } catch (error) {
-        
-      }
-
-      const templatePath = `${config.templateDir}/${templateName}.ejs`;
-      context.path = context.path || `/${templateName}.html`;
-      const content = await renderTemplate(templatePath, {context: {...context, bundle: ["client"]}});
-      res.statusCode = 200;
-      res.setHeader('Content-Type', "text/html");
-      res.end(content);
-      return;
-
-    } catch (error) {
-      console.log(error);
-    }
+    res.statusCode = 200;
+    res.setHeader('Content-Type', "text/html");
+    res.end(content);
+    return;
   }
 
   try {
 
-    const content = await readFile(filePath);
+    const content = await readFile(config.webDir + filePath);
     res.statusCode = 200;
     if (extname == ".js")   res.setHeader('Content-Type', "text/javascript");
     if (extname == ".css")  res.setHeader('Content-Type', "text/css");
@@ -106,8 +82,6 @@ const handleRequest = async (req, res) => {
 
     res.statusCode = 500;
     res.end(`<script>console.error("Server error: ${error.message}");</script>`);
-    return;
-
   }
 };
 
@@ -117,10 +91,31 @@ const devMiddlewareOptions = {
 };
 const app = express();
 
+app.use(express.urlencoded());
+
 app.use(devMiddleware(compiler, devMiddlewareOptions));
 if (webpackConfig.mode === 'development') app.use(hotMiddleware(compiler));
 
 app.get(/\/.*/, handleRequest);
+
+const handlePreview = async (req, res) => {
+  /** @type {import('./tools').Config} */
+  const config = JSON.parse(await readFile(configPath));
+
+  config.preview = {
+    filename: req.body.filename,
+    content: req.body.content,
+  };
+
+  let templateName = req.body.filename.replace(/\.md$/, "");
+  let content = await renderHtml(config, templateName, `${req.protocol}://${req.hostname}:${port}`);
+
+  res.statusCode = 200;
+  res.setHeader('Content-Type', "text/html");
+  res.end(content);
+};
+
+app.post(/\/preview.*/, handlePreview);
 
 app.listen(port, hostname, () => {
   process.stdout.write(`Server running at http://${hostname}:${port}/\n`);

@@ -36,27 +36,25 @@ async function renderTemplate(templatePath, data, options) {
  * @returns {Promise<Buffer>}
  */
 async function readFile(filePath) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filePath, (error, content) => {
-      if (error) reject(error);
-      resolve(content);
-    });
-  });
+  return fs.promises.readFile(filePath);
 }
 
 /**
  * 
  * @param {string} filePath 
- * @param {string} content 
- * @returns {Promise<void>}
+ * @param {string} content
+ * @param {string} createDirectory
+ * @returns {Promise<string[]>}
  */
-async function writeFile(filePath, content) {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(filePath, content, (err) => {
-      if (err) reject(err);
-      resolve();
-    });
-  })
+async function writeFile(filePath, content, createDirectory=true) {
+  const results = [];
+  if (createDirectory) {
+    const createDirectoryResult = await fs.promises.mkdir(filePath.split("/").slice(0, -1).join("/"), { recursive: true });
+    if (createDirectoryResult) results.push(`D ${createDirectoryResult}`);
+  }
+  await fs.promises.writeFile(filePath, content);
+  results.push(`F ${filePath}`);
+  return results;
 }
 
 /**

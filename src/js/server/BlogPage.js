@@ -15,8 +15,14 @@ class BlogPage
    * @returns {Promise<BlogPage>}
    */
   static async fromFile(config, markdownPath) {
-    const markdownContent = await readFile(`${config.markdownDir}/${markdownPath}`);
-    return await BlogPage.parseMarkdownContent(config, markdownContent, markdownPath);
+    let markdownString;
+    if (config.preview && config.preview.filename === markdownPath) {
+      markdownString = config.preview.content;
+    } else {
+      const markdownContent = await readFile(`${config.markdownDir}${markdownPath}`);
+      markdownString = markdownContent.toString();
+    }
+    return await BlogPage.parseMarkdownContent(config, markdownString, markdownPath);
   }
 
   /**
@@ -41,13 +47,13 @@ class BlogPage
 
   /**
    * @param {import('./tools').Config} config 
-   * @param {string} markdownContent 
+   * @param {string} markdownString 
    * @param {string} markdownPath
    * @returns {Promise<BlogPage>}
    */
-  static async parseMarkdownContent(config, markdownContent, markdownPath) {
+  static async parseMarkdownContent(config, markdownString, markdownPath) {
     const data = new BlogPage();
-    let markdownString = markdownContent.toString();
+    data.rawContent = markdownString;
 
     const titleMatch = markdownString.match(/## (.*)/);
     if (!titleMatch) throw new Error(`Invalid Blog Post (${markdownPath}) - Missing title`);
@@ -61,9 +67,9 @@ class BlogPage
     }
 
     let metaData;
-    const metaDataYamlMatch = markdownString.match(/^---\n(.*?)\n---/s);
+    const metaDataYamlMatch = markdownString.match(/^---(.*?)---/s);
     if (metaDataYamlMatch) {
-      markdownString = markdownString.replace(metaDataYamlMatch[0], '');
+      markdownString = markdownString.replace(metaDataYamlMatch[0].trim(), '');
       metaData = YAML.parse(metaDataYamlMatch[1]);
     }
 
@@ -129,7 +135,7 @@ class BlogPage
 
     const md = new MarkdownIt({html: true});
     data.content = md.render(markdownString);
-    data.path = `/${markdownPath.replace(/\.md$/, ".html")}`;
+    data.path = `${markdownPath.replace(/\.md$/, ".html")}`;
     data.readingTime = BlogPage.calculateReadingTime(markdownString);
 
     return data;
@@ -147,6 +153,9 @@ class BlogPage
   }
 
   constructor() {
+    /** @type {string} */
+    this.rawContent = '';
+
     /** @type {string} */
     this.title = '';
 

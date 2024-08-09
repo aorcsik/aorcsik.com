@@ -26,7 +26,8 @@
           "HTMLParagraphElement",
           "HTMLSpanElement",
           "Promise",
-          "URL"
+          "URL",
+          "Window"
         ]
       }
     ],
@@ -42,5 +43,11 @@
     "jsdoc/require-returns-type": 1,
     "jsdoc/tag-lines": 1,
     "jsdoc/valid-types": 1
-  }
+  },
+  "overrides": [{
+    "files": ["src/js/server/**.js", "webpack**.js"],
+    "parserOptions": {
+      "sourceType": "commonjs"
+    }
+  }]
 }

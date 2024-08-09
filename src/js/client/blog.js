@@ -1,9 +1,13 @@
-import "../css/blog.css";
+import "../../css/blog.css";
+import { getReadPercentage } from "./common";
 
 const scrollHandler = async (event) => {
-  const body = document.querySelector('body');
-  const scrollPercentage = window.scrollY / (body.clientHeight - window.innerHeight);
-  const readPercentage = (window.innerHeight * scrollPercentage + window.scrollY) / body.clientHeight * 100;
+  const scrollValue = window.scrollY;
+  const contentHeight = document.querySelector('body').clientHeight;
+  const containerHeight = window.innerHeight;
+
+  const readPercentage = getReadPercentage(scrollValue, contentHeight, containerHeight);
+
   document.getElementById("read-progress").style.width = `${readPercentage}%`;
 };
 

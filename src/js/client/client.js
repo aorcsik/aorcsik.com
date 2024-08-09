@@ -1,5 +1,5 @@
-import "../images/apple-touch-icon.png";
-import "../css/client.css";
+import "../../images/apple-touch-icon.png";
+import "../../css/client.css";
 
 const scrollHandler = async (event) => {
   const headerClassName = document.querySelector("header").className;

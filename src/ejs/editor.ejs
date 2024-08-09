@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Editor</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="<%= context.favicon %>">
+  <link rel="mask-icon" href="<%= context.favicon %>" color="#000000">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/c39a0791cd.js" crossorigin="anonymous"></script>
+  
+  
+  <% context.bundle.forEach(bundle => { %>
+    <link rel="stylesheet" href="/<%= bundle %>.bundle.css?_=<%= (new Date()).getTime()%>">
+  <% }); %>
+
+</head>
+<body>
+  <div class="container">
+    <form method="post" action="/preview" target="preview_iframe" class="editor-container">
+      <div class="editor-header">
+        <input type="text" name="filename" readonly value="<%= context.filename %>">
+        <input type="hidden" name="content" value="">
+        <button type="submit" name="save">Save</button>
+      </div>
+      <div class="editor-content">
+        <pre><div id="content" contenteditable><%= context.rawContent %></div></pre>
+      </div>
+    </form>
+    <div class="preview-container">
+      <iframe name="preview_iframe" src="" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <% context.bundle.forEach(bundle => { %>
+    <script src="/<%= bundle %>.bundle.js?_=<%= (new Date()).getTime()%>"></script>
+  <% }); %>
+  <script src="/runtime.bundle.js?_=<%= (new Date()).getTime()%>"></script>
+</body>
+</html>

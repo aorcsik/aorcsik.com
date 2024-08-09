@@ -27,9 +27,11 @@ module.exports = (mode) => {
       runtimeChunk: 'single'
     },
     entry: {
-      blog: getEntryPoint(mode, "js/blog.js"),
-      client: getEntryPoint(mode, "js/client.js"),
-      pixelart: getEntryPoint(mode, "js/pixelart.js"),
+      blog: getEntryPoint(mode, "js/client/blog.js"),
+      client: getEntryPoint(mode, "js/client/client.js"),
+      pixelart: getEntryPoint(mode, "js/client/pixelart.js"),
+      editor: getEntryPoint(mode, "js/client/editor.js"),
+      preview: getEntryPoint(mode, "js/client/preview.js"),
     },
     output: {
       path: path.resolve(__dirname, "docs"),
@@ -49,7 +51,6 @@ module.exports = (mode) => {
           },{
             loader: "css-loader"
           }],
-          include: path.resolve(__dirname, "src/css")
         },
         {
           test: /\.(png|jpg|gif|webp|svg)/,

@@ -1,4 +1,4 @@
-import "../css/pixelart.css";
+import "../../css/pixelart.css";
 
 /**
  * @param {HTMLElement} domElement
