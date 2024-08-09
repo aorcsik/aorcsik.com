@@ -29,7 +29,7 @@ async function buildPages(configPath) {
   const pages = await getPages(config.templateDir);
   for (let page of pages) {
     try {
-      const content = await renderHtml(config, `/${page.replace(/\.md$/, "")}`, basePath, true);
+      const content = await renderHtml(config, `/${page.replace(/\.ejs$/, "")}`, basePath, true);
       if (content !== null) {
         (await writeFile(`${config.webDir}/${page.replace(/\.ejs$/, ".html")}`, content)).forEach((result) => {
           process.stdout.write(`+ ${result}\n`);
