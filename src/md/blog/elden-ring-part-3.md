@@ -5,10 +5,8 @@ author: aorcsik
 published_at: 2024.07.16
 tags:
  - elden-ring
-previous: /blog/elden-ring-part-2.html
-next: /blog/elden-ring-part-4.html
-draft: true
 collection: elden-ring
+draft: true
 ---
 
 ## I'm not strong enough

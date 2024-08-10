@@ -27,6 +27,9 @@
   <div class="container">
     <form method="post" action="/preview" target="temp_iframe" class="editor-container">
       <div class="editor-header">
+        <span class="status status-saved"><i class="fa-regular fa-circle-check"></i></span>
+        <span class="status status-changed"><i class="fa-regular fa-circle-exclamation"></i></span>
+        <span class="status status-loading"><i class="fa-regular fa-spinner-third fa-spin"></i></span>
         <input type="text" name="filename" readonly value="<%= context.filename %>">
         <input type="hidden" name="content" value="">
         <button type="submit" name="save" value="1">Save</button>

@@ -5,8 +5,6 @@ author: aorcsik
 published_at: 2024.07.11
 tags:
  - elden-ring 
-previous: /blog/elden-ring.html
-next: /blog/elden-ring-part-3.html
 collection: elden-ring
 ---
 

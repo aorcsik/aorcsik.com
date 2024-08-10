@@ -74,10 +74,24 @@ body.dragging .container .separator {
   display: flex;
   padding: .5rem;
   background: #ddd;
+  align-items: center;
 }
+.container .editor-header .status {
+  padding-right: .5rem;
+  display: none;
+}
+.container.status-loading .editor-header .status-loading {
+  display: block;
+}
+.container.status-saved .editor-header .status-saved {
+  display: block;
+}
+.container.status-changed .editor-header .status-changed {
+  display: block;
+}
+
 .container .editor-header input[name="filename"] {
   border: 0;
-  width: 100%;
   display: block;
   background-color: transparent;
   color: var(--text-secondary-color);
@@ -90,10 +104,17 @@ body.dragging .container .separator {
   background: var(--accent);
   color: #fff;
   border-radius: .25rem;
+  margin-left: auto;
+}
+.container .editor-header button[name="save"] i {
+  display: none;
 }
 .container .editor-header button[name="save"]:disabled {
   background: rgba(0,0,0,0.3);
   cursor: not-allowed;
+}
+.container .editor-header button[name="save"].saving i {
+  display: inline-block;
 }
 
 .container .editor-container {
@@ -135,6 +156,9 @@ body.dragging .container .separator {
   flex-grow: 1;
   color: var(--text-color);
   background-color: var(--background-color);
+
+  --token-color: #999;
+
 }
 .container .editor-container pre.contentPre #content {
   outline: 0;
@@ -199,16 +223,37 @@ body.dragging .container .preview-container .drag-overlay {
 }
 .mdAsterisk::after {
   content: "*";
-  color: var(--text-secondary-color);
+  color: var(--token-color);
 }
 .mdUnderscore::after {
   content: "_";
-  color: var(--text-secondary-color);
+  color: var(--token-color);
 }
 .mdHashmark::after {
   content: "#";
-  color: var(--text-secondary-color);
+  color: var(--token-color);
 }
 .mdHtml {
   color: #fe7b00;
+}
+.mdQuote {
+  color: var(--text-secondary-color);
+}
+.mdGreaterThan::after {
+  content: ">";
+  color: var(--token-color);
+}
+.mdDash::after {
+  content: "-";
+  color: var(--token-color);
+}
+.mdListBullet {
+  color: var(--token-color);
+}
+.mdList {
+  color: darkgreen;
+}
+.mdEqual::after {
+  content: "=";
+  color: var(--token-color);
 }

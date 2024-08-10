@@ -5,12 +5,10 @@ author: aorcsik
 published_at: 2024.07.08
 tags:
  - elden-ring
-next: /blog/elden-ring-part-2.html
 collection: elden-ring
-
 ---
 
-## First Steps
+## First Stepss
 
 ### Adventures in Elden Ring - Part 1
 

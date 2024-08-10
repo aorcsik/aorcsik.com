@@ -42,11 +42,27 @@ const renderHtml = async (config, templateName, basePath, skipDraft=false) => {
 
       if (blogPage.collection) {
         context.pages = context.blogPages.filter(bP => bP.collection === blogPage.collection).sort(BlogPage.compare);
+
+        let previous;
+        let current;
+        let next;
+        context.pages.forEach((bP) => {
+          if (bP.path === blogPage.path) {
+            current = bP;
+          } else if (current && !next) {
+            next = bP;
+            blogPage.next = next.path;
+          } else if (!current) {
+            previous = bP;
+            blogPage.previous = previous.path;
+          }
+        });
       }
       context = {...context, ...blogPage};
       templateName = "/_blog_post";
     } catch (error) {
-      // console.log(error);
+      // "ENOENT: no such file or directory" is expected when the page has no markdown file
+      if (!error.message.match(/ENOENT: no such file or directory/)) throw error;
     }
 
     const templatePath = `${config.templateDir}${templateName}.ejs`;
