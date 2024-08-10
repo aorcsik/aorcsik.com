@@ -208,6 +208,11 @@ body.dragging .container .preview-container .drag-overlay {
 
 .mdFrontMatter {
   color: var(--text-secondary-color);
+  background: rgba(0,0,0,0.025);
+  display: block;
+  padding: 1rem 1rem .5rem 1rem;
+  margin: -1rem -1rem -.5rem -1rem;
+  border-radius: 4px;
 }
 .mdEm {
   font-style: italic;
@@ -237,7 +242,7 @@ body.dragging .container .preview-container .drag-overlay {
   color: #fe7b00;
 }
 .mdQuote {
-  color: var(--text-secondary-color);
+  color: darkmagenta;
 }
 .mdGreaterThan::after {
   content: ">";
@@ -256,4 +261,12 @@ body.dragging .container .preview-container .drag-overlay {
 .mdEqual::after {
   content: "=";
   color: var(--token-color);
+}
+.mdNewLine::after {
+  content: "\21B5";
+  color: var(--token-color);
+  opacity: .3;
+}
+.mdHr {
+  
 }

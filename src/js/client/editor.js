@@ -45,22 +45,21 @@ const changeHandler = (event) => {
     ">": "<span class='mdGreaterThan'></span>",
     "-": "<span class='mdDash'></span>",
     "=": "<span class='mdEqual'></span>",
+    "newline": "<span class='mdNewLine'></span>",
+    "heading": "<span class='mdHeading'>%%</span>",
+    "em": "<span class='mdEm'>%%</span>",
+    "strong": "<span class='mdStrong'>%%</span>",
+    "quote": "<span class='mdQuote'>%%</span>",
+    "list": "<span class='mdList'>%%</span>",
     "list_bullet": "<span class='mdListBullet'>%%</span>",
-    "heading_open": "<span class='mdHeading'>",
-    "heading_close": "</span>",
-    "em_open": "<span class='mdEm'>",
-    "em_close": "</span>",
-    "strong_open": "<span class='mdStrong'>",
-    "strong_close": "</span>",
-    "quote_open": "<span class='mdQuote'>",
-    "quote_close": "</span>",
-    "list_open": "<span class='mdList'>",
-    "list_close": "</span>",
+    "link": "<span class='mdLink'>%%</span>",
+    "html": "<span class='mdHtml'>%%</span>",
+    "hr": "<span class='mdHr'>%%</span>",
   };
 
   let frontMatter = '';
   markdownText = markdownText.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-  const mdFrontMatterMatch = markdownText.match(/---.*?---/s);
+  const mdFrontMatterMatch = markdownText.match(/---.*?---\n/ms);
   if (mdFrontMatterMatch) {
     frontMatter = `<span class='mdFrontMatter'>${mdFrontMatterMatch[0]}</span>`;
     markdownText = markdownText.replace(mdFrontMatterMatch[0], '');
@@ -73,33 +72,46 @@ const changeHandler = (event) => {
   const mdHeadingMatch = markdownText.matchAll(/^(#{1,6})(\s+.*)/gm);
   if (mdHeadingMatch) [...mdHeadingMatch].forEach(match => {
     const markup = match[1].split("").map((m) => markupMap[m]).join("");
-    markdownText = markdownText.replace(match[0], `${markupMap.heading_open}${markup}${match[2]}${markupMap.heading_close}`);
+    markdownText = markdownText.replace(match[0], markupMap.heading.replace("%%", `${markup}${match[2]}`));
   });
 
   const mdHeadingMatch2 = markdownText.matchAll(/^(.*\n)(-+\n|=+\n)/gm);
   if (mdHeadingMatch2) [...mdHeadingMatch2].forEach(match => {
     const markup = match[2].replaceAll("=", markupMap["="]).replaceAll("-", markupMap["-"]);
-    markdownText = markdownText.replace(match[0], `${markupMap.heading_open}${match[1]}${markup}${markupMap.heading_close}`);
+    markdownText = markdownText.replace(match[0], markupMap.heading.replace("%%", `${match[1]}${markup}`));
   });
 
-  const mdLinkMatch = markdownText.matchAll(/!?\[[^\]]+?\]\([^\s]+?\)/gm);
+  const mdHrMatch = markdownText.matchAll(/^(___+|---+|\*\*\*+)/gm);
+  if (mdHrMatch) [...mdHrMatch].forEach(match => {
+    const markup = match[1].split("").map((m) => markupMap[m]).join("");
+    markdownText = markdownText.replace(match[0], markupMap.hr.replace("%%", `${markup}`));
+  });
+
+  const mdLinkMatch = markdownText.matchAll(/!?\[[^\]]+?\]\([^\s]+?(\s+".*?")?\)/gm);
   if (mdLinkMatch) [...mdLinkMatch].forEach(match => {
-    markdownText = markdownText.replaceAll(match[0], `<span class='mdLink'>${match[0]}</span>`);
+    markdownText = markdownText.replaceAll(match[0], markupMap.link.replace("%%", match[0]));
   });
 
   const mdQuoteMatch = markdownText.matchAll(/^([ \t]*)(&gt;(\s*&gt;)*)(.*?\n\n)/gms);
   if (mdQuoteMatch) [...mdQuoteMatch].forEach(match => {
     const markup = match[2].replaceAll("&gt;", markupMap['>']);
-    markdownText = markdownText.replace(match[0], `${match[1]}${markupMap.quote_open}${markup}${match[4]}${markupMap.quote_close}`);
+    const content = match[4].split("\n").map((line) => {
+      const lineQuoteMarkerMatch = line.match(/^([ \t]*)(&gt;(\s*&gt;)*)/);
+      if (lineQuoteMarkerMatch) {
+        line = line.replace(lineQuoteMarkerMatch[0], lineQuoteMarkerMatch[0].replaceAll("&gt;", markupMap['>']));
+      }
+      return line;
+    }).join("\n");
+    markdownText = markdownText.replace(match[0], `${match[1]}${markupMap.quote.replace("%%", `${markup}${content}`)}`);
   });
 
   const listMatch = (markdownText) => {
-    const mdListMatch = markdownText.matchAll(/^([ \t]*)(\*|-|\d+\.)(\s+.*?\n\n)/gms);
+    const mdListMatch = markdownText.matchAll(/^([ \t]*)(\*|\+|-|\d+\.)(\s+.*?\n\n)/gms);
     if (mdListMatch) [...mdListMatch].forEach(match => {
       let content = match[3];
-      if (content.match(/^([ \t]*)(\*|-|\d+\.)(\s+.*?\n\n)/ms)) content = listMatch(content);
+      if (content.match(/^([ \t]*)(\*|\+|-|\d+\.)(\s+.*?\n\n)/ms)) content = listMatch(content);
       const markup = markupMap[match[2]] ? markupMap[match[2]] : markupMap.list_bullet.replace("%%", match[2]);
-      markdownText = markdownText.replace(match[0], `${match[1]}${markupMap.list_open}${markup}${content}${markupMap.list_close}`);
+      markdownText = markdownText.replace(match[0], `${match[1]}${markupMap.list.replace("%%", `${markup}${content}`)}`);
     });
     return markdownText;
   }
@@ -109,20 +121,22 @@ const changeHandler = (event) => {
   if (mdStrongMatch) [...mdStrongMatch].forEach(match => {
     if (match[2].match(/\n\n/)) return;
     const markup = match[1].split("").map(m => markupMap[m]).join("");
-    markdownText = markdownText.replace(match[0], `${markupMap.strong_open}${markup}${match[2]}${markup}${markupMap.strong_close}`);
+    markdownText = markdownText.replace(match[0], markupMap.strong.replace("%%", `${markup}${match[2]}${markup}`));
   });
 
   const mdEmMatch = markdownText.matchAll(/(\*|_)(.+?)\1/gms);
   if (mdEmMatch) [...mdEmMatch].forEach(match => {
     if (match[2].match(/\n\n/)) return;
     const markup = match[1].split("").map(m => markupMap[m]).join("");
-    markdownText = markdownText.replace(match[0], `${markupMap.em_open}${markup}${match[2]}${markup}${markupMap.em_close}`);
+    markdownText = markdownText.replace(match[0], markupMap.em.replace("%%", `${markup}${match[2]}${markup}`));
   });
 
-  const mdHtmlMatch = markdownText.matchAll(/&lt;[a-z/].*?&gt;/gm);
+  const mdHtmlMatch = markdownText.matchAll(/&lt;[\w/].*?&gt;/gm);
   if (mdHtmlMatch) [...mdHtmlMatch].forEach(match => {
-    markdownText = markdownText.replace(match[0], `<span class='mdHtml'>${match[0]}</span>`);
+    markdownText = markdownText.replace(match[0], markupMap.html.replace("%%", match[0]));
   });
+
+  markdownText = markdownText.replaceAll(/\n/gms, `${markupMap.newline}\n`);
 
   document.getElementById("contentStyle").innerHTML = frontMatter + markdownText;
 
