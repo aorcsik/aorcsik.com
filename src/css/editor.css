@@ -1,42 +1,214 @@
 /* editor */
-body, html {
+:root {
+  --serif-font: 'Merriweather', 'Georgia', 'Times New Roman', 'serif';
+  --sans-serif-font: 'Poppins', 'Helvetica Neue', 'Arial', 'sans-serif';
+  --monospace-font: 'Fira Code', 'Consolas', 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+body {
   margin: 0;
   padding: 0;
   font-size: 16px;
+  font-family: var(--sans-serif-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+button, input, select, textarea {
+  font-family: inherit;
+}
+pre, code, samp, kbd, var {
+  font-family: var(--monospace-font);
 }
 
 .container {
   display: flex;
-  width: 100dvw;
-  height: 100dvh;
+  width: 100vw;
+  height: 100vh;
+
+  --accent: #0080b3;
+  --background-color: #f2f2f2;
+  --text-color: #000;
+  --text-secondary-color: #666;
+  --link-color: var(--accent);
+}
+
+.container .separator {
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary-color);
+  font-size: 0.9rem;
+  padding: 0 1px;
+  border: 0;
+  transition: all .3s;
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.container .separator:hover,
+body.dragging .container .separator {
+  background-color: var(--accent);
+  color: #fff;
+}
+body.dragging,
+body.dragging .container .separator {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.container .editor-footer {
+  font-size: 0.8rem;
+  padding: .25rem .5rem;
+  background-color: #ddd;
+}
+
+.container .editor-header {
+  display: flex;
+  padding: .5rem;
+  background: #ddd;
+}
+.container .editor-header input[name="filename"] {
+  border: 0;
+  width: 100%;
+  display: block;
+  background-color: transparent;
+  color: var(--text-secondary-color);
+  font-family: var(--monospace-font);
+}
+
+.container .editor-header button[name="save"] {
+  padding: .5rem 1rem;
+  border: 0;
+  background: var(--accent);
+  color: #fff;
+  border-radius: .25rem;
+}
+.container .editor-header button[name="save"]:disabled {
+  background: rgba(0,0,0,0.3);
+  cursor: not-allowed;
 }
 
 .container .editor-container {
   width: 50%;
+  flex-shrink: 0;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 .container .editor-container .editor-content {
   overflow: auto;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container .editor-container .editor-content #savedContent {
+  display: none;
 }
 
 .container .editor-container pre {
-  padding: 1rem;
   white-space: pre-wrap;
   margin: 0;
+  padding: 1rem 1rem 50% 1rem;
+  font-size: 0.8rem;
 }
-.container .editor-container pre #content {
+.container .editor-container pre.contentPre {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: transparent;
+  /* color: rgba(0,0,0,.3); */
+  caret-color: var(--text-color);
+}
+.container .editor-container pre.contentStylePre {
+  flex-grow: 1;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+.container .editor-container pre.contentPre #content {
   outline: 0;
+
+  /** 
+   * Prevent contenteditable to add p, div items on ENTER
+   * @see: https://stackoverflow.com/a/24689420/601224
+   */ 
+  display: inline-block; 
 }
 
 .container .preview-container {
-  width: 50%;
-  
+  width: 100%;
+  position: relative;
+}
+
+.container .preview-container .drag-overlay {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: .5;
+  background-color: var(--background-color);
+  z-index: 1;
+  display: none;
+}
+body.dragging .container .preview-container .drag-overlay {
+  display: block;
 }
 
 .container .preview-container iframe {
   width: 100%;
   height: 100%;
   border: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  /* transition: opacity .3s; */
+}
+
+.mdFrontMatter {
+  color: var(--text-secondary-color);
+}
+.mdEm {
+  font-style: italic;
+}
+.mdStrong {
+  font-weight: bold;
+}
+.mdLink {
+  color: var(--link-color);
+}
+.mdHeading {
+  font-weight: bold;
+}
+.mdAsterisk::after {
+  content: "*";
+  color: var(--text-secondary-color);
+}
+.mdUnderscore::after {
+  content: "_";
+  color: var(--text-secondary-color);
+}
+.mdHashmark::after {
+  content: "#";
+  color: var(--text-secondary-color);
+}
+.mdHtml {
+  color: #fe7b00;
 }

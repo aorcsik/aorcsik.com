@@ -43,10 +43,9 @@ body {
   right: 0;
   bottom: 0;
   background: var(--background);
-  background: linear-gradient(270deg, var(--text) 5%, var(--background) 95%);
-  background: -moz-linear-gradient(270deg, var(--text) 5%, var(--background) 95%);
-  background: -webkit-linear-gradient(270deg, var(--text) 5%, var(--background) 95%);
-  mix-blend-mode: hard-light;
+  background: linear-gradient(270deg, transparent 5%, var(--background) 95%);
+  background: -moz-linear-gradient(270deg, transparent 5%, var(--background) 95%);
+  background: -webkit-linear-gradient(270deg, transparent 5%, var(--background) 95%);
   z-index: 1;
 }
 
@@ -62,7 +61,7 @@ body {
   color: var(--background);
   width: 90%;
   margin: auto auto 0 auto;
-  text-shadow: 0 0 5px var(--text);
+  text-shadow: var(--medium-shadow);
   z-index: 2;
   font-weight: bold;
   max-width: 680px;

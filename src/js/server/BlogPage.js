@@ -2,7 +2,8 @@ const ejs = require('ejs');
 const YAML = require('yaml');
 const dayjs = require("dayjs");
 const relativeTime = require('dayjs/plugin/relativeTime');
-const { readFile, renderTemplate } = require("./tools");
+const { readFile, renderTemplate} = require("./tools");
+const { calculateReadingTime } = require("./shared");
 const MarkdownIt = require('markdown-it');
 
 dayjs.extend(relativeTime)
@@ -55,17 +56,6 @@ class BlogPage
     const data = new BlogPage();
     data.rawContent = markdownString;
 
-    const titleMatch = markdownString.match(/## (.*)/);
-    if (!titleMatch) throw new Error(`Invalid Blog Post (${markdownPath}) - Missing title`);
-    data.title = titleMatch[1].trim();
-    markdownString = markdownString.replace(titleMatch[0], "");
-
-    const subtitleMatch = markdownString.match(/### (.*)/);
-    if (subtitleMatch) {
-      data.subtitle = subtitleMatch ? subtitleMatch[1].trim() : null
-      markdownString = markdownString.replace(subtitleMatch[0], "");
-    }
-
     let metaData;
     const metaDataYamlMatch = markdownString.match(/^---(.*?)---/s);
     if (metaDataYamlMatch) {
@@ -90,6 +80,19 @@ class BlogPage
         data[key] = metaData[key];
       }
     });
+
+    data.readingTime = calculateReadingTime(markdownString);
+
+    const titleMatch = markdownString.match(/## (.*)/);
+    if (!titleMatch) throw new Error(`Invalid Blog Post (${markdownPath}) - Missing title`);
+    data.title = titleMatch[1].trim();
+    markdownString = markdownString.replace(titleMatch[0], "");
+
+    const subtitleMatch = markdownString.match(/### (.*)/);
+    if (subtitleMatch) {
+      data.subtitle = subtitleMatch ? subtitleMatch[1].trim() : null
+      markdownString = markdownString.replace(subtitleMatch[0], "");
+    }
 
     // const varMatches = markdownString.matchAll(/\[(.*?)\]\(#var:(.*)\)/gm);
     // if (varMatches) {
@@ -136,20 +139,8 @@ class BlogPage
     const md = new MarkdownIt({html: true});
     data.content = md.render(markdownString);
     data.path = `${markdownPath.replace(/\.md$/, ".html")}`;
-    data.readingTime = BlogPage.calculateReadingTime(markdownString);
 
     return data;
-  }
-
-  /**
-   * @param {string} text
-   * @returns {number}
-   */
-  static calculateReadingTime(text) {
-    text = text.replace(/<[^>]+>/, "");
-    const wpm = 225;
-    const words = text.trim().split(/\s+/).length;
-    return Math.ceil(words / wpm);
   }
 
   constructor() {

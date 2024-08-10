@@ -13,7 +13,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
   <script src="https://kit.fontawesome.com/c39a0791cd.js" crossorigin="anonymous"></script>
   
@@ -25,18 +25,22 @@
 </head>
 <body>
   <div class="container">
-    <form method="post" action="/preview" target="preview_iframe" class="editor-container">
+    <form method="post" action="/preview" target="temp_iframe" class="editor-container">
       <div class="editor-header">
         <input type="text" name="filename" readonly value="<%= context.filename %>">
         <input type="hidden" name="content" value="">
-        <button type="submit" name="save">Save</button>
+        <button type="submit" name="save" value="1">Save</button>
       </div>
       <div class="editor-content">
-        <pre><div id="content" contenteditable><%= context.rawContent %></div></pre>
+        <div id="savedContent"><%= context.rawContent %></div>
+        <pre class="contentStylePre"><div id="contentStyle"><%= context.rawContent %></div></pre>
+        <pre class="contentPre"><div id="content" contenteditable><%= context.rawContent %></div></pre>
       </div>
+      <div class="editor-footer"></div>
     </form>
+    <div class="separator"><i class="fa-regular fa-ellipsis-vertical"></i></div>
     <div class="preview-container">
-      <iframe name="preview_iframe" src="" frameborder="0"></iframe>
+      <div class="drag-overlay"></div>
     </div>
   </div>
 

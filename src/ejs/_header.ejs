@@ -27,15 +27,16 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  
   <script src="https://kit.fontawesome.com/c39a0791cd.js" crossorigin="anonymous"></script>
   
   
   <% context.bundle.forEach(bundle => { %>
     <link rel="stylesheet" href="/<%= bundle %>.bundle.css?_=<%= (new Date()).getTime()%>">
   <% }); %>
-    
+  
+  <% if (!context.preview) { %>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -43,6 +44,7 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','<%= context.gtmID %>');</script>
   <!-- End Google Tag Manager -->
+  <% } %>
 </head>
 <% if (context.body_class) { %>
 <body class="<%= context.body_class %>">

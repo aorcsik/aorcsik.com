@@ -1,6 +1,6 @@
 const http = require('http');
 const path = require('path');
-const { readFile, renderTemplate } = require('./tools');
+const { readFile, renderTemplate, writeFile } = require('./tools');
 const { renderHtml } = require('./common');
 const express = require('express');
 const webpack = require('webpack');
@@ -36,8 +36,22 @@ const handleRequest = async (req, res) => {
 
     let content;
     if (req.query.edit) {
+      let rawContent;
+      try {
+        rawContent = await readFile(`${config.markdownDir}/${templateName}.md`);
+      } catch (error) {
+        rawContent = `---
+published_at: ${(new Date()).toISOString().split("T")[0].replaceAll("-", ".")}
+author: aorcsik
+---
+
+## Title
+
+...`;
+      }
+
       content = await renderTemplate(`${config.templateDir}/editor.ejs`, {context: {
-        rawContent: await readFile(`${config.markdownDir}/${templateName}.md`),
+        rawContent: rawContent,
         path: `${templateName}.html`,
         filename: `${templateName}.md`,
         bundle: ["editor"]
@@ -105,7 +119,16 @@ const handlePreview = async (req, res) => {
   config.preview = {
     filename: req.body.filename,
     content: req.body.content,
+    saved: false,
   };
+
+  if (req.body.save) {
+    const targetFile = `${config.markdownDir}${req.body.filename}`;
+    process.stdout.write(`Saving ${targetFile}: `);
+    writeFile(targetFile, req.body.content.replaceAll("\r\n", "\n"));
+    process.stdout.write(`ok\n`);
+    config.preview.saved = true;
+  }
 
   let templateName = req.body.filename.replace(/\.md$/, "");
   let content = await renderHtml(config, templateName, `${req.protocol}://${req.hostname}:${port}`);
