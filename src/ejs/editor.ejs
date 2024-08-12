@@ -35,8 +35,8 @@
         <button type="submit" name="save" value="1">Save</button>
       </div>
       <div class="editor-content">
-        <div id="savedContent"><%= context.rawContent %></div>
-        <pre class="contentStylePre"><div id="contentStyle"><%= context.rawContent %></div></pre>
+        <pre class="contentStylePre"><div id="contentStyle"></div></pre>
+        <pre class="contentLinesPre"><div id="contentLines"></div></pre>
         <pre class="contentPre"><div id="content" contenteditable><%= context.rawContent %></div></pre>
       </div>
       <div class="editor-footer"></div>

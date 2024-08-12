@@ -18,6 +18,7 @@ button, input, select, textarea {
 }
 pre, code, samp, kbd, var {
   font-family: var(--monospace-font);
+  font-variant-ligatures: none;
 }
 
 .container {
@@ -26,14 +27,17 @@ pre, code, samp, kbd, var {
   height: 100vh;
 
   --accent: #0080b3;
-  --background-color: #f2f2f2;
-  --text-color: #000;
-  --text-secondary-color: #666;
-  --link-color: var(--accent);
+  --background-color: #181818;
+  --text-color: #CCCCCC;
+  --text-secondary-color: #9B9B9B;
+  --border-color: #2B2B2B;
+
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
 
 .container .separator {
-  background: #ddd;
+  background-color: var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,7 +59,7 @@ pre, code, samp, kbd, var {
 .container .separator:hover,
 body.dragging .container .separator {
   background-color: var(--accent);
-  color: #fff;
+  color: var(--text-color);
 }
 body.dragging,
 body.dragging .container .separator {
@@ -67,14 +71,14 @@ body.dragging .container .separator {
 .container .editor-footer {
   font-size: 0.8rem;
   padding: .25rem .5rem;
-  background-color: #ddd;
+  border-top: 1px solid var(--border-color);
 }
 
 .container .editor-header {
   display: flex;
   padding: .5rem;
-  background: #ddd;
   align-items: center;
+  border-bottom: 1px solid var(--border-color);
 }
 .container .editor-header .status {
   padding-right: .5rem;
@@ -102,7 +106,7 @@ body.dragging .container .separator {
   padding: .5rem 1rem;
   border: 0;
   background: var(--accent);
-  color: #fff;
+  color: var(--text-color);
   border-radius: .25rem;
   margin-left: auto;
 }
@@ -123,6 +127,14 @@ body.dragging .container .separator {
   height: 100%;
   display: flex;
   flex-direction: column;
+
+  --syntax-background: #1F1F1F;
+  --syntax-color: #CCCCCC;
+  --syntax-color-1: #569cd6;
+  --syntax-color-2: #CE9178;
+  --syntax-color-3: #6A9956;
+  --syntax-color-4: #9CDCFE;
+  --syntax-line-number-color: #6D7681;
 }
 .container .editor-container .editor-content {
   overflow: auto;
@@ -130,10 +142,9 @@ body.dragging .container .separator {
   height: 100%;
   display: flex;
   flex-direction: column;
-}
 
-.container .editor-container .editor-content #savedContent {
-  display: none;
+  color: var(--syntax-color);
+  background-color: var(--syntax-background);
 }
 
 .container .editor-container pre {
@@ -142,6 +153,8 @@ body.dragging .container .separator {
   padding: 1rem 1rem 50% 1rem;
   font-size: 0.8rem;
 }
+.container .editor-container pre > div {
+}
 .container .editor-container pre.contentPre {
   position: absolute;
   top: 0;
@@ -149,19 +162,22 @@ body.dragging .container .separator {
   right: 0;
   bottom: 0;
   color: transparent;
-  /* color: rgba(0,0,0,.3); */
-  caret-color: var(--text-color);
+}
+.container .editor-container pre.contentLinesPre {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .container .editor-container pre.contentStylePre {
   flex-grow: 1;
-  color: var(--text-color);
-  background-color: var(--background-color);
-
-  --token-color: #999;
-
+  color: var(--syntax-color);
+  /* background-color: var(--syntax-background); */
 }
 .container .editor-container pre.contentPre #content {
   outline: 0;
+  caret-color: var(--syntax-color);
 
   /** 
    * Prevent contenteditable to add p, div items on ENTER
@@ -208,65 +224,122 @@ body.dragging .container .preview-container .drag-overlay {
 
 .mdFrontMatter {
   color: var(--text-secondary-color);
-  background: rgba(0,0,0,0.025);
+  /* background: rgba(255,255,255,.025);
   display: block;
   padding: 1rem 1rem .5rem 1rem;
   margin: -1rem -1rem -.5rem -1rem;
-  border-radius: 4px;
+  border-radius: 4px; */
 }
-.mdEm {
-  font-style: italic;
-}
-.mdStrong {
-  font-weight: bold;
-}
-.mdLink {
-  color: var(--link-color);
-}
-.mdHeading {
-  font-weight: bold;
-}
+
+/* visible characters */
+
 .mdAsterisk::after {
   content: "*";
-  color: var(--token-color);
 }
 .mdUnderscore::after {
   content: "_";
-  color: var(--token-color);
 }
 .mdHashmark::after {
   content: "#";
-  color: var(--token-color);
-}
-.mdHtml {
-  color: #fe7b00;
-}
-.mdQuote {
-  color: darkmagenta;
 }
 .mdGreaterThan::after {
   content: ">";
-  color: var(--token-color);
 }
 .mdDash::after {
   content: "-";
-  color: var(--token-color);
-}
-.mdListBullet {
-  color: var(--token-color);
-}
-.mdList {
-  color: darkgreen;
 }
 .mdEqual::after {
   content: "=";
-  color: var(--token-color);
 }
+.mdTilde::after {
+  content: "~";
+}
+.mdBacktick::after {
+  content: "`";
+}
+
+/* invisible characters */
 .mdNewLine::after {
   content: "\21B5";
   color: var(--token-color);
   opacity: .3;
 }
+
+/* elements */
+
+.mdHeading {
+  font-weight: bold;
+  color: var(--syntax-color-1);
+}
+.mdStrong {
+  font-weight: bold;
+  color: var(--syntax-color-1);
+}
+.mdEm {
+  font-style: italic;
+}
+.mdStrikethrough {
+  text-decoration: line-through;
+}
+.mdLink {
+
+}
+.mdLink .mdLinkText {
+  color: var(--syntax-color-2);
+}
+.mdLink .mdLinkUrl {
+  text-decoration: underline;
+}
+.mdLink .mdLinkTitle {
+  color: var(--syntax-color-2);
+}
+.mdHtml {
+  color: var(--syntax-color-1);
+}
+.mdHtml .mdHtmlAttrName {
+  color: var(--syntax-color-4);
+}
+.mdHtml .mdHtmlAttrValue {
+  color: var(--syntax-color-2);
+}
+.mdCode {
+  color: var(--syntax-color-2);
+}
+.mdCodeBlock {
+  color: var(--syntax-color-2);
+}
+.mdQuote {
+
+}
+.mdQuote .mdGreaterThan {
+  color: var(--syntax-color-3);
+}
+.mdList {
+
+}
+.mdList .mdListBullet {
+  color: var(--syntax-color-1);
+}
 .mdHr {
   
 }
+
+
+.mdLine {
+  display: inline-flex;
+}
+.mdLine .mdLineNumber {
+  text-align: right;
+  flex-shrink: 0;
+  color: var(--syntax-line-number-color);
+}
+.mdLine.mdLineActive .mdLineNumber {
+  color: var(--syntax-color);
+}
+.mdLine .mdLineContent {
+  flex-grow: 1;
+  padding-left: 1ch;
+  color: transparent;
+}
+
+/* --syntax-color-1 */
