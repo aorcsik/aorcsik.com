@@ -27,6 +27,7 @@ pre, code, samp, kbd, var {
   height: 100vh;
 
   --accent: #0080b3;
+  --on-accent: #f6f6f6;
   --background-color: #181818;
   --text-color: #CCCCCC;
   --text-secondary-color: #9B9B9B;
@@ -59,7 +60,7 @@ pre, code, samp, kbd, var {
 .container .separator:hover,
 body.dragging .container .separator {
   background-color: var(--accent);
-  color: var(--text-color);
+  color: var(--on-accent);
 }
 body.dragging,
 body.dragging .container .separator {
@@ -81,7 +82,8 @@ body.dragging .container .separator {
   border-bottom: 1px solid var(--border-color);
 }
 .container .editor-header .status {
-  padding-right: .5rem;
+  padding: 0 .5rem 0 .5rem;
+  margin-right: .5rem;
   display: none;
 }
 .container.status-loading .editor-header .status-loading {
@@ -100,25 +102,22 @@ body.dragging .container .separator {
   background-color: transparent;
   color: var(--text-secondary-color);
   font-family: var(--monospace-font);
+  outline: 0;
+  flex-grow: 1;
 }
 
 .container .editor-header button[name="save"] {
   padding: .5rem 1rem;
   border: 0;
   background: var(--accent);
-  color: var(--text-color);
+  color: var(--on-accent);
   border-radius: .25rem;
   margin-left: auto;
 }
-.container .editor-header button[name="save"] i {
-  display: none;
-}
 .container .editor-header button[name="save"]:disabled {
   background: rgba(0,0,0,0.3);
+  color: var(--text-secondary-color);
   cursor: not-allowed;
-}
-.container .editor-header button[name="save"].saving i {
-  display: inline-block;
 }
 
 .container .editor-container {
@@ -341,5 +340,16 @@ body.dragging .container .preview-container .drag-overlay {
   padding-left: 1ch;
   color: transparent;
 }
+
+.mdComment {
+  color: var(--syntax-color-3);
+}
+.mdComment .mdCommentStart::after {
+  content: "<!--";
+}
+.mdComment .mdCommentEnd::after {
+  content: "-->";
+}
+
 
 /* --syntax-color-1 */

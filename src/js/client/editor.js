@@ -23,29 +23,31 @@ const contentScrollHandler = () => {
 };
 
 let savedContent = null;
-let isLoading = 0;
+let updateStatusThrottle = null;
 const updateStatus = () => {
-  const markdownText = document.getElementById("content").innerText;
+  if (updateStatusThrottle) window.clearTimeout(updateStatusThrottle);
+  updateStatusThrottle = window.setTimeout(() => {
+    const markdownText = document.getElementById("content").innerText;
+    const isLoading = document.querySelectorAll(".preview-container iframe").length;
 
-  let status = "saved";
-  if (isLoading > 0) {
-    status = "loading";
-  } else if (savedContent !== markdownText) {
-    status = "changed";
-  } else {
-    status = "saved";
-  }
+    let status;
+    if (isLoading > 1) {
+      status = "loading";
+    } else if (savedContent !== markdownText) {
+      status = "changed";
+    } else {
+      status = "saved";
+    }
 
-  document.querySelector(".container").className = document.querySelector(".container").className.replaceAll(/( status-loading| status-saved| status-changed)/gm, "");
-  document.querySelector(".container").className += ` status-${status}`;
+    document.querySelector(".container").className = document.querySelector(".container").className.replaceAll(/( status-loading| status-saved| status-changed)/gm, "");
+    document.querySelector(".container").className += ` status-${status}`;
 
-  if (status === "loading" || status === "saved") {
-    document.querySelector("form.editor-container button[name=save]").setAttribute("disabled", true);
-  } else {
-    document.querySelector("form.editor-container button[name=save]").removeAttribute("disabled");
-  }
-
-  return status;
+    if (status === "loading" || status === "saved") {
+      document.querySelector("form.editor-container button[name=save]").setAttribute("disabled", true);
+    } else {
+      document.querySelector("form.editor-container button[name=save]").removeAttribute("disabled");
+    }
+  }, 100);
 };
 
 /**
@@ -70,17 +72,24 @@ let iframeId = (new Date()).getTime();
 let changeThrottle = null;
 const changeHandler = (event) => {
 
-  /* fix Grammarly blend mode issue with dark content */ 
   // document.querySelectorAll("grammarly-extension").forEach((gE) => {
   //   const styleNode = document.createElement("style");
+  //   /* fix Grammarly blend mode issue with dark content */ 
   //   styleNode.textContent = `
   //     div[data-grammarly-part="highlight"] { 
   //       mix-blend-mode: normal !important; 
   //     }
   //   `;
+  //   /* change grammarly tool position */
+  //   styleNode.textContent = `
+  //     div[data-grammarly-part="button"] > div > div { 
+  //       position: fixed !important;
+  //       top: auto !important;
+  //       bottom: 10px !important;
+  //     }
+  //   `;
   //   gE.shadowRoot.appendChild(styleNode);
   // });
-
 
   const editableContent = document.getElementById("content");
   const styleContent = document.getElementById("contentStyle");
@@ -127,6 +136,7 @@ const changeHandler = (event) => {
     "=": "<span class='mdEqual'></span>",
     "~": "<span class='mdTilde'></span>",
     "`": "<span class='mdBacktick'></span>",
+
     "newline": "<span class='mdNewLine'></span>",
     "heading": "<span class='mdHeading'>%%</span>",
     "em": "<span class='mdEm'>%%</span>",
@@ -136,10 +146,12 @@ const changeHandler = (event) => {
     "list": "<span class='mdList'>%%</span>",
     "list_bullet": "<span class='mdListBullet'>%%</span>",
     "link": "<span class='mdLink'>[<span class='mdLinkText'>%1</span>](<span class='mdLinkUrl'>%2</span><span class='mdLinkTitle'>%3</span>)</span>",
+    "image": "<span class='mdLink'>![<span class='mdLinkText'>%1</span>](<span class='mdLinkUrl'>%2</span><span class='mdLinkTitle'>%3</span>)</span>",
     "code": "<span class='mdCode'>%%</span>",
     "code_block": "<span class='mdCodeBlock'>%%</span>",
     "html": "<span class='mdHtml'>%%</span>",
     "hr": "<span class='mdHr'>%%</span>",
+    "comment": "<span class='mdComment'><span class='mdCommentStart'></span>%%<span class='mdCommentEnd'></span></span>",
   };
 
   markdownText = markdownText.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
@@ -164,6 +176,13 @@ const changeHandler = (event) => {
   editorInfo.wordCount = countWords(markdownText);
   editorInfo.readingTime = calculateReadingTime(markdownText);
 
+  const comments = [];
+  const mdCommentMatch = markdownText.matchAll(/&lt;!--(.*?)--&gt;/gms);
+  if (mdCommentMatch) [...mdCommentMatch].forEach(match => {
+    markdownText = markdownText.replaceAll(match[0], `{comment:${comments.length}}`);
+    comments.push(markupMap.comment.replace("%%", match[1]));
+  });
+
   const mdHeadingMatch = markdownText.matchAll(/^(#{1,6})(\s+.*)/gm);
   if (mdHeadingMatch) [...mdHeadingMatch].forEach(match => {
     const markup = match[1].split("").map((m) => markupMap[m]).join("");
@@ -185,7 +204,6 @@ const changeHandler = (event) => {
   const mdCodeBlockMatch = markdownText.matchAll(/(```)(\s*[^\s]?)(.*?)\1\n/gms);
   if (mdCodeBlockMatch) [...mdCodeBlockMatch].forEach(match => {
     const markup = match[1].split("").map((m) => markupMap[m]).join("");
-    console.log(match);
     markdownText = markdownText.replaceAll(match[0], markupMap.code_block.replace("%%", `${markup}${match[2] || ''}${match[3]}${markup}`));
   });
 
@@ -196,13 +214,21 @@ const changeHandler = (event) => {
     markdownText = markdownText.replace(match[0], markupMap.code.replace("%%", `${markup}${match[2]}${markup}`));
   });
 
-  const mdLinkMatch = markdownText.matchAll(/!?\[([^\]]+?)\]\(([^\s]+?)(\s+".*?")?\)/gm);
+  const mdLinkMatch = markdownText.matchAll(/(!)??\[([^\]]+?)\]\(([^\s]+?)(\s+".*?")?\)/gm);
   if (mdLinkMatch) [...mdLinkMatch].forEach(match => {
-    markdownText = markdownText.replaceAll(match[0], markupMap.link
-      .replace("%1", match[1])
-      .replace("%2", match[2])
-      .replace("%3", match[3] || '')
-    );
+    if (match[1]) {
+      markdownText = markdownText.replaceAll(match[0], markupMap.image
+        .replace("%1", match[2])
+        .replace("%2", match[3])
+        .replace("%3", match[4] || '')
+      );      
+    } else {
+      markdownText = markdownText.replaceAll(match[0], markupMap.link
+        .replace("%1", match[2])
+        .replace("%2", match[3])
+        .replace("%3", match[4] || '')
+      );
+    }
   });
 
   const mdQuoteMatch = markdownText.matchAll(/^([ \t]*)(&gt;(\s*&gt;)*)(.*?\n\n)/gms);
@@ -261,6 +287,10 @@ const changeHandler = (event) => {
     markdownText = markdownText.replace(match[0], markupMap.html.replace("%%", content));
   });
 
+  comments.forEach((markup, idx) => {
+    markdownText = markdownText.replace(`{comment:${idx}}`, markup);
+  });
+
   markdownText = markdownText.replaceAll(/\n/gms, `${markupMap.newline}\n`);
 
   document.getElementById("contentStyle").innerHTML = frontMatter + markdownText;
@@ -276,12 +306,11 @@ const changeHandler = (event) => {
     if (document.querySelector("form.editor-container input[name=content]").value !== markdownText) {
       document.querySelector("form.editor-container input[name=content]").value = markdownText;
 
-      isLoading++;
-      updateStatus();
-
       const newIframe = document.createElement("iframe");
       newIframe.setAttribute("name", `temp_iframe_${iframeId}`);
       document.querySelector(".preview-container").appendChild(newIframe);
+      updateStatus();
+
       window.iframeLoaded = () => {
         const iframeName = document.querySelector("form.editor-container").getAttribute('target');
         document.querySelector(`iframe[name="${iframeName}"]`).style.opacity = 1;
@@ -289,15 +318,15 @@ const changeHandler = (event) => {
           if (iframe.getAttribute("name") < iframeName) {
             iframe.remove();
           }
-        });
-    
-        isLoading--;
+        });    
         updateStatus();
+
         contentScrollHandler();
       };
 
+      newIframe.addEventListener("load", window.iframeLoaded);
       newIframe.addEventListener("error", (event) => {
-        console.log(error);
+        console.log(event);
       });
 
       document.querySelector("form.editor-container").setAttribute("target", `temp_iframe_${iframeId}`);
@@ -312,8 +341,11 @@ changeHandler();
 
 const submitHandler = (event) => {
   if (event.submitter.name === "save") {
+    console.log("Saving...");
     savedContent = event.target.content.value;
     // changeHandler();
+  } else {
+    console.log("Previewing...");
   }
 };
 
