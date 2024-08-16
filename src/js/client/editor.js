@@ -3,6 +3,10 @@ import { calculateReadingTime, countWords } from "../server/shared";
 
 import "../../css/editor.css";
 
+const getContent = () => {
+  return document.getElementById("content").innerText.replace(/\n$/s, "");
+};
+
 const contentScrollHandler = () => {
   const editorScrollValue = document.querySelector(".editor-content").scrollTop;
   const editorContentHeight = document.querySelector(".editor-content pre").offsetHeight;
@@ -27,7 +31,7 @@ let updateStatusThrottle = null;
 const updateStatus = () => {
   if (updateStatusThrottle) window.clearTimeout(updateStatusThrottle);
   updateStatusThrottle = window.setTimeout(() => {
-    const markdownText = document.getElementById("content").innerText;
+    const markdownText = getContent();
     const isLoading = document.querySelectorAll(".preview-container iframe").length;
 
     let status;
@@ -102,7 +106,7 @@ const changeHandler = (event) => {
     readingTime: 0,
   };
 
-  let markdownText = editableContent.innerText;
+  let markdownText = getContent();
 
   const selection = getRange(editableContent);
   if (selection) {
@@ -162,7 +166,7 @@ const changeHandler = (event) => {
       `<span class='mdLineNumber' style='width: ${gutterSize}ch;'>${idx + 1}</span>` +
       `<span class='mdLineContent'>${line}</span>` +
     "</span>";
-  }).slice(0, -1).join("\n") + "\n";
+  }).join("\n");
   styleContent.style.paddingLeft = `${gutterSize + 1}ch`;
   editableContent.style.paddingLeft = `${gutterSize + 1}ch`;
 
@@ -302,7 +306,7 @@ const changeHandler = (event) => {
 
   window.clearTimeout(changeThrottle);
   changeThrottle = window.setTimeout(() => { 
-    let markdownText = document.getElementById("content").innerText;
+    let markdownText = getContent();
     if (document.querySelector("form.editor-container input[name=content]").value !== markdownText) {
       document.querySelector("form.editor-container input[name=content]").value = markdownText;
 
