@@ -1,4 +1,4 @@
-import "../../images/apple-touch-icon.png";
+import "../../images/apple-touch-icon.png"; /* tell webpack to bundle this image */
 import "../../css/client.css";
 
 const scrollHandler = async (event) => {

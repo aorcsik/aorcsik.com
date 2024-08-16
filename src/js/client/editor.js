@@ -171,9 +171,22 @@ const changeHandler = (event) => {
   editableContent.style.paddingLeft = `${gutterSize + 1}ch`;
 
   let frontMatter = '';
-  const mdFrontMatterMatch = markdownText.match(/---.*?---\n/ms);
+  const mdFrontMatterMatch = markdownText.match(/(---)(.*?)(---\n)/ms);
   if (mdFrontMatterMatch) {
-    frontMatter = `<span class='mdFrontMatter'>${mdFrontMatterMatch[0]}</span>`;
+    let frontMatterContent = mdFrontMatterMatch[2];
+    const recordsMatch = frontMatterContent.matchAll(/(\s*.*?:|\s*-\s+)(.*\n)/gm);
+    if (recordsMatch) [...recordsMatch].forEach(match => {
+      frontMatterContent = frontMatterContent.replace(match[0], 
+        `<span class='mdFrontMatterRecordName'>${match[1]}</span>` +
+        `<span class='mdFrontMatterRecordValue'>${match[2]}</span>`
+      );
+    });
+    console.log(frontMatterContent);
+    frontMatter = "<span class='mdFrontMatter'>" +
+      mdFrontMatterMatch[1].replaceAll("-", markupMap['-']) +
+      frontMatterContent +
+      mdFrontMatterMatch[3].replaceAll("-", markupMap['-']) +
+    "</span>";
     markdownText = markdownText.replace(mdFrontMatterMatch[0], '');
   }
 

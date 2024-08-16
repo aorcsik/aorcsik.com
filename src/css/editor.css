@@ -295,10 +295,12 @@ body.dragging .container .preview-container .drag-overlay {
 .mdHtml {
   color: var(--syntax-color-1);
 }
-.mdHtml .mdHtmlAttrName {
+.mdHtml .mdHtmlAttrName,
+.mdFrontMatter .mdFrontMatterRecordName {
   color: var(--syntax-color-4);
 }
-.mdHtml .mdHtmlAttrValue {
+.mdHtml .mdHtmlAttrValue,
+.mdFrontMatter .mdFrontMatterRecordValue {
   color: var(--syntax-color-2);
 }
 .mdCode {
