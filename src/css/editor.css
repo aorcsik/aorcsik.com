@@ -260,8 +260,17 @@ body.dragging .container .preview-container .drag-overlay {
 /* invisible characters */
 .mdNewLine::after {
   content: "\21B5";
-  color: var(--token-color);
-  opacity: .3;
+  opacity: .2;
+}
+.mdSpace {
+  position: relative;
+}
+.mdSpace::after {
+  content: "\2022";
+  opacity: .2;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* elements */
@@ -341,6 +350,9 @@ body.dragging .container .preview-container .drag-overlay {
   flex-grow: 1;
   padding-left: 1ch;
   color: transparent;
+}
+.mdLine .mdLineContent .mdSpace {
+  color: var(--syntax-color);
 }
 
 .mdComment {

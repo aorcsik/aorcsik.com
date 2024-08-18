@@ -142,6 +142,8 @@ const changeHandler = (event) => {
     "`": "<span class='mdBacktick'></span>",
 
     "newline": "<span class='mdNewLine'></span>",
+    "space": "<span class='mdSpace'> </span>",
+
     "heading": "<span class='mdHeading'>%%</span>",
     "em": "<span class='mdEm'>%%</span>",
     "strong": "<span class='mdStrong'>%%</span>",
@@ -164,7 +166,7 @@ const changeHandler = (event) => {
   linesContent.innerHTML = markdownText.split("\n").map((line, idx) => {
     return `<span class='mdLine${editorInfo.line - 1 === idx ? ' mdLineActive' : ''}'>` + 
       `<span class='mdLineNumber' style='width: ${gutterSize}ch;'>${idx + 1}</span>` +
-      `<span class='mdLineContent'>${line}</span>` +
+      `<span class='mdLineContent'>${line/*.replaceAll(/ /gms, `${markupMap.space}`)*/}</span>` +
     "</span>";
   }).join("\n");
   styleContent.style.paddingLeft = `${gutterSize + 1}ch`;
@@ -308,9 +310,15 @@ const changeHandler = (event) => {
     markdownText = markdownText.replace(`{comment:${idx}}`, markup);
   });
 
-  markdownText = markdownText.replaceAll(/\n/gms, `${markupMap.newline}\n`);
+  markdownText = frontMatter + markdownText;
 
-  document.getElementById("contentStyle").innerHTML = frontMatter + markdownText;
+  markdownText = markdownText.replaceAll(/\n/gms, `${markupMap.newline}\n`);
+  // const textMatch = markdownText.matchAll(/>[^<]+</gms);
+  // if (textMatch) [...textMatch].forEach(match => {
+  //   markdownText = markdownText.replace(match[0], match[0].replaceAll(/ /gms, `${markupMap.space}`));
+  // });
+
+  document.getElementById("contentStyle").innerHTML = markdownText;
   document.querySelector(".editor-footer").innerHTML = `
     Ln ${editorInfo.line}, Col ${editorInfo.column} |
     ${editorInfo.wordCount} words | 
