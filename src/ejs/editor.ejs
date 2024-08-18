@@ -37,8 +37,9 @@
       <div class="editor-content">
         <pre class="contentStylePre"><div id="contentStyle"></div></pre>
         <pre class="contentLinesPre"><div id="contentLines"></div></pre>
-        <pre class="contentPre"><div id="content" contenteditable><%= context.rawContent %>
-</div></pre>
+        <!-- <pre class="contentPre"><div id="content" contenteditable><%= context.rawContent %>
+</div></pre> -->
+        <textarea id="contentTextarea"><%= context.rawContent %></textarea>
       </div>
       <div class="editor-footer"></div>
     </form>

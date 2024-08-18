@@ -3,15 +3,25 @@ import { calculateReadingTime, countWords } from "../server/shared";
 
 import "../../css/editor.css";
 
+const editableContentId = "contentTextarea";
+
 const getContent = () => {
-  return document.getElementById("content").innerText.replace(/\n$/s, "");
+  const editableContent = document.getElementById(editableContentId);
+  if (editableContent.value) {
+    return editableContent.value;
+  }
+  return editableContent.innerText.replace(/\n$/s, "");
 };
 
-const contentScrollHandler = () => {
-  const editorScrollValue = document.querySelector(".editor-content").scrollTop;
-  const editorContentHeight = document.querySelector(".editor-content pre").offsetHeight;
-  const editorContainerHeight = document.querySelector(".editor-content").offsetHeight;
+// const editableContentScrollHandler = () => {
+//   const editorScrollValue = document.querySelector(".editor-content").scrollTop;
+//   const editorContentHeight = document.querySelector(".editor-content pre").offsetHeight;
+//   const editorContainerHeight = document.querySelector(".editor-content").offsetHeight;
 
+//   previewScrollMatcher(editorScrollValue, editorContentHeight, editorContainerHeight);
+// };
+
+const previewScrollMatcher = (editorScrollValue, editorContentHeight, editorContainerHeight) => {
   const readPercentage = getReadPercentage(editorScrollValue, editorContentHeight, editorContainerHeight);
 
   document.querySelectorAll("iframe").forEach((iframe) => {
@@ -24,6 +34,18 @@ const contentScrollHandler = () => {
 
     iframeWindow.scrollTo(0, iframeScrollValue);
   });
+};
+
+const textareaContentScrollHandler = (event) => {
+  const editableContent = document.getElementById(editableContentId);
+  const styleContent = document.getElementById("contentStyle");
+  const linesContent = document.getElementById("contentLines");
+  
+  // editableContent.style.height = `${editableContent.scrollHeight}px`;
+  styleContent.parentNode.style.marginTop = `-${editableContent.scrollTop}px`;
+  linesContent.parentNode.style.marginTop = `-${editableContent.scrollTop}px`;
+
+  previewScrollMatcher(editableContent.scrollTop, editableContent.scrollHeight, editableContent.offsetHeight);
 };
 
 let savedContent = null;
@@ -75,7 +97,6 @@ const getRange = (editableContent) => {
 let iframeId = (new Date()).getTime();
 let changeThrottle = null;
 const changeHandler = (event) => {
-
   // document.querySelectorAll("grammarly-extension").forEach((gE) => {
   //   const styleNode = document.createElement("style");
   //   /* fix Grammarly blend mode issue with dark content */ 
@@ -95,9 +116,18 @@ const changeHandler = (event) => {
   //   gE.shadowRoot.appendChild(styleNode);
   // });
 
-  const editableContent = document.getElementById("content");
+  const editableContent = document.getElementById(editableContentId);
   const styleContent = document.getElementById("contentStyle");
   const linesContent = document.getElementById("contentLines");
+
+  if (event && event.relatedTarget && event.relatedTarget.tagName === "GRAMMARLY-POPUPS") {
+    window.setTimeout(() => {
+      editableContent.blur();
+      window.setTimeout(() => {
+        editableContent.focus();
+      }, 5);
+    }, 5);
+  }
 
   const editorInfo = {
     line: 0,
@@ -183,7 +213,6 @@ const changeHandler = (event) => {
         `<span class='mdFrontMatterRecordValue'>${match[2]}</span>`
       );
     });
-    console.log(frontMatterContent);
     frontMatter = "<span class='mdFrontMatter'>" +
       mdFrontMatterMatch[1].replaceAll("-", markupMap['-']) +
       frontMatterContent +
@@ -346,7 +375,7 @@ const changeHandler = (event) => {
         });    
         updateStatus();
 
-        contentScrollHandler();
+        textareaContentScrollHandler();
       };
 
       newIframe.addEventListener("load", window.iframeLoaded);
@@ -374,12 +403,6 @@ const submitHandler = (event) => {
   }
 };
 
-const saveHandéer = () => {
-  let markdownText = document.getElementById("content").innerText;
-  document.querySelector("form.editor-container input[name=content]").value = markdownText;
-  savedContent = markdownText;
-};
-
 let separatorDragging = false;
 
 const separatorDragStartHandler = (event) => {
@@ -402,22 +425,22 @@ const separatorDragStopHandler = (event) => {
   }
 };
 
-"focus keyup paste input click".split(" ").forEach(eventType => document.getElementById("content").addEventListener(eventType, changeHandler));
+"focus keyup paste input click".split(" ").forEach(eventType => document.getElementById("contentTextarea").addEventListener(eventType, changeHandler));
 document.querySelector("form.editor-container").addEventListener("submit", submitHandler);
-// document.querySelector("button[name=save]").addEventListener("click", saveHandéer);
-document.querySelector(".editor-content").addEventListener("scroll", contentScrollHandler);
+document.getElementById("contentTextarea").addEventListener("scroll", textareaContentScrollHandler);
+// document.querySelector(".editor-content").addEventListener("scroll", editableContentScrollHandler);
 document.querySelector(".separator").addEventListener("mousedown", separatorDragStartHandler);
 window.addEventListener("mousemove", separatorDragHandler);
 window.addEventListener("mouseup", separatorDragStopHandler);
 
-document.getElementById("content").focus();
+document.getElementById(editableContentId).focus();
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.dispose(() => {
-    "focus keyup paste input click".split(" ").forEach(eventType => document.getElementById("content").removeEventListener(eventType, changeHandler));
+    "focus keyup paste input click".split(" ").forEach(eventType => document.getElementById(editableContentId).removeEventListener(eventType, changeHandler));
     document.querySelector("form.editor-container").removeEventListener("submit", submitHandler);
-    // document.querySelector("button[name=save]").removeEventListener("click", saveHandéer);
-    document.querySelector(".editor-content").removeEventListener("scroll", contentScrollHandler);
+    document.getElementById("contentTextarea").removeEventListener("scroll", textareaContentScrollHandler);
+    // document.querySelector(".editor-content").removeEventListener("scroll", editableContentScrollHandler);
     document.querySelector(".separator").removeEventListener("mousedown", separatorDragStartHandler);
     window.removeEventListener("mousemove", separatorDragHandler);
     window.removeEventListener("mouseup", separatorDragStopHandler);

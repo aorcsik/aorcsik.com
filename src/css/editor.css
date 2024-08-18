@@ -146,13 +146,49 @@ body.dragging .container .separator {
   background-color: var(--syntax-background);
 }
 
+.container .editor-container #contentTextarea,
 .container .editor-container pre {
   white-space: pre-wrap;
-  margin: 0;
-  padding: 1rem 1rem 50% 1rem;
+  margin: 0 1rem 0 1rem;
   font-size: 0.8rem;
 }
-.container .editor-container pre > div {
+
+.container .editor-container #contentTextarea {
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; */
+  /* color: rgba(255,255,255,0.2); */
+  color: transparent;
+  caret-color: var(--syntax-color);
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font-family: var(--monospace-font);
+  font-size: 0.8rem;
+  flex-grow: 1;
+  z-index: 3;
+  resize: none;
+}
+
+.container .editor-container pre.contentLinesPre {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+.container .editor-container pre.contentStylePre {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: var(--syntax-color);
+  z-index: 2;
+  /* background-color: var(--syntax-background); */
 }
 .container .editor-container pre.contentPre {
   position: absolute;
@@ -161,18 +197,6 @@ body.dragging .container .separator {
   right: 0;
   bottom: 0;
   color: transparent;
-}
-.container .editor-container pre.contentLinesPre {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.container .editor-container pre.contentStylePre {
-  flex-grow: 1;
-  color: var(--syntax-color);
-  /* background-color: var(--syntax-background); */
 }
 .container .editor-container pre.contentPre #content {
   outline: 0;
