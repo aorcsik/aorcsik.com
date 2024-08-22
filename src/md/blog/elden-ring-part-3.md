@@ -1,5 +1,5 @@
 ---
-description: I started exploring Caelid, tied some loose ends in Limgrave and went back to Liurnia to kill a dragon.
+description: I started exploring Caelid, tied some loose ends in Limgrave, and returned to Liurnia to kill a dragon.
 image: https://static.aorcsik.com/blog/elden-ring-social.webp
 author: aorcsik
 published_at: 2024.07.16
@@ -22,7 +22,7 @@ draft: true
 
 No, I'm definitely not strong enough. I spent some time getting myself smashed by the [Troll Knight](https://eldenring.wiki.fextralife.com/Troll+Knight) over and over. I have to figure something out. Maybe I should leave this place for now. Or... let Roppy tank the giant and run past? I have to think this through.
 
-I left to check the [Minor Erdteee](https://eldenring.wiki.fextralife.com/Minor+Erdtree+(Caelid)) and its [Putrid Avatar](https://eldenring.wiki.fextralife.com/Putrid+Avatar) in northwest [Caelid](https://eldenring.wiki.fextralife.com/Caelid). But first, I had some business with an invader, [Anastasia, Tarnished-Eater](https://eldenring.wiki.fextralife.com/Anastasia+Tarnished-Eater) near the [Smoldering Church](https://eldenring.wiki.fextralife.com/Smoldering+Church). Dealing with her was much smoother than I expected, I got the [Sacred Scorpion Charm](https://eldenring.wiki.fextralife.com/Sacred+Scorpion+Charm) and continued towards my original goal. 
+I left to check the [Minor Erdtree](https://eldenring.wiki.fextralife.com/Minor+Erdtree+(Caelid)) and its [Putrid Avatar](https://eldenring.wiki.fextralife.com/Putrid+Avatar) in northwest [Caelid](https://eldenring.wiki.fextralife.com/Caelid). But first, I had some business with an invader, [Anastasia, Tarnished-Eater](https://eldenring.wiki.fextralife.com/Anastasia+Tarnished-Eater) near the [Smoldering Church](https://eldenring.wiki.fextralife.com/Smoldering+Church). Dealing with her was much smoother than I expected. I got the [Sacred Scorpion Charm](https://eldenring.wiki.fextralife.com/Sacred+Scorpion+Charm) and continued towards my original goal. 
 
 [Sir Oakheart vs. Anastasia, Tarnished-Eater (Smoldering Church)](https://youtu.be/liN1e3Xh-TY#embed)
 
@@ -30,9 +30,9 @@ Well, this avatar proved to be tough. It also inflicts [scarlet rot](https://eld
 
 Let's check something else on my wishlist: the [Black Whetblade](https://eldenring.wiki.fextralife.com/Black+Whetblade) in the [Siofra River](https://eldenring.wiki.fextralife.com/Siofra+River) region... After wandering around for a while, I realized that the knife is actually in [Nokron, Eternal City](https://eldenring.wiki.fextralife.com/Nokron,+Eternal+City), one level above the river, and the two are not directly connected. Great, again.
 
-Anyway, while I was down there looking for a way into Nokron, I found a point of interest northeast on the map and tried to reach it while gathering runes and materials and lighting strange statues on the way. It was another elevator, the [Deep Siofra Well](https://eldenring.wiki.fextralife.com/Deep+Siofra+Well), locked by a gargoyle statue. It took me back to *(drumroll)* Caelid. Great, mother of Godwyn.
+Anyway, while looking for a way into Nokron, I found a point of interest northeast on the map and tried to reach it while gathering runes and materials and lighting strange statues. It was another elevator, the [Deep Siofra Well](https://eldenring.wiki.fextralife.com/Deep+Siofra+Well), locked by a gargoyle statue. It took me back to *(drumroll)* Caelid—great, mother of Godwyn.
 
-Ok, something told me I should stay here and explore, at least gather the maps. I managed to do that after much running around and avoiding dangerous foes. Then I found some [ruins](https://eldenring.wiki.fextralife.com/Caelem+Ruins) with [burning kamikaze zombies](https://eldenring.wiki.fextralife.com/Putrid+Corpse). I killed a bunch of them, avoiding the [Flame Chariots](https://eldenring.wiki.fextralife.com/Flame+Chariot), when I found the way underground to a boss arena, with a [Mad Pumpkin Head](https://eldenring.wiki.fextralife.com/Mad+Pumpkin+Head) Duo(!). OMFG! Actually, the first try went rather well. I killed one before the other finished me. This gave me some hope, so I kept trying and managed to beat them. My reward was a [Visage Shield](https://eldenring.wiki.fextralife.com/Visage+Shield), which I can't use yet, but it is nice nevertheless.
+Ok, something told me I should stay here and explore, at least gather the maps. I managed to do that after much running around and avoiding dangerous foes. Then I found some [ruins](https://eldenring.wiki.fextralife.com/Caelem+Ruins) with [burning kamikaze zombies](https://eldenring.wiki.fextralife.com/Putrid+Corpse). I killed a bunch of them, avoiding the [Flame Chariots](https://eldenring.wiki.fextralife.com/Flame+Chariot), when I found the way underground to a boss arena, with a [Mad Pumpkin Head](https://eldenring.wiki.fextralife.com/Mad+Pumpkin+Head) Duo(!). OMFG! The first try went rather well. I killed one before the other finished me. This gave me some hope, so I kept trying and managed to beat them. My reward was a [Visage Shield](https://eldenring.wiki.fextralife.com/Visage+Shield), which I can't use yet but is a nice shield.
 
 [Sir Oakheart vs. Mad Pumpkin Head Duo](https://youtu.be/gVP3yOBaVqc#embed)
 
@@ -40,23 +40,23 @@ I decided this was the right time to call it a day.
 
 #### Day 15
 
-So, I had some loose ends to tie in Limgrave, let's start with the howling at the mist ruins. Kale told me to snap my fingers there. I don't know if it was necessary to kill the runebear, but I did it anyway, it might have been sleeping there nice and peaceful, but if I wake it up, it's not nice and definitely not peaceful.
+So, I had some loose ends to tie in Limgrave. Let's start with the howling at [Mistwood Ruins](https://eldenring.wiki.fextralife.com/Mistwood+Ruins). [Kalé](https://eldenring.wiki.fextralife.com/Merchant+Kale "Merchant Kalé") told me to [snap my fingers](https://eldenring.wiki.fextralife.com/Gestures "Finger Snap Gesture") there. I don't know if it was necessary to kill the [Runebear](https://eldenring.wiki.fextralife.com/Runebear), but I did it anyway. It might have been sleeping there nice and peaceful, but it won't be nice or peaceful if I wake it up.
 
-Blaidd, the half wolf was waiting for me in a dark corner of the ruins and asked for my help tracking down someone called Darrivill. Oh, I know that guy, back at the Evergaol. I went back just to find Blaidd there waiting for me, he said his thanks for my help with a somber smithing stone, which I actually used to upgrade the Bloodhound's Fang, it was about time.
+Blaidd, the half-wolf, was waiting for me in a dark corner of the ruins and asked for my help tracking down someone called [Darrivil](https://eldenring.wiki.fextralife.com/Bloodhound+Knight+Darriwil "Bloodhound Knight Darriwil"). Oh, I know that guy back from the [Evergaol](https://eldenring.wiki.fextralife.com/Forlon+Hound+Evergaol "Forlon Hound Evergaol"). I went back to find Blaidd there waiting for me. He said his thanks for my help with a [Somber Smithing Stone (2)](https://eldenring.wiki.fextralife.com/Somber+Smithing+stone+[2]), which I eventually used to upgrade the [Bloodhound's Fang](https://eldenring.wiki.fextralife.com/Bloodhound's+Fang). It was about time.
 
-I remembered some ruins nearby with a dangerous plant, it was really scary before so I kept my distance, but now felt like giving it a go. On the way from the Evergaol I saw the caravan, omg, two impaled trolls dragging a carriage followed by a dozen nobles, soldiers on foot and horseback. Anothe intimidating sight I was only watching from the distance. Now I decided to see what they are carrying. I have come long way, killing the whole entourage including the trolls only took a few minutes and my reward was a great axe.
+I remembered some [ruins](https://eldenring.wiki.fextralife.com/Waypoint+Ruins "Waypoint Ruins") nearby with a dangerous-looking plant. It looked scary before, so I kept my distance, but now I felt like giving it a go. On my way from the Evergaol, I saw the caravan, omg, two impaled trolls dragging a [carriage](https://eldenring.wiki.fextralife.com/Carriage) followed by a dozen nobles, soldiers on foot and horseback. Another intimidating sight I was only watching from a distance before. Now, I decided to see what they were carrying. I have come a long way. Killing the whole entourage, including the trolls, only took a few minutes, and my reward was a [Greataxe](https://eldenring.wiki.fextralife.com/Greataxe).
 
-Now back to the Waypoint ruins. Finished the plant, it was actually very similar to the boss version I fought before, but I was poisoned and used all my FP here and at the caravan, so when I entered the boss room the Mad Pumpkinhead smashed me to pulp. No matter, had some rest at the nearby grace and gave it another go. Not it melted like butter. 
+Now, back to Waypoint Ruins. I finished the [plant](https://eldenring.wiki.fextralife.com/Giant+Miranda+Sprout "Giant Miranda Sprout"). It was very similar to the [boss version](https://eldenring.wiki.fextralife.com/Miranda+the+Blighted+Bloom "Miranda the Blighted Bloom") I fought before, but I was poisoned and used all my FP here and at the caravan, so when I entered the boss room, the [Mad Pumpkin Head](https://eldenring.wiki.fextralife.com/Mad+Pumpkin+Head) smashed me to a pulp. No matter. I rested at the nearby site of Grace and gave it another go. Now, it melted like butter.
+
+[Sir Oakheart vs. Mad Pumpkin Head (Waypoint Ruins)](https://youtu.be/g91JqXQha8I#embed)
+
+And my reward: behind door number "only one," a lady was waiting among glintstone crystals. [Sorceress Sellen](https://eldenring.wiki.fextralife.com/Sorceress+Sellen) was an academy dropout who offered her services to teach me sorcery. Well, only if I could use any. Who knows, maybe at a later time.
+
+The next stop was the [Coastal Cave](https://eldenring.wiki.fextralife.com/Coastal+Cave). Well, look at that. I found a frail figure crawling up in a knot near the site of Grace—Boc, the friendly demi-human who was turned into a tree when we first met. I freed him a few days ago, and he told me about the bullies in his cave. Now, let's see about that. I cleared the cave and recovered Boc's [Sewing Needle](https://eldenring.wiki.fextralife.com/Sewing+Needle) and some [Tailoring Tools](https://eldenring.wiki.fextralife.com/Tailoring+Tools) from the [Demi-human Chiefs](https://eldenring.wiki.fextralife.com/Demi-Human+Chief). The little guy finally has a purpose. I can alter some of my armaments. Or he can do it for free. Neat. *(It turns out I summoned some [Old Knight Istvan](https://eldenring.wiki.fextralife.com/Old+Knight+Istvan), but I didn't notice at the time.)*
 
 [video]
 
-And my reward: behind door "only one" there was a lady waiting among glintstone crystals. An academy dropout, who offered her services to teahc me sorcery. Well only if could use any. who knows, maybe at a later time.
-
-Next stop, the Coastal Cave, well, look at that, I found a frail figure crawled up in a knot near the grave. It was Boc, the friendly demi-human, who was turned into a tree. I freed him a few days ago and he was telling me about the bullies in his cave. Now, let's see about that. I cleared the cave, and recovered Boc's sawing needle and a sawing kit. Now he has a purpose and I can alter my Armor, neat.
-
-[video]
-
-There was a tunnel leading outside the boss arena, I took that instead of teleporting back to the beginning and boy it was a good decision. I came out to the on a nearby island with the Church of Dragon something on it. Here I could learn dragon incantations in exchange for dragon hearts... but where could I get one. I remember a dragon in the lake, he is on my list.
+Defeating theThere was a tunnel leading outside the boss arena, I took that instead of teleporting back to the beginning and boy it was a good decision. I came out to the on a nearby island with the Church of Dragon something on it. Here I could learn dragon incantations in exchange for dragon hearts... but where could I get one. I remember a dragon in the lake, he is on my list.
 
 I tracked down the dragon, and gave him hell with Roppy and the Hookclaws. I was burned a few times pretty bad, but eventually he fell and I got his heart.
 
