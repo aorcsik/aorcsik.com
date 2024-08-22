@@ -13,12 +13,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-button, input, select, textarea {
+button, input, select {
   font-family: inherit;
 }
-pre, code, samp, kbd, var {
+pre, code, samp, kbd, var, textarea {
   font-family: var(--monospace-font);
   font-variant-ligatures: none;
+  font-feature-settings: "liga" 0;
 }
 
 .container {
@@ -133,10 +134,11 @@ body.dragging .container .separator {
   --syntax-color-2: #CE9178;
   --syntax-color-3: #6A9956;
   --syntax-color-4: #9CDCFE;
+  --syntax-color-5: #DA70D6;
   --syntax-line-number-color: #6D7681;
 }
 .container .editor-container .editor-content {
-  overflow: auto;
+  overflow: hidden;
   position: relative;
   height: 100%;
   display: flex;
@@ -154,13 +156,8 @@ body.dragging .container .separator {
 }
 
 .container .editor-container #contentTextarea {
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0; */
-  /* color: rgba(255,255,255,0.2); */
   color: transparent;
+  color: rgba(255,255,255,0.2);
   caret-color: var(--syntax-color);
   background: transparent;
   border: 0;
@@ -170,6 +167,11 @@ body.dragging .container .separator {
   flex-grow: 1;
   z-index: 3;
   resize: none;
+  overflow-y: scroll;
+  scrollbar-color: var(--syntax-line-number-color) var(--syntax-background);
+  scrollbar-width: none;
+  padding-right: 1rem;
+  margin-right: 0;
 }
 
 .container .editor-container pre.contentLinesPre {
@@ -190,24 +192,21 @@ body.dragging .container .separator {
   z-index: 2;
   /* background-color: var(--syntax-background); */
 }
-.container .editor-container pre.contentPre {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  color: transparent;
-}
-.container .editor-container pre.contentPre #content {
-  outline: 0;
-  caret-color: var(--syntax-color);
 
-  /** 
-   * Prevent contenteditable to add p, div items on ENTER
-   * @see: https://stackoverflow.com/a/24689420/601224
-   */ 
-  display: inline-block; 
+.contentScrollbar {
+  position: absolute;
+  width: .5rem;
+  height: 100px;
+  background: var(--syntax-line-number-color);
+  border-radius: .4rem;
+  top: 0;
+  right: .25rem;
+  display: none;
+  /* z-index: 10; */
 }
+/* .contentScrollbar:hover {
+  background: var(--syntax-color);
+} */
 
 .container .preview-container {
   width: 100%;
@@ -282,12 +281,20 @@ body.dragging .container .preview-container .drag-overlay {
 }
 
 /* invisible characters */
+.mdNewLine {
+  position: relative;
+  width: 0ch;
+}
 .mdNewLine::after {
   content: "\21B5";
   opacity: .2;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .mdSpace {
   position: relative;
+  width: 1ch;
 }
 .mdSpace::after {
   content: "\2022";
@@ -314,13 +321,33 @@ body.dragging .container .preview-container .drag-overlay {
   text-decoration: line-through;
 }
 .mdLink {
-
-}
-.mdLink .mdLinkText {
   color: var(--syntax-color-2);
+}
+.mdLink.mdImage {
+  color: var(--syntax-color-5);
+}
+.mdLink.mdImage::before {
+  content: "!";
+}
+.mdLink .mdLinkText::before {
+  content: "[";
+}
+.mdLink .mdLinkText::after {
+  content: "]";
 }
 .mdLink .mdLinkUrl {
   text-decoration: underline;
+}
+.mdLink .mdLinkParams {
+  color: var(--syntax-line-number-color);
+}
+.mdLink .mdLinkParams::before {
+  content: "(";
+  text-decoration: none;
+}
+.mdLink .mdLinkParams::after {
+  content: ")";
+  text-decoration: none;
 }
 .mdLink .mdLinkTitle {
   color: var(--syntax-color-2);

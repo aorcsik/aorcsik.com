@@ -3,23 +3,15 @@ import { calculateReadingTime, countWords } from "../server/shared";
 
 import "../../css/editor.css";
 
-const editableContentId = "contentTextarea";
+const contentId = "contentTextarea";
 
 const getContent = () => {
-  const editableContent = document.getElementById(editableContentId);
+  const editableContent = document.getElementById(contentId);
   if (editableContent.value) {
     return editableContent.value;
   }
   return editableContent.innerText.replace(/\n$/s, "");
 };
-
-// const editableContentScrollHandler = () => {
-//   const editorScrollValue = document.querySelector(".editor-content").scrollTop;
-//   const editorContentHeight = document.querySelector(".editor-content pre").offsetHeight;
-//   const editorContainerHeight = document.querySelector(".editor-content").offsetHeight;
-
-//   previewScrollMatcher(editorScrollValue, editorContentHeight, editorContainerHeight);
-// };
 
 const previewScrollMatcher = (editorScrollValue, editorContentHeight, editorContainerHeight) => {
   const readPercentage = getReadPercentage(editorScrollValue, editorContentHeight, editorContainerHeight);
@@ -37,15 +29,22 @@ const previewScrollMatcher = (editorScrollValue, editorContentHeight, editorCont
 };
 
 const textareaContentScrollHandler = (event) => {
-  const editableContent = document.getElementById(editableContentId);
+  const textareaContent = document.getElementById(contentId);
   const styleContent = document.getElementById("contentStyle");
   const linesContent = document.getElementById("contentLines");
   
-  // editableContent.style.height = `${editableContent.scrollHeight}px`;
-  styleContent.parentNode.style.marginTop = `-${editableContent.scrollTop}px`;
-  linesContent.parentNode.style.marginTop = `-${editableContent.scrollTop}px`;
+  styleContent.parentNode.style.marginTop = `-${textareaContent.scrollTop}px`;
+  linesContent.parentNode.style.marginTop = `-${textareaContent.scrollTop}px`;
 
-  previewScrollMatcher(editableContent.scrollTop, editableContent.scrollHeight, editableContent.offsetHeight);
+  if (textareaContent.offsetHeight >= textareaContent.scrollHeight) {
+    document.querySelector(".contentScrollbar").style.display = "none";
+  } else {
+    document.querySelector(".contentScrollbar").style.display = "block";
+    document.querySelector(".contentScrollbar").style.height = `${textareaContent.offsetHeight / textareaContent.scrollHeight * textareaContent.offsetHeight}px`;
+    document.querySelector(".contentScrollbar").style.top = `${textareaContent.scrollTop / (textareaContent.scrollHeight) * textareaContent.offsetHeight}px`;  
+  }
+
+  previewScrollMatcher(textareaContent.scrollTop, textareaContent.scrollHeight, textareaContent.offsetHeight);
 };
 
 let savedContent = null;
@@ -82,6 +81,12 @@ const updateStatus = () => {
  * @returns {Range}
  */
 const getRange = (editableContent) => {
+  if (editableContent.selectionStart || editableContent.selectionStart === 0) {
+    return {
+      startOffset: editableContent.selectionStart,
+      endOffset: editableContent.selectionEnd
+    };
+  }
   if (window.getSelection) {
     const sel = window.getSelection();
     if (sel.rangeCount) {
@@ -116,7 +121,7 @@ const changeHandler = (event) => {
   //   gE.shadowRoot.appendChild(styleNode);
   // });
 
-  const editableContent = document.getElementById(editableContentId);
+  const editableContent = document.getElementById(contentId);
   const styleContent = document.getElementById("contentStyle");
   const linesContent = document.getElementById("contentLines");
 
@@ -181,8 +186,8 @@ const changeHandler = (event) => {
     "quote": "<span class='mdQuote'>%%</span>",
     "list": "<span class='mdList'>%%</span>",
     "list_bullet": "<span class='mdListBullet'>%%</span>",
-    "link": "<span class='mdLink'>[<span class='mdLinkText'>%1</span>](<span class='mdLinkUrl'>%2</span><span class='mdLinkTitle'>%3</span>)</span>",
-    "image": "<span class='mdLink'>![<span class='mdLinkText'>%1</span>](<span class='mdLinkUrl'>%2</span><span class='mdLinkTitle'>%3</span>)</span>",
+    "link": "<span class='mdLink'><span class='mdLinkText'>%1</span><span class='mdLinkParams'><span class='mdLinkUrl'>%2</span><span class='mdLinkTitle'>%3</span></span></span>",
+    "image": "<span class='mdLink mdImage'><span class='mdLinkText'>%1</span><span class='mdLinkParams'><span class='mdLinkUrl'>%2</span></span></span>",
     "code": "<span class='mdCode'>%%</span>",
     "code_block": "<span class='mdCodeBlock'>%%</span>",
     "html": "<span class='mdHtml'>%%</span>",
@@ -196,7 +201,7 @@ const changeHandler = (event) => {
   linesContent.innerHTML = markdownText.split("\n").map((line, idx) => {
     return `<span class='mdLine${editorInfo.line - 1 === idx ? ' mdLineActive' : ''}'>` + 
       `<span class='mdLineNumber' style='width: ${gutterSize}ch;'>${idx + 1}</span>` +
-      `<span class='mdLineContent'>${line/*.replaceAll(/ /gms, `${markupMap.space}`)*/}</span>` +
+      `<span class='mdLineContent'>${line}</span>` +
     "</span>";
   }).join("\n");
   styleContent.style.paddingLeft = `${gutterSize + 1}ch`;
@@ -267,8 +272,7 @@ const changeHandler = (event) => {
     if (match[1]) {
       markdownText = markdownText.replaceAll(match[0], markupMap.image
         .replace("%1", match[2])
-        .replace("%2", match[3])
-        .replace("%3", match[4] || '')
+        .replace("%2", `${match[3]}${match[4] || ''}`)
       );      
     } else {
       markdownText = markdownText.replaceAll(match[0], markupMap.link
@@ -342,6 +346,7 @@ const changeHandler = (event) => {
   markdownText = frontMatter + markdownText;
 
   markdownText = markdownText.replaceAll(/\n/gms, `${markupMap.newline}\n`);
+  // Disabled, because it is very very very slow
   // const textMatch = markdownText.matchAll(/>[^<]+</gms);
   // if (textMatch) [...textMatch].forEach(match => {
   //   markdownText = markdownText.replace(match[0], match[0].replaceAll(/ /gms, `${markupMap.space}`));
@@ -392,6 +397,7 @@ const changeHandler = (event) => {
 };
 
 changeHandler();
+textareaContentScrollHandler();
 
 const submitHandler = (event) => {
   if (event.submitter.name === "save") {
@@ -428,19 +434,17 @@ const separatorDragStopHandler = (event) => {
 "focus keyup paste input click".split(" ").forEach(eventType => document.getElementById("contentTextarea").addEventListener(eventType, changeHandler));
 document.querySelector("form.editor-container").addEventListener("submit", submitHandler);
 document.getElementById("contentTextarea").addEventListener("scroll", textareaContentScrollHandler);
-// document.querySelector(".editor-content").addEventListener("scroll", editableContentScrollHandler);
 document.querySelector(".separator").addEventListener("mousedown", separatorDragStartHandler);
 window.addEventListener("mousemove", separatorDragHandler);
 window.addEventListener("mouseup", separatorDragStopHandler);
 
-document.getElementById(editableContentId).focus();
+document.getElementById(contentId).focus();
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.dispose(() => {
-    "focus keyup paste input click".split(" ").forEach(eventType => document.getElementById(editableContentId).removeEventListener(eventType, changeHandler));
+    "focus keyup paste input click".split(" ").forEach(eventType => document.getElementById(contentId).removeEventListener(eventType, changeHandler));
     document.querySelector("form.editor-container").removeEventListener("submit", submitHandler);
     document.getElementById("contentTextarea").removeEventListener("scroll", textareaContentScrollHandler);
-    // document.querySelector(".editor-content").removeEventListener("scroll", editableContentScrollHandler);
     document.querySelector(".separator").removeEventListener("mousedown", separatorDragStartHandler);
     window.removeEventListener("mousemove", separatorDragHandler);
     window.removeEventListener("mouseup", separatorDragStopHandler);
