@@ -187,7 +187,10 @@ const changeHandler = (event) => {
     "list": "<span class='mdList'>%%</span>",
     "list_bullet": "<span class='mdListBullet'>%%</span>",
     "link": "<span class='mdLink'><span class='mdLinkText'>%1</span><span class='mdLinkParams'><span class='mdLinkUrl'>%2</span><span class='mdLinkTitle'>%3</span></span></span>",
-    "image": "<span class='mdLink mdImage'><span class='mdLinkText'>%1</span><span class='mdLinkParams'><span class='mdLinkUrl'>%2</span></span></span>",
+    "linkRef": "<span class='mdLink'><span class='mdLinkText'>%1</span><span class='mdLinkRef'>%2</span></span>",
+    "image": "<span class='mdLink mdImage'><span class='mdLinkText'>%1</span><span class='mdLinkParams'><span class='mdLinkUrl'>%2</span><span class='mdLinkTitle'>%3</span></span></span>",
+    "imageRef": "<span class='mdLink mdImage'><span class='mdLinkText'>%1</span><span class='mdLinkRef'>%2</span></span>",
+    "reference": "<span class='mdReference'><span class='mdLinkRef'>%1</span>%2<span class='mdLinkUrl'>%3</span><span class='mdLinkTitle'>%4</span></span>",
     "code": "<span class='mdCode'>%%</span>",
     "code_block": "<span class='mdCodeBlock'>%%</span>",
     "html": "<span class='mdHtml'>%%</span>",
@@ -242,7 +245,7 @@ const changeHandler = (event) => {
     markdownText = markdownText.replace(match[0], markupMap.heading.replace("%%", `${markup}${match[2]}`));
   });
 
-  const mdHeadingMatch2 = markdownText.matchAll(/^(.*\n)(-+\n|=+\n)/gm);
+  const mdHeadingMatch2 = markdownText.matchAll(/^(\s*[^\s]+\n)(-+\n|=+\n)/gm);
   if (mdHeadingMatch2) [...mdHeadingMatch2].forEach(match => {
     const markup = match[2].replaceAll("=", markupMap["="]).replaceAll("-", markupMap["-"]);
     markdownText = markdownText.replace(match[0], markupMap.heading.replace("%%", `${match[1]}${markup}`));
@@ -254,10 +257,11 @@ const changeHandler = (event) => {
     markdownText = markdownText.replace(match[0], markupMap.hr.replace("%%", `${markup}`));
   });
 
-  const mdCodeBlockMatch = markdownText.matchAll(/(```)(\s*[^\s]?)(.*?)\1\n/gms);
+  const mdCodeBlockMatch = markdownText.matchAll(/(```)(\s*[^\s]?)(.*?)(\1(\n\n|\n?$))/gms);
   if (mdCodeBlockMatch) [...mdCodeBlockMatch].forEach(match => {
-    const markup = match[1].split("").map((m) => markupMap[m]).join("");
-    markdownText = markdownText.replaceAll(match[0], markupMap.code_block.replace("%%", `${markup}${match[2] || ''}${match[3]}${markup}`));
+    const markupStart = match[1].split("").map((m) => markupMap[m] || m).join("");
+    const markupEnd = match[4].split("").map((m) => markupMap[m] || m).join("");
+    markdownText = markdownText.replaceAll(match[0], markupMap.code_block.replace("%%", `${markupStart}${match[2] || ''}${match[3]}${markupEnd}`));
   });
 
   const mdCodeMatch = markdownText.matchAll(/(`)(.+?)\1/gms);
@@ -267,21 +271,52 @@ const changeHandler = (event) => {
     markdownText = markdownText.replace(match[0], markupMap.code.replace("%%", `${markup}${match[2]}${markup}`));
   });
 
-  const mdLinkMatch = markdownText.matchAll(/(!)??\[([^\]]+?)\]\(([^\s]+?)(\s+".*?")?\)/gm);
+  const mdImageMatch = markdownText.matchAll(/!\[([^\]]+?)\]\(([^\s]*?)(\s+".*?")?\)/gm);
+  if (mdImageMatch) [...mdImageMatch].forEach(match => {
+    markdownText = markdownText.replaceAll(match[0], markupMap.image
+      .replace("%1", match[1])
+      .replace("%2", match[2])
+      .replace("%3", match[3] || '')
+    );      
+  });
+  const mdImageReferenceMatch = markdownText.matchAll(/!\[([^\]]+?)\]\[([^\]]+?)\]/gm);
+  if (mdImageReferenceMatch) [...mdImageReferenceMatch].forEach(match => {
+    markdownText = markdownText.replaceAll(match[0], markupMap.imageRef
+      .replace("%1", match[1])
+      .replace("%2", match[2])
+    );      
+  });
+  const mdLinkMatch = markdownText.matchAll(/\[([^\]]+?)\]\(([^\s]*?)(\s+".*?")?\)/gm);
   if (mdLinkMatch) [...mdLinkMatch].forEach(match => {
-    if (match[1]) {
-      markdownText = markdownText.replaceAll(match[0], markupMap.image
-        .replace("%1", match[2])
-        .replace("%2", `${match[3]}${match[4] || ''}`)
-      );      
-    } else {
+    if (!match[1].match(/mdImage/)) {  // Image markup inside link markup is not supported
       markdownText = markdownText.replaceAll(match[0], markupMap.link
-        .replace("%1", match[2])
-        .replace("%2", match[3])
-        .replace("%3", match[4] || '')
-      );
+        .replace("%1", match[1])
+        .replace("%2", match[2])
+        .replace("%3", match[3] || '')
+      );  
     }
   });
+  const mdLinkReferenceMatch = markdownText.matchAll(/\[([^\]]+?)\]\[([^\]]+?)\]/gm);
+  if (mdLinkReferenceMatch) [...mdLinkReferenceMatch].forEach(match => {
+    markdownText = markdownText.replaceAll(match[0], markupMap.linkRef
+      .replace("%1", match[1])
+      .replace("%2", match[2])
+    );      
+  });
+
+  const mdReferenceMatch = markdownText.matchAll(/\[([^\]]+?)\]:(\s*)([^\s]+)(\s+".*?")?/gm);
+  if (mdReferenceMatch) [...mdReferenceMatch].forEach(match => {
+    if (!match[1].match(/mdImage/)) {  // Image markup inside link markup is not supported
+      markdownText = markdownText.replaceAll(match[0], markupMap.reference
+        .replace("%1", match[1])
+        .replace("%2", match[2] || '')
+        .replace("%3", match[3])
+        .replace("%4", match[4] || '')
+      );  
+    }
+  });
+
+  
 
   const mdQuoteMatch = markdownText.matchAll(/^([ \t]*)(&gt;(\s*&gt;)*)(.*?\n\n)/gms);
   if (mdQuoteMatch) [...mdQuoteMatch].forEach(match => {

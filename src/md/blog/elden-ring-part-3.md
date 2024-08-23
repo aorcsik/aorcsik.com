@@ -56,13 +56,13 @@ The next stop was the [Coastal Cave](https://eldenring.wiki.fextralife.com/Coast
 
 [video]
 
-Defeating theThere was a tunnel leading outside the boss arena, I took that instead of teleporting back to the beginning and boy it was a good decision. I came out to the on a nearby island with the Church of Dragon something on it. Here I could learn dragon incantations in exchange for dragon hearts... but where could I get one. I remember a dragon in the lake, he is on my list.
+Defeating them opened the way to a tunnel leading outside. I took that instead of teleporting back to the start and boy it was a good decision. I emerged on a nearby island with the [Church of Dragon Communion](https://eldenring.wiki.fextralife.com/Church+of+Dragon+Communion) on it. Here I could learn dragon incantations in exchange for [dragon hearts](https://eldenring.wiki.fextralife.com/Dragon+Heart)... but where could I get one. I remembered a [dragon](https://eldenring.wiki.fextralife.com/Flying+Dragon+Agheel "Flying Dragon Agheel") in Lake Agheel. He was on my list.
 
-I tracked down the dragon, and gave him hell with Roppy and the Hookclaws. I was burned a few times pretty bad, but eventually he fell and I got his heart.
+I tracked down the beast and gave him hell with Roppy and the Hookclaws. I was burned a few times pretty badly, but eventually, he fell, and I got his heart.
 
 [video]
 
-Just a little north from where the dragon fell was a tunnel entrance. I was in a similar tunnel before on the Weeping Penninsula, lots of upgrade materials inside, and and boss, a Stonedigger Troll in this case. Beating it rewarded me with the Roar Talisman.
+Just a little north of where the dragon fell was a tunnel entrance. I was in a similar tunnel before on the Weeping Penninsula, lots of upgrade materials inside, and and boss, a Stonedigger Troll in this case. Beating it rewarded me with the Roar Talisman.
 
 [video]
 

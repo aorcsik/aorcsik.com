@@ -335,6 +335,7 @@ body.dragging .container .preview-container .drag-overlay {
 .mdLink .mdLinkText::after {
   content: "]";
 }
+.mdReference .mdLinkUrl,
 .mdLink .mdLinkUrl {
   text-decoration: underline;
 }
@@ -343,15 +344,29 @@ body.dragging .container .preview-container .drag-overlay {
 }
 .mdLink .mdLinkParams::before {
   content: "(";
-  text-decoration: none;
 }
 .mdLink .mdLinkParams::after {
   content: ")";
-  text-decoration: none;
 }
+.mdReference .mdLinkRef,
+.mdLink .mdLinkRef {
+  color: var(--syntax-line-number-color);
+}
+.mdReference .mdLinkRef::before,
+.mdLink .mdLinkRef::before {
+  content: "[";
+}
+.mdLink .mdLinkRef::after {
+  content: "]";
+}
+.mdReference .mdLinkRef::after {
+  content: "]:";
+}
+.mdReference .mdLinkTitle,
 .mdLink .mdLinkTitle {
   color: var(--syntax-color-2);
 }
+
 .mdHtml {
   color: var(--syntax-color-1);
 }

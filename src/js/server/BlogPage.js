@@ -110,12 +110,13 @@ class BlogPage
     //   });
     // }
 
-    const imageMatches = markdownString.matchAll(/!\[(.*?)\]\((https?:\/\/.*?)\)/gm);
+    const imageMatches = markdownString.matchAll(/!\[(.*?)\]\((https?:\/\/.*?)(\s+"(.*?)")?\)/gm);
     if (imageMatches) {
       (await Promise.all([...imageMatches].map(async imageMatch => {
         return [imageMatch[0], await renderTemplate(`${config.templateDir}/_blog_image.ejs`, {
             imageUrl: imageMatch[2],
             imageTitle: imageMatch[1],
+            imageAlt: imageMatch[4] || null,
           })
         ];
       }))).map(([match, image]) => {
