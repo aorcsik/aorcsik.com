@@ -47,7 +47,7 @@ const textareaContentScrollHandler = (event) => {
   previewScrollMatcher(textareaContent.scrollTop, textareaContent.scrollHeight, textareaContent.offsetHeight);
 };
 
-let savedContent = null;
+window.savedContent = window.savedContent || null;
 let updateStatusThrottle = null;
 const updateStatus = () => {
   if (updateStatusThrottle) window.clearTimeout(updateStatusThrottle);
@@ -58,7 +58,7 @@ const updateStatus = () => {
     let status;
     if (isLoading > 1) {
       status = "loading";
-    } else if (savedContent !== markdownText) {
+    } else if (window.savedContent !== markdownText) {
       status = "changed";
     } else {
       status = "saved";
@@ -162,7 +162,7 @@ const changeHandler = (event) => {
     });
   }
 
-  if (!savedContent) savedContent = markdownText;
+  if (!window.savedContent) window.savedContent = markdownText;
 
   updateStatus();
 
@@ -245,7 +245,7 @@ const changeHandler = (event) => {
     markdownText = markdownText.replace(match[0], markupMap.heading.replace("%%", `${markup}${match[2]}`));
   });
 
-  const mdHeadingMatch2 = markdownText.matchAll(/^(\s*[^\s]+\n)(-+\n|=+\n)/gm);
+  const mdHeadingMatch2 = markdownText.matchAll(/^(\s*[^\s].*\n)(-+\n|=+\n)/gm);
   if (mdHeadingMatch2) [...mdHeadingMatch2].forEach(match => {
     const markup = match[2].replaceAll("=", markupMap["="]).replaceAll("-", markupMap["-"]);
     markdownText = markdownText.replace(match[0], markupMap.heading.replace("%%", `${match[1]}${markup}`));
@@ -257,11 +257,28 @@ const changeHandler = (event) => {
     markdownText = markdownText.replace(match[0], markupMap.hr.replace("%%", `${markup}`));
   });
 
-  const mdCodeBlockMatch = markdownText.matchAll(/(```)(\s*[^\s]?)(.*?)(\1(\n\n|\n?$))/gms);
-  if (mdCodeBlockMatch) [...mdCodeBlockMatch].forEach(match => {
+  const listMatch = (markdownText) => {
+    const mdListMatch = markdownText.matchAll(/^([ \t]*)(\*|\+|-|\d+\.)(\s+.*?\n\n)/gms);
+    if (mdListMatch) [...mdListMatch].forEach(match => {
+      let content = match[3];
+      if (content.match(/^([ \t]*)(\*|\+|-|\d+\.)(\s+.*?\n\n)/ms)) content = listMatch(content);
+      const markup =  markupMap.list_bullet.replace("%%", markupMap[match[2]] ? markupMap[match[2]] : match[2]);
+      markdownText = markdownText.replace(match[0], `${markupMap.list.replace("%%", `${match[1]}${markup}${content}`)}`);
+    });
+    return markdownText;
+  }
+  markdownText = listMatch(markdownText);
+
+  const mdFencedCodeBlockMatch = markdownText.matchAll(/(```)(\s*[^\s]?)(.*?)(\1(\n\n|\n?$))/gms);
+  if (mdFencedCodeBlockMatch) [...mdFencedCodeBlockMatch].forEach(match => {
     const markupStart = match[1].split("").map((m) => markupMap[m] || m).join("");
     const markupEnd = match[4].split("").map((m) => markupMap[m] || m).join("");
     markdownText = markdownText.replaceAll(match[0], markupMap.code_block.replace("%%", `${markupStart}${match[2] || ''}${match[3]}${markupEnd}`));
+  });
+
+  const mdIndentedCodeBlockMatch = markdownText.matchAll(/^    .+/gm);
+  if (mdIndentedCodeBlockMatch) [...mdIndentedCodeBlockMatch].forEach(match => {
+    markdownText = markdownText.replaceAll(match[0], markupMap.code_block.replace("%%", match[0]));
   });
 
   const mdCodeMatch = markdownText.matchAll(/(`)(.+?)\1/gms);
@@ -269,6 +286,23 @@ const changeHandler = (event) => {
     if (match[2].match(/\n\n/)) return;
     const markup = match[1].split("").map(m => markupMap[m]).join("");
     markdownText = markdownText.replace(match[0], markupMap.code.replace("%%", `${markup}${match[2]}${markup}`));
+  });
+
+  const references = {};
+  const mdReferenceMatch = markdownText.matchAll(/^(\s*)\[([^\^\]][^\]]*?)\]:(\s*)([^\s]+)(\s+".*?")?/gm);
+  if (mdReferenceMatch) [...mdReferenceMatch].forEach(match => {
+    if (!match[1].match(/mdImage/)) {  // Image markup inside link markup is not supported
+      markdownText = markdownText.replaceAll(match[0], (match[1] || '') + markupMap.reference
+        .replace("%1", match[2])
+        .replace("%2", match[3] || '')
+        .replace("%3", match[4])
+        .replace("%4", match[5] || '')
+      );
+      references[match[2]] = {
+        url: match[4],
+        title: match[5]
+      };
+    }
   });
 
   const mdImageMatch = markdownText.matchAll(/!\[([^\]]+?)\]\(([^\s]*?)(\s+".*?")?\)/gm);
@@ -279,9 +313,9 @@ const changeHandler = (event) => {
       .replace("%3", match[3] || '')
     );      
   });
-  const mdImageReferenceMatch = markdownText.matchAll(/!\[([^\]]+?)\]\[([^\]]+?)\]/gm);
+  const mdImageReferenceMatch = markdownText.matchAll(/!\[([^\]]+?)\]\[([^\^\]][^\]]*?)\]/gm);
   if (mdImageReferenceMatch) [...mdImageReferenceMatch].forEach(match => {
-    markdownText = markdownText.replaceAll(match[0], markupMap.imageRef
+    if (references[match[2]]) markdownText = markdownText.replaceAll(match[0], markupMap.imageRef
       .replace("%1", match[1])
       .replace("%2", match[2])
     );      
@@ -296,27 +330,13 @@ const changeHandler = (event) => {
       );  
     }
   });
-  const mdLinkReferenceMatch = markdownText.matchAll(/\[([^\]]+?)\]\[([^\]]+?)\]/gm);
+  const mdLinkReferenceMatch = markdownText.matchAll(/\[([^\]]+?)\]\[([^\^\]][^\]]*?)\]/gm);
   if (mdLinkReferenceMatch) [...mdLinkReferenceMatch].forEach(match => {
-    markdownText = markdownText.replaceAll(match[0], markupMap.linkRef
+    if (references[match[2]]) markdownText = markdownText.replaceAll(match[0], markupMap.linkRef
       .replace("%1", match[1])
       .replace("%2", match[2])
     );      
   });
-
-  const mdReferenceMatch = markdownText.matchAll(/\[([^\]]+?)\]:(\s*)([^\s]+)(\s+".*?")?/gm);
-  if (mdReferenceMatch) [...mdReferenceMatch].forEach(match => {
-    if (!match[1].match(/mdImage/)) {  // Image markup inside link markup is not supported
-      markdownText = markdownText.replaceAll(match[0], markupMap.reference
-        .replace("%1", match[1])
-        .replace("%2", match[2] || '')
-        .replace("%3", match[3])
-        .replace("%4", match[4] || '')
-      );  
-    }
-  });
-
-  
 
   const mdQuoteMatch = markdownText.matchAll(/^([ \t]*)(&gt;(\s*&gt;)*)(.*?\n\n)/gms);
   if (mdQuoteMatch) [...mdQuoteMatch].forEach(match => {
@@ -330,18 +350,6 @@ const changeHandler = (event) => {
     }).join("\n");
     markdownText = markdownText.replace(match[0], `${match[1]}${markupMap.quote.replace("%%", `${markup}${content}`)}`);
   });
-
-  const listMatch = (markdownText) => {
-    const mdListMatch = markdownText.matchAll(/^([ \t]*)(\*|\+|-|\d+\.)(\s+.*?\n\n)/gms);
-    if (mdListMatch) [...mdListMatch].forEach(match => {
-      let content = match[3];
-      if (content.match(/^([ \t]*)(\*|\+|-|\d+\.)(\s+.*?\n\n)/ms)) content = listMatch(content);
-      const markup =  markupMap.list_bullet.replace("%%", markupMap[match[2]] ? markupMap[match[2]] : match[2]);
-      markdownText = markdownText.replace(match[0], `${match[1]}${markupMap.list.replace("%%", `${markup}${content}`)}`);
-    });
-    return markdownText;
-  }
-  markdownText = listMatch(markdownText);
 
   const mdStrikethroughMatch = markdownText.matchAll(/(~~)(.+?)\1/gms);
   if (mdStrikethroughMatch) [...mdStrikethroughMatch].forEach(match => {
@@ -437,7 +445,7 @@ textareaContentScrollHandler();
 const submitHandler = (event) => {
   if (event.submitter.name === "save") {
     console.log("Saving...");
-    savedContent = event.target.content.value;
+    window.savedContent = event.target.content.value;
     // changeHandler();
   } else {
     console.log("Previewing...");

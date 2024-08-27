@@ -397,7 +397,7 @@ body.dragging .container .preview-container .drag-overlay {
   color: var(--syntax-color-1);
 }
 .mdHr {
-  
+  color: var(--syntax-color-4);
 }
 
 
