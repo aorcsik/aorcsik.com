@@ -1,4 +1,6 @@
 ---
+title: Beyond Limgrave
+subtitle: Adventures in Elden Ring - Part 2
 description: I cleared the Weeping Peninsula dungeons, checked some Evergaols, and then started exploring Liurnia all the way up to Caria Manor.
 image: https://static.aorcsik.com/blog/beyond-limgrave-cover2.webp
 author: aorcsik
@@ -7,10 +9,6 @@ tags:
  - elden-ring 
 collection: elden-ring
 ---
-
-## Beyond Limgrave
-
-### Adventures in Elden Ring - Part 2
 
 <div class="blog-info">
   <i class="fa-light fa-circle-exclamation"></i>

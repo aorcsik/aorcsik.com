@@ -1,12 +1,10 @@
 ---
+title: markdown-it
+subtitle: demo
 published_at: 2024.08.23
 author: aorcsik
 draft: true
 ---
-
-## markdown-it let's make this title long
-
-### demo
 
 # h1 Heading 8-)
 ## h2 Heading

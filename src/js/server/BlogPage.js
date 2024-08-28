@@ -83,33 +83,6 @@ class BlogPage
 
     data.readingTime = calculateReadingTime(markdownString);
 
-    const titleMatch = markdownString.match(/## (.*)/);
-    if (!titleMatch) throw new Error(`Invalid Blog Post (${markdownPath}) - Missing title`);
-    data.title = titleMatch[1].trim();
-    markdownString = markdownString.replace(titleMatch[0], "");
-
-    const subtitleMatch = markdownString.match(/### (.*)/);
-    if (subtitleMatch) {
-      data.subtitle = subtitleMatch ? subtitleMatch[1].trim() : null
-      markdownString = markdownString.replace(subtitleMatch[0], "");
-    }
-
-    // const varMatches = markdownString.matchAll(/\[(.*?)\]\(#var:(.*)\)/gm);
-    // if (varMatches) {
-    //   [...varMatches].forEach(varMatch => {
-    //     markdownString = markdownString.replace(varMatch[0], '');
-
-    //     const varUseMatches = markdownString.matchAll(new RegExp(`\\[(.*?)\\]\\(\(#${varMatch[2]}:?(.*?)\)\\)`, 'gm'));
-    //     if (varUseMatches) {
-    //       [...varUseMatches].forEach(varUseMatch => {
-    //         const newUrl = varMatch[1].replace('%', encodeURIComponent(varUseMatch[3] || varUseMatch[1]));
-    //         const newLink = varUseMatch[0].replace(varUseMatch[2], newUrl.trim().replace(/\s+/, '+'));
-    //         markdownString = markdownString.replace(varUseMatch[0], newLink);
-    //       });
-    //     }
-    //   });
-    // }
-
     const imageMatches = markdownString.matchAll(/!\[(.*?)\]\((https?:\/\/.*?)(\s+"(.*?)")?\)/gm);
     if (imageMatches) {
       (await Promise.all([...imageMatches].map(async imageMatch => {

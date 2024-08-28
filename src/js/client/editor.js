@@ -186,15 +186,17 @@ const changeHandler = (event) => {
     "quote": "<span class='mdQuote'>%%</span>",
     "list": "<span class='mdList'>%%</span>",
     "list_bullet": "<span class='mdListBullet'>%%</span>",
+    "hr": "<span class='mdHr'>%%</span>",
+    "html": "<span class='mdHtml'>%%</span>",
+    "code": "<span class='mdCode'>%%</span>",
+    "code_block": "<span class='mdCodeBlock'>%%</span>",
+
     "link": "<span class='mdLink'><span class='mdLinkText'>%1</span><span class='mdLinkParams'><span class='mdLinkUrl'>%2</span><span class='mdLinkTitle'>%3</span></span></span>",
     "linkRef": "<span class='mdLink'><span class='mdLinkText'>%1</span><span class='mdLinkRef'>%2</span></span>",
     "image": "<span class='mdLink mdImage'><span class='mdLinkText'>%1</span><span class='mdLinkParams'><span class='mdLinkUrl'>%2</span><span class='mdLinkTitle'>%3</span></span></span>",
     "imageRef": "<span class='mdLink mdImage'><span class='mdLinkText'>%1</span><span class='mdLinkRef'>%2</span></span>",
     "reference": "<span class='mdReference'><span class='mdLinkRef'>%1</span>%2<span class='mdLinkUrl'>%3</span><span class='mdLinkTitle'>%4</span></span>",
-    "code": "<span class='mdCode'>%%</span>",
-    "code_block": "<span class='mdCodeBlock'>%%</span>",
-    "html": "<span class='mdHtml'>%%</span>",
-    "hr": "<span class='mdHr'>%%</span>",
+
     "comment": "<span class='mdComment'><span class='mdCommentStart'></span>%%<span class='mdCommentEnd'></span></span>",
   };
 
@@ -214,7 +216,7 @@ const changeHandler = (event) => {
   const mdFrontMatterMatch = markdownText.match(/(---)(.*?)(---\n)/ms);
   if (mdFrontMatterMatch) {
     let frontMatterContent = mdFrontMatterMatch[2];
-    const recordsMatch = frontMatterContent.matchAll(/(\s*.*?:|\s*-\s+)(.*\n)/gm);
+    const recordsMatch = frontMatterContent.matchAll(/(\s*.*?:|\s*-)([ \t]+[^\s].*?\n|[ \t]*?\n)/gm);
     if (recordsMatch) [...recordsMatch].forEach(match => {
       frontMatterContent = frontMatterContent.replace(match[0], 
         `<span class='mdFrontMatterRecordName'>${match[1]}</span>` +

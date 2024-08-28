@@ -1,4 +1,6 @@
 ---
+title: I'm not strong enough
+subtitle: Adventures in Elden Ring - Part 3
 description: I started exploring Caelid, tied some loose ends in Limgrave, and returned to Liurnia to kill a dragon.
 image: https://static.aorcsik.com/blog/elden-ring-social.webp
 author: aorcsik
@@ -8,10 +10,6 @@ tags:
 collection: elden-ring
 draft: true
 ---
-
-## I'm not strong enough
-
-### Adventures in Elden Ring - Part 3
 
 <div class="blog-info">
   <i class="fa-light fa-circle-exclamation"></i>

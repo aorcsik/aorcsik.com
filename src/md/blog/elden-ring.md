@@ -1,4 +1,6 @@
 ---
+title: First Steps
+subtitle: Adventures in Elden Ring - Part 1
 description: My first days in the Lands Between, early boss encounters, leveling my character and defeating the first shardbearer.
 image: https://static.aorcsik.com/blog/first-steps-cover3.webp
 author: aorcsik
@@ -7,10 +9,6 @@ tags:
  - elden-ring
 collection: elden-ring
 ---
-
-## First Stepss
-
-### Adventures in Elden Ring - Part 1
 
 <div class="blog-info">
   <i class="fa-light fa-circle-exclamation"></i>
