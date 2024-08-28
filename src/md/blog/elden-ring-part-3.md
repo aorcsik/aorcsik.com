@@ -22,7 +22,7 @@ No, I'm definitely not strong enough. I spent some time getting myself smashed b
 
 I left to check the [Minor Erdtree](https://eldenring.wiki.fextralife.com/Minor+Erdtree+(Caelid)) and its [Putrid Avatar](https://eldenring.wiki.fextralife.com/Putrid+Avatar) in northwest [Caelid](https://eldenring.wiki.fextralife.com/Caelid). But first, I had some business with an invader, [Anastasia, Tarnished-Eater](https://eldenring.wiki.fextralife.com/Anastasia+Tarnished-Eater) near the [Smoldering Church](https://eldenring.wiki.fextralife.com/Smoldering+Church). Dealing with her was much smoother than I expected. I got the [Sacred Scorpion Charm](https://eldenring.wiki.fextralife.com/Sacred+Scorpion+Charm) and continued towards my original goal. 
 
-[Sir Oakheart vs. Anastasia, Tarnished-Eater (Smoldering Church)](https://youtu.be/liN1e3Xh-TY#embed)
+[video](https://youtu.be/liN1e3Xh-TY "Sir Oakheart vs. Anastasia, Tarnished-Eater (Smoldering Church)")
 
 Well, this avatar proved to be tough. It also inflicts [scarlet rot](https://eldenring.wiki.fextralife.com/Scarlet+Rot) and is resistant to it (there goes my strategy, sorry, Roppy), but all Erdtee Avatars are vulnerable to fire. So, I need to be able to do decent fire damage before I can face this boss again. Great.
 
@@ -32,7 +32,7 @@ Anyway, while looking for a way into Nokron, I found a point of interest northea
 
 Ok, something told me I should stay here and explore, at least gather the maps. I managed to do that after much running around and avoiding dangerous foes. Then I found some [ruins](https://eldenring.wiki.fextralife.com/Caelem+Ruins) with [burning kamikaze zombies](https://eldenring.wiki.fextralife.com/Putrid+Corpse). I killed a bunch of them, avoiding the [Flame Chariots](https://eldenring.wiki.fextralife.com/Flame+Chariot), when I found the way underground to a boss arena, with a [Mad Pumpkin Head](https://eldenring.wiki.fextralife.com/Mad+Pumpkin+Head) Duo(!). OMFG! The first try went rather well. I killed one before the other finished me. This gave me some hope, so I kept trying and managed to beat them. My reward was a [Visage Shield](https://eldenring.wiki.fextralife.com/Visage+Shield), which I can't use yet but is a nice shield.
 
-[Sir Oakheart vs. Mad Pumpkin Head Duo](https://youtu.be/gVP3yOBaVqc#embed)
+[video](https://youtu.be/gVP3yOBaVqc "Sir Oakheart vs. Mad Pumpkin Head Duo")
 
 I decided this was the right time to call it a day.
 
@@ -46,7 +46,7 @@ I remembered some [ruins](https://eldenring.wiki.fextralife.com/Waypoint+Ruins "
 
 Now, back to Waypoint Ruins. I finished the [plant](https://eldenring.wiki.fextralife.com/Giant+Miranda+Sprout "Giant Miranda Sprout"). It was very similar to the [boss version](https://eldenring.wiki.fextralife.com/Miranda+the+Blighted+Bloom "Miranda the Blighted Bloom") I fought before, but I was poisoned and used all my FP here and at the caravan, so when I entered the boss room, the [Mad Pumpkin Head](https://eldenring.wiki.fextralife.com/Mad+Pumpkin+Head) smashed me to a pulp. No matter. I rested at the nearby site of Grace and gave it another go. Now, it melted like butter.
 
-[Sir Oakheart vs. Mad Pumpkin Head (Waypoint Ruins)](https://youtu.be/g91JqXQha8I#embed)
+[video](https://youtu.be/g91JqXQha8I "Sir Oakheart vs. Mad Pumpkin Head (Waypoint Ruins)")
 
 And my reward: behind door number "only one," a lady was waiting among glintstone crystals. [Sorceress Sellen](https://eldenring.wiki.fextralife.com/Sorceress+Sellen) was an academy dropout who offered her services to teach me sorcery. Well, only if I could use any. Who knows, maybe at a later time.
 

@@ -63,12 +63,6 @@ class BlogPage
       metaData = YAML.parse(metaDataYamlMatch[1]);
     }
 
-    const metaDataJsonMatch = markdownString.match(/<!--\s+(\{.*?\})\s+-->/s);
-    if (metaDataJsonMatch) {
-      markdownString = markdownString.replace(metaDataJsonMatch[0], '');
-      metaData = JSON.parse(metaDataJsonMatch[1]);
-    }
-
     if (!metaData) {
       throw new Error(`Invalid Blog Post (${markdownPath}) - Missing meta data`);
     }
@@ -82,37 +76,68 @@ class BlogPage
     });
 
     data.readingTime = calculateReadingTime(markdownString);
-
-    const imageMatches = markdownString.matchAll(/!\[(.*?)\]\((https?:\/\/.*?)(\s+"(.*?)")?\)/gm);
-    if (imageMatches) {
-      (await Promise.all([...imageMatches].map(async imageMatch => {
-        return [imageMatch[0], await renderTemplate(`${config.templateDir}/_blog_image.ejs`, {
-            imageUrl: imageMatch[2],
-            imageTitle: imageMatch[1],
-            imageAlt: imageMatch[4] || null,
-          })
-        ];
-      }))).map(([match, image]) => {
-        markdownString = markdownString.replace(match, image);
-      });
-    }
-
-    const videoMatches = markdownString.matchAll(/\[(.*?)\]\(https:\/\/youtu\.be\/(.*?)#embed\)/gm);
-    if (videoMatches) {
-      (await Promise.all([...videoMatches].map(async videoMatch => {
-        return [videoMatch[0], await renderTemplate(`${config.templateDir}/_blog_video.ejs`, {
-            videoId: videoMatch[2],
-            videoTitle: videoMatch[1],
-          })
-        ];
-      }))).map(([match, video]) => {
-        markdownString = markdownString.replace(match, video);
-      });
-    }
+    data.path = `${markdownPath.replace(/\.md$/, ".html")}`;
 
     const md = new MarkdownIt({html: true});
     data.content = md.render(markdownString);
-    data.path = `${markdownPath.replace(/\.md$/, ".html")}`;
+
+    const videoMatches = data.content.matchAll(/<p>\s*(<a[^>]+>)video<\/a>\s*<\/p>/gms);
+    (await Promise.all([...videoMatches].map(videoMatch => {
+      const propMatches = videoMatch[0].matchAll(/(href|title)="(.*?)"/gm);
+      const video = {
+        match: videoMatch[0],
+        href: null,
+        videoId: null,
+        title: null,
+        type: null,
+      };
+      [...propMatches].forEach(propMatch => {
+        video[propMatch[1]] = propMatch[2];
+        if (propMatch[1] === "href") {
+          const youtubeIdMatch = propMatch[2].match(/https:\/\/youtu\.be\/([A-Za-z0-9_\-]{11})/);
+          if (youtubeIdMatch) {
+            video.videoId = youtubeIdMatch[1];
+            video.type = "youtube";
+          }
+        }
+      });
+      return video;
+    }).filter(video => {
+      return video.type !== null && video.videoId !== null;
+    }).map(async video => {
+      return [video.match, await renderTemplate(`${config.templateDir}/_blog_video.ejs`, {
+        videoType: video.type,
+        videoId: video.videoId,
+        videoTitle: video.title,
+      })];
+    }))).map(([match, video]) => {
+      data.content = data.content.replace(match, video);
+    });
+
+    const imageMatches = data.content.matchAll(/<p>\s*(<img[^>]+>)\s*<\/p>/gms);
+    (await Promise.all([...imageMatches].map(imageMatch => {
+      const propMatches = imageMatch[0].matchAll(/(src|alt|title)="(.*?)"/gm);
+      const image = {
+        match: imageMatch[0],
+        src: null,
+        alt: null,
+        title: null,
+      };
+      [...propMatches].forEach(propMatch => {
+        image[propMatch[1]] = propMatch[2];
+      });
+      return image;
+    }).filter(image => {
+      return image.title !== null;
+    }).map(async image => {
+      return [image.match, await renderTemplate(`${config.templateDir}/_blog_image.ejs`, {
+        imageUrl: image.src,
+        imageAlt: image.alt,
+        imageTitle: image.title,
+      })];
+    }))).map(([match, image]) => {
+      data.content = data.content.replace(match, image);
+    });
 
     return data;
   }

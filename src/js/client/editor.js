@@ -200,6 +200,8 @@ const changeHandler = (event) => {
     "comment": "<span class='mdComment'><span class='mdCommentStart'></span>%%<span class='mdCommentEnd'></span></span>",
   };
 
+  const replaceSpecialChars = (str) => str.split("").map(char => markupMap[char] || char).join("");
+
   markdownText = markdownText.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
   const gutterSize = `${markdownText.split("\n").length}`.length;
@@ -213,9 +215,9 @@ const changeHandler = (event) => {
   editableContent.style.paddingLeft = `${gutterSize + 1}ch`;
 
   let frontMatter = '';
-  const mdFrontMatterMatch = markdownText.match(/(---)(.*?)(---\n)/ms);
+  const mdFrontMatterMatch = markdownText.match(/---(.*?)---\n/ms);
   if (mdFrontMatterMatch) {
-    let frontMatterContent = mdFrontMatterMatch[2];
+    let frontMatterContent = mdFrontMatterMatch[1];
     const recordsMatch = frontMatterContent.matchAll(/(\s*.*?:|\s*-)([ \t]+[^\s].*?\n|[ \t]*?\n)/gm);
     if (recordsMatch) [...recordsMatch].forEach(match => {
       frontMatterContent = frontMatterContent.replace(match[0], 
@@ -223,11 +225,7 @@ const changeHandler = (event) => {
         `<span class='mdFrontMatterRecordValue'>${match[2]}</span>`
       );
     });
-    frontMatter = "<span class='mdFrontMatter'>" +
-      mdFrontMatterMatch[1].replaceAll("-", markupMap['-']) +
-      frontMatterContent +
-      mdFrontMatterMatch[3].replaceAll("-", markupMap['-']) +
-    "</span>";
+    frontMatter = `<span class='mdFrontMatter'>${frontMatterContent}</span>\n`;
     markdownText = markdownText.replace(mdFrontMatterMatch[0], '');
   }
 
@@ -293,51 +291,51 @@ const changeHandler = (event) => {
   const references = {};
   const mdReferenceMatch = markdownText.matchAll(/^(\s*)\[([^\^\]][^\]]*?)\]:(\s*)([^\s]+)(\s+".*?")?/gm);
   if (mdReferenceMatch) [...mdReferenceMatch].forEach(match => {
-    if (!match[1].match(/mdImage/)) {  // Image markup inside link markup is not supported
-      markdownText = markdownText.replaceAll(match[0], (match[1] || '') + markupMap.reference
-        .replace("%1", match[2])
-        .replace("%2", match[3] || '')
-        .replace("%3", match[4])
-        .replace("%4", match[5] || '')
-      );
-      references[match[2]] = {
-        url: match[4],
-        title: match[5]
-      };
-    }
+    markdownText = markdownText.replaceAll(match[0], (match[1] || '') + markupMap.reference
+      .replace("%1", replaceSpecialChars(match[2]))
+      .replace("%2", match[3] || '')
+      .replace("%3", replaceSpecialChars(match[4]))
+      .replace("%4", replaceSpecialChars((match[5] || '')))
+    );
+    references[match[2]] = {
+      url: match[4],
+      title: match[5]
+    };
   });
 
   const mdImageMatch = markdownText.matchAll(/!\[([^\]]+?)\]\(([^\s]*?)(\s+".*?")?\)/gm);
   if (mdImageMatch) [...mdImageMatch].forEach(match => {
     markdownText = markdownText.replaceAll(match[0], markupMap.image
-      .replace("%1", match[1])
-      .replace("%2", match[2])
-      .replace("%3", match[3] || '')
+      .replace("%1", replaceSpecialChars(match[1]))
+      .replace("%2", replaceSpecialChars(match[2]))
+      .replace("%3", replaceSpecialChars(match[3] || ''))
     );      
   });
   const mdImageReferenceMatch = markdownText.matchAll(/!\[([^\]]+?)\]\[([^\^\]][^\]]*?)\]/gm);
   if (mdImageReferenceMatch) [...mdImageReferenceMatch].forEach(match => {
-    if (references[match[2]]) markdownText = markdownText.replaceAll(match[0], markupMap.imageRef
-      .replace("%1", match[1])
-      .replace("%2", match[2])
-    );      
+    if (references[match[2]]) {
+      markdownText = markdownText.replaceAll(match[0], markupMap.imageRef
+        .replace("%1", replaceSpecialChars(match[1]))
+        .replace("%2", replaceSpecialChars(match[2]))
+      );
+    }
   });
   const mdLinkMatch = markdownText.matchAll(/\[([^\]]+?)\]\(([^\s]*?)(\s+".*?")?\)/gm);
   if (mdLinkMatch) [...mdLinkMatch].forEach(match => {
-    if (!match[1].match(/mdImage/)) {  // Image markup inside link markup is not supported
-      markdownText = markdownText.replaceAll(match[0], markupMap.link
-        .replace("%1", match[1])
-        .replace("%2", match[2])
-        .replace("%3", match[3] || '')
-      );  
-    }
+    markdownText = markdownText.replaceAll(match[0], markupMap.link
+      .replace("%1", match[1])
+      .replace("%2", replaceSpecialChars(match[2]))
+      .replace("%3", replaceSpecialChars(match[3] || ''))
+    );  
   });
   const mdLinkReferenceMatch = markdownText.matchAll(/\[([^\]]+?)\]\[([^\^\]][^\]]*?)\]/gm);
   if (mdLinkReferenceMatch) [...mdLinkReferenceMatch].forEach(match => {
-    if (references[match[2]]) markdownText = markdownText.replaceAll(match[0], markupMap.linkRef
-      .replace("%1", match[1])
-      .replace("%2", match[2])
-    );      
+    if (references[match[2]]) {
+      markdownText = markdownText.replaceAll(match[0], markupMap.linkRef
+        .replace("%1", match[1])
+        .replace("%2", replaceSpecialChars(match[2]))
+      );
+    }
   });
 
   const mdQuoteMatch = markdownText.matchAll(/^([ \t]*)(&gt;(\s*&gt;)*)(.*?\n\n)/gms);

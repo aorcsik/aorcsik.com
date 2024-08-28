@@ -136,6 +136,7 @@ body.dragging .container .separator {
   --syntax-color-4: #9CDCFE;
   --syntax-color-5: #DA70D6;
   --syntax-line-number-color: #6D7681;
+  --syntax-color-error: #F14C4C;
 }
 .container .editor-container .editor-content {
   overflow: hidden;
@@ -170,9 +171,13 @@ body.dragging .container .separator {
   overflow-y: scroll;
   scrollbar-color: var(--syntax-line-number-color) var(--syntax-background);
   scrollbar-width: none;
-  padding-right: 1rem;
+  padding: 0 1rem 0 0;
   margin-right: 0;
 }
+/* .container .editor-container #contentTextarea::selection {
+  background-color: var(--syntax-color-4);
+  color: var(--syntax-background);
+} */
 
 .container .editor-container pre.contentLinesPre {
   position: absolute;
@@ -251,6 +256,12 @@ body.dragging .container .preview-container .drag-overlay {
   padding: 1rem 1rem .5rem 1rem;
   margin: -1rem -1rem -.5rem -1rem;
   border-radius: 4px; */
+}
+.mdFrontMatter::before {
+  content: "---";
+}
+.mdFrontMatter::after {
+  content: "---";
 }
 
 /* visible characters */
@@ -430,6 +441,3 @@ body.dragging .container .preview-container .drag-overlay {
 .mdComment .mdCommentEnd::after {
   content: "-->";
 }
-
-
-/* --syntax-color-1 */

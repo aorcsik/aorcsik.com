@@ -27,7 +27,7 @@ Then... I had my ass kicked by a [Tree Sentinel](https://eldenring.wiki.fextrali
 
 I left the forest north and found the [Stormfoot Catacombs](https://eldenring.wiki.fextralife.com/Stormfoot+Catacombs) at the foot of Stormhill... hence the name. In there, I fought some [imps](https://eldenring.wiki.fextralife.com/Imp), and after escaping a fiery trap, I managed to open the door to the boss. It was an [Erdtree Burial Watchdog](https://eldenring.wiki.fextralife.com/Erdtree+Burial+Watchdog), but it looked like a cat... with three faces... smashing with a huge sword... breathing FIRE!!! It needed a couple of tries, but I figured out its pattern and defeated it. First Boss Kill! Looted [Noble Sorcerer Ashes](https://eldenring.wiki.fextralife.com/Noble+Sorcerer+Ashes) and [Wandering Noble Ashes](https://eldenring.wiki.fextralife.com/Wandering+Noble+Ashes) from a chest before, but... I had no clue what to do with these.
 
-![Sir Oakheart vs. Erdtree Brurial Watchdog (Stormfoot Catacombs)](https://static.aorcsik.com/blog/Erdtree_Burial_Watchdogs.webp)
+![image](https://static.aorcsik.com/blog/Erdtree_Burial_Watchdogs.webp "Sir Oakheart vs. Erdtree Brurial Watchdog (Stormfoot Catacombs)")
 
 Then I went for the [Gatefront Ruins](https://eldenring.wiki.fextralife.com/Gatefront+Ruins), killed more [soldiers](https://eldenring.wiki.fextralife.com/Godrick+Soldier), but the [knight](https://eldenring.wiki.fextralife.com/Godrick+Knight) was too hard. All of them bore the same crest and served someone named Godrick. Who is he? Some ruler of this region?
 
@@ -71,7 +71,7 @@ Just outside the cave, when I turned left came [Bloody Fucking Invading Finger N
 
 I was really into checking off stuff on my list, so... [Margit](https://eldenring.wiki.fextralife.com/Margit,+The+Fell+Omen). Why not? I already gained some levels and had my [rotting spirit dog](https://eldenring.wiki.fextralife.com/Rotten+Stray+Ashes). I summoned the [Sorcerer Rogier](https://eldenring.wiki.fextralife.com/Sorcerer+Rogier) and jumped right in. He went down. On the first try. OMG! *"I shall remember thee, Tarnished!"*
 
-[Sir Oakheart vs. Margit, The Fell Omen](https://youtu.be/6vqgh3rZ1os#embed)
+[video](https://youtu.be/6vqgh3rZ1os "Sir Oakheart vs. Margit, The Fell Omen") 
 
 Why stop here? I entered the [castle](https://eldenring.wiki.fextralife.com/Stormveil+Castle) through the side opening after killing [Gatekeeper Gostoc](https://eldenring.wiki.fextralife.com/Gatekeeper+Gostoc) this annoying fellow with the attitude, I have yet to bring his [Bell Bearing](https://eldenring.wiki.fextralife.com/Gostoc's+Bell+Bearing) to the [Twin Maiden Husks](https://eldenring.wiki.fextralife.com/Twin+Maiden+Husks) in [Roundtable Hold](https://eldenring.wiki.fextralife.com/Roundtable+Hold). *(Reading a little about it, I've probably made the right decision to kill this bastard early on. He would have stolen my runes on death and locked me in the room with that damn Knight.)*
 
@@ -91,7 +91,7 @@ I realized I could hold my [Hookclaws](https://eldenring.wiki.fextralife.com/Hoo
 
 I upgraded my claws, some other armor, and even my [rotten dog spirit friend](https://eldenring.wiki.fextralife.com/Rotten+Stray+Ashes). Then I saw the [Tree Sentinel](https://eldenring.wiki.fextralife.com/Tree+Sentinel). I jumped on Torrent, summoned the dog, and gave him hell with the Omen Cleaver. It took about 10 tries to figure out a strategy that gave me enough time for scarlet rot to kick in, and then I just had to keep my distance. It was a fine closing of the day.
 
-[Sir Oakheart vs. Tree Sentinel (Limgrave)](https://youtu.be/_OjLwTM8sdE#embed)
+[video](https://youtu.be/_OjLwTM8sdE "Sir Oakheart vs. Tree Sentinel (Limgrave)")
 
 #### Day 8
 
@@ -113,7 +113,7 @@ I ventured south to the [Weeping Peninsula](https://eldenring.wiki.fextralife.co
 
 [Castle Morne](https://eldenring.wiki.fextralife.com/Castle+Morne) was full of [rotten strays](https://eldenring.wiki.fextralife.com/Rotten+Stray) and [misbegotten](https://eldenring.wiki.fextralife.com/Misbegotten). While I was advancing up, I took a turn and ended up behind the castle, followed the path, and reached the shore with a boss arena. It took a few tries, but dual-wielding the enhanced [Hookclaws](https://eldenring.wiki.fextralife.com/Hookclaws) with my [scarlet rot puppy](https://eldenring.wiki.fextralife.com/Rotten+Stray+Ashes), and(!) setting the focus on the boss helped a lot. [Leonine Misbegotten](https://eldenring.wiki.fextralife.com/Leonine+Misbegotten) felled, the [Grafted Blade Greatsword](https://eldenring.wiki.fextralife.com/Grafted+Blade+Greatsword) looted and... [Edgar](https://eldenring.wiki.fextralife.com/Edgar) is now on revenge for his daughter. The poor girl was murdered while I was delivering her letter. *(I could have summoned Edgar to this fight, but I only met him after.)*
 
-[Sir Oakheart vs. Leonine Misbegotten (Castle Morne)](https://youtu.be/V2N1NXI7T5Q#embed)
+[video](https://youtu.be/V2N1NXI7T5Q "Sir Oakheart vs. Leonine Misbegotten (Castle Morne)")
 
 Now I was feeling powerful, so I tried [Godrick](https://eldenring.wiki.fextralife.com/Godrick+the+Grafted). It went quite well. I reached phase 2 in a few seconds. Let’s start with him tomorrow.
 
@@ -121,7 +121,7 @@ Now I was feeling powerful, so I tried [Godrick](https://eldenring.wiki.fextrali
 
 I went straight to [Godrick](https://eldenring.wiki.fextralife.com/Godrick+the+Grafted) and gave him hell. It was epic. Just a little left from his health, he grabbed me with his dragon arm and smashed me to the ground, flames everywhere. I almost died when [scarlet rot](https://eldenring.wiki.fextralife.com/Scarlet+Rot) gave him the final blow.
 
-[Sir Oakheart vs. Godrick, The Grafted](https://youtu.be/YzLhrGlV2J0#embed)
+[video](https://youtu.be/YzLhrGlV2J0#embed "Sir Oakheart vs. Godrick, The Grafted")
 
 I got his depleted [great rune](https://eldenring.wiki.fextralife.com/Godrick's+Great+Rune). I knew where I had to take it. The only problem was that I didn't know the way. Through the throne room, I found a way to the region north. But for now, my goal was the [Divine Tower](https://eldenring.wiki.fextralife.com/Divine+Tower+of+Limgrave).
 
@@ -129,6 +129,6 @@ Took some time to find the way around the Ballistas, but I finally reached the b
 
 At the top of the bridge, there were three(!) [golems](https://eldenring.wiki.fextralife.com/Golem): two with axes and one with a bow and huge arrows. I could kill one before at [Castle Morne](https://eldenring.wiki.fextralife.com/Castle+Morne), but three, all aggroing the moment I stepped on the bridge... no way. I somehow managed to get past them and used the waygate that took me to the entrance of the Divine Tower. There, I could restore the great rune. 
 
-[Godrick’s Great Rune Restored](https://youtu.be/MJbq4m9Gk2s#embed)
+[video](https://youtu.be/MJbq4m9Gk2s "Godrick’s Great Rune Restored")
 
 Back in the [Roundtable Hold](https://eldenring.wiki.fextralife.com/Roundtable+Hold), I was admitted to the inner chamber, where [Enia](https://eldenring.wiki.fextralife.com/Enia) told me the message of the two fingers... they are fingers, huge fingers. I was offered the option to trade the [Remembrance of the Grafted](https://eldenring.wiki.fextralife.com/Remembrance+of+the+Grafted) for one of his weapons, but I decided to hold on to it for now since I didn't have the necessary stats to use either of the weapons.
