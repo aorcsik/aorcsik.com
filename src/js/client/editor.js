@@ -220,10 +220,16 @@ const changeHandler = (event) => {
     let frontMatterContent = mdFrontMatterMatch[1];
     const recordsMatch = frontMatterContent.matchAll(/(\s*.*?:|\s*-)([ \t]+[^\s].*?\n|[ \t]*?\n)/gm);
     if (recordsMatch) [...recordsMatch].forEach(match => {
-      frontMatterContent = frontMatterContent.replace(match[0], 
-        `<span class='mdFrontMatterRecordName'>${match[1]}</span>` +
-        `<span class='mdFrontMatterRecordValue'>${match[2]}</span>`
-      );
+      if (match[1].match(/^\s*#/)) {
+        frontMatterContent = frontMatterContent.replace(match[0], 
+          `<span class='mdComment'>${match[1]}${match[2]}</span>`
+        );  
+      } else {
+        frontMatterContent = frontMatterContent.replace(match[0], 
+          `<span class='mdFrontMatterRecordName'>${match[1]}</span>` +
+          `<span class='mdFrontMatterRecordValue'>${match[2]}</span>`
+        );  
+      }
     });
     frontMatter = `<span class='mdFrontMatter'>${frontMatterContent}</span>\n`;
     markdownText = markdownText.replace(mdFrontMatterMatch[0], '');
