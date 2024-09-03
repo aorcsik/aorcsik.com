@@ -222,6 +222,9 @@ body.tag-elden-ring {
   --nav-color: var(--accent);
   --nav-color-invert: var(--accent);
 }
+body.tag-elden-ring #header {
+  text-shadow: var(--subtle-shadow);
+}
 body.tag-elden-ring #menu-toggle:checked + #header #logo span.logo-head::after,
 body.tag-elden-ring #header.sticky #logo span.logo-head::after {
   opacity: 1;

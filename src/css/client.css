@@ -264,6 +264,15 @@ p {
 #header.sticky #menu-toggle-button {
   color: var(--nav-color);
 }
+#header #menu-toggle-button .menu-toggle-close {
+  display: none;
+}
+#menu-toggle:checked + #header #menu-toggle-button .menu-toggle-close {
+  display: inline;
+}
+#menu-toggle:checked + #header #menu-toggle-button .menu-toggle-open {
+  display: none;
+}
 
 #header nav {
   z-index: 1;
@@ -368,6 +377,7 @@ p {
     transform: translateX(0);
     height: auto;
     background-color: transparent;
+    margin-right: 5px;
   }
 
   #header nav > ul {

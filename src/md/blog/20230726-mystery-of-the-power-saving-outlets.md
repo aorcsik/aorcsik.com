@@ -10,7 +10,7 @@ A few weeks ago, I noticed something strange around my desk. The LED indicator o
 
 I have had this UPS (uninterruptible power supply) since 2011. I like it because it has traditional power outlets that can be used with any regular electronic device. There are two rows of outlets, the upper one battery-powered and the lower one surge-protected. It can protect ethernet, too, but only 10/100, which is a little outdated for today's gigabit networks.
 
-![APC Back-Ups ES 550VA](https://static.aorcsik.com/blog/apc-power-saving-es-8-outlet-550va.webp)
+![image](https://static.aorcsik.com/blog/apc-power-saving-es-8-outlet-550va.webp "APC Back-Ups ES 550VA")
 
 It worked flawlessly for nine years, but by 2020, the battery degraded so much that the unit started to warn me about it. I had this for a reason, so leaving it broken was impossible. After some research, I managed to buy a replacement battery (APC RBC110). Interestingly, the battery cost a little more in 2020 than the entire unit in 2011, and today, the exact battery costs almost twice that price… that's inflation for you. Anyway. The new battery was a perfect fit, and the UPS was working again… until recently.
 
