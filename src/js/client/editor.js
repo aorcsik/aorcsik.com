@@ -467,9 +467,25 @@ const separatorDragStartHandler = (event) => {
 
 const separatorDragHandler = (event) => {
   if (separatorDragging) {
-    let percentage = event.pageX / window.innerWidth * 100;
-    if (percentage > 49 && percentage < 51) percentage = 50;
-    document.querySelector(".editor-container").style.width = `${percentage}%`;
+    const percentage = event.pageX / window.innerWidth * 100;
+    if (percentage < 26) {
+      document.querySelector(".editor-container").style.width = "25%";
+    } else if (percentage > 49 && percentage < 51) {
+      document.querySelector(".editor-container").style.width = "50%";
+    } else if (percentage > 99) {
+      document.querySelector(".editor-container").style.width = "calc(100% - 5px)";
+    } else {
+      document.querySelector(".editor-container").style.width = `${percentage}%`;
+    }
+    
+    const previewWidth = document.querySelector(".preview-container iframe").clientWidth;
+    let previewContainerClassName = document.querySelector(".preview-container").className;
+    previewContainerClassName = previewContainerClassName.replaceAll(/ too-small/gm, "");
+    if (previewWidth < 320) {
+      document.querySelector(".preview-container").className = previewContainerClassName + " too-small";
+    } else {
+      document.querySelector(".preview-container").className = previewContainerClassName;
+    }
   }
 };
 

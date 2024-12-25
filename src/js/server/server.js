@@ -41,16 +41,18 @@ const handleRequest = async (req, res) => {
         rawContent = await readFile(`${config.markdownDir}/${templateName}.md`);
       } catch (error) {
         rawContent = `---
+title: Title
 published_at: ${(new Date()).toISOString().split("T")[0].replaceAll("-", ".")}
 author: aorcsik
+draft: true
 ---
 
-## Title
-
-...`;
+...
+`;
       }
 
       content = await renderTemplate(`${config.templateDir}/editor.ejs`, {context: {
+        debug: req.query.debug,
         rawContent: rawContent,
         path: `${templateName}.html`,
         filename: `${templateName}.md`,

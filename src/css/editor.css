@@ -34,6 +34,12 @@ pre, code, samp, kbd, var, textarea {
   --text-secondary-color: #9B9B9B;
   --border-color: #2B2B2B;
 
+  --editor-header-height: 4rem;
+
+  --subtle-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --medium-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  --floating-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
   color: var(--text-color);
   background-color: var(--background-color);
 }
@@ -81,6 +87,7 @@ body.dragging .container .separator {
   padding: .5rem;
   align-items: center;
   border-bottom: 1px solid var(--border-color);
+  height: calc(var(--editor-header-height) - 1rem);
 }
 .container .editor-header .status {
   padding: 0 .5rem 0 .5rem;
@@ -142,6 +149,8 @@ body.dragging .container .separator {
   overflow: hidden;
   position: relative;
   height: 100%;
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 
@@ -158,7 +167,7 @@ body.dragging .container .separator {
 
 .container .editor-container #contentTextarea {
   color: transparent;
-  color: rgba(255,255,255,0.2);
+  /* color: rgba(255,255,255,0.2); */
   caret-color: var(--syntax-color);
   background: transparent;
   border: 0;
@@ -173,6 +182,9 @@ body.dragging .container .separator {
   scrollbar-width: none;
   padding: 0 1rem 0 0;
   margin-right: 0;
+}
+.debug .container .editor-container #contentTextarea {
+  color: rgba(255,255,255,0.2);
 }
 /* .container .editor-container #contentTextarea::selection {
   background-color: var(--syntax-color-4);
@@ -216,6 +228,8 @@ body.dragging .container .separator {
 .container .preview-container {
   width: 100%;
   position: relative;
+  background: var(--border-color);
+  overflow: hidden;
 }
 
 .container .preview-container .drag-overlay {
@@ -237,16 +251,35 @@ body.dragging .container .preview-container .drag-overlay {
 }
 
 .container .preview-container iframe {
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 2rem);
+  height: calc(100% - var(--editor-header-height) - 1rem);
   border: 0;
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: var(--editor-header-height);
+  left: 50%;
+  transform: translateX(-50%);
   opacity: 0;
   /* transition: opacity .3s; */
+  border-radius: .25rem;
+  box-shadow: var(--medium-shadow);
+}
+
+.container .preview-container .preview-hidden-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-secondary-color);
+  text-align: center;
+  display: none;
+}
+
+.container .preview-container.too-small iframe {
+  visibility: hidden;
+}
+
+.container .preview-container.too-small .preview-hidden-message {
+  display: block;
 }
 
 .mdFrontMatter {

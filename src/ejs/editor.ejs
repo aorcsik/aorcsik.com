@@ -17,13 +17,18 @@
 
   <script src="https://kit.fontawesome.com/c39a0791cd.js" crossorigin="anonymous"></script>
   
-  
   <% context.bundle.forEach(bundle => { %>
     <link rel="stylesheet" href="/<%= bundle %>.bundle.css?_=<%= (new Date()).getTime()%>">
   <% }); %>
 
+  <script>
+    window.editor_config = {
+      debug: "<% if (context.debug) { %>true<% } %>" === "true",
+    };
+  </script>
+
 </head>
-<body>
+<body class="<% if (context.debug) { %>debug<% } %>">
   <div class="container">
     <form method="post" action="/preview" target="temp_iframe" class="editor-container">
       <div class="editor-header">
@@ -44,6 +49,7 @@
     </form>
     <div class="separator"><i class="fa-regular fa-ellipsis-vertical"></i></div>
     <div class="preview-container">
+      <div class="preview-hidden-message">Preview area is too small.</div>
       <div class="drag-overlay"></div>
     </div>
   </div>
