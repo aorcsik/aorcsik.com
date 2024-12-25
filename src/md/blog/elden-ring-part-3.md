@@ -4,11 +4,10 @@ subtitle: Adventures in Elden Ring - Part 3
 description: I started exploring Caelid, tied some loose ends in Limgrave, and returned to Liurnia to kill a dragon.
 image: https://static.aorcsik.com/blog/elden-ring-social.webp
 author: aorcsik
-published_at: 2024.07.16
+published_at: 2024.12.22
 tags:
  - elden-ring
 collection: elden-ring
-draft: true
 ---
 
 <div class="blog-info">
@@ -54,80 +53,80 @@ The next stop was the [Coastal Cave](https://eldenring.wiki.fextralife.com/Coast
 
 [video]
 
-Defeating them opened the way to a tunnel leading outside. I took that instead of teleporting back to the start and boy it was a good decision. I emerged on a nearby island with the [Church of Dragon Communion](https://eldenring.wiki.fextralife.com/Church+of+Dragon+Communion) on it. Here I could learn dragon incantations in exchange for [dragon hearts](https://eldenring.wiki.fextralife.com/Dragon+Heart)... but where could I get one. I remembered a [dragon](https://eldenring.wiki.fextralife.com/Flying+Dragon+Agheel "Flying Dragon Agheel") in Lake Agheel. He was on my list.
+Defeating them opened the way to a tunnel leading outside. I took that instead of teleporting back to the start and boy it was a good decision. I emerged on a nearby island with the [Church of Dragon Communion](https://eldenring.wiki.fextralife.com/Church+of+Dragon+Communion) on it. Here, I could learn dragon incantations in exchange for [dragon hearts](https://eldenring.wiki.fextralife.com/Dragon+Heart)... but where could I get one? I remembered a [dragon](https://eldenring.wiki.fextralife.com/Flying+Dragon+Agheel "Flying Dragon Agheel") in Lake Agheel. He was on my list.
 
 I tracked down the beast and gave him hell with Roppy and the Hookclaws. I was burned a few times pretty badly, but eventually, he fell, and I got his heart.
 
 [video]
 
-Just a little north of where the dragon fell was a tunnel entrance. I was in a similar tunnel before on the Weeping Penninsula, lots of upgrade materials inside, and and boss, a Stonedigger Troll in this case. Beating it rewarded me with the Roar Talisman.
+A tunnel entrance was just a little north of where I defeated the dragon. I was in a similar tunnel before on the Weeping Peninsula, with many upgrade materials inside and a boss, a Stonedigger Troll. Beating it rewarded me with the Roar Talisman.
 
 [video]
 
-I travelled further north and cleared a cemetery below Stormhill, while this wasn't the place I was looking for I found Godrick Soldier ashes. I actually took the wrong turn looking for Groveside cave which was just north of the Church of Elijah. In the cave I beat the Beastman of Farum Azula to earn the Flamedrake talisman. This would have been useful fighting the dragon before, innit?
+I travelled further north and cleared a cemetery below Stormhill, while this wasn't the place I was looking for I found Godrick Soldier ashes. I took the wrong turn looking for Groveside Cave, just north of the Church of Elijah. In the cave, I beat the Beastman of Farum Azula to earn the Flamedrake talisman. This would have been useful fighting the dragon before, innit?
 
-Back on the beach near the coastal cave I encountered an invisible thing that was rolling around in a pattern leaving golden marks on the ground. I saw a similar thing in Caelid, but now I managed to kill it. It was a "dung beetle" and dropped an ash of war. Now I knew I had to track down a beetle in Caelid, maybe it was the same? I found the invisible beetle and managed to kill it, but it wasn't the ash I was looking for. So I kept searching further.
+Back on the beach near the coastal cave, I encountered an invisible thing rolling around in a pattern, leaving golden marks on the ground. I saw a similar thing in Caelid, but now I managed to kill it. It was a "dung beetle" and dropped an ash of war. Now I knew I had to track down a beetle in Caelid. Maybe it was the same? I found the invisible beetle and managed to kill it, but it wasn't the ash I sought. So I kept searching further.
 
-In the middle of the rotting lake I was invaded. Managed to kill the invader, but lost a bunch of runes, and at the moment of my victory some big ass soldiers appeared to finishe me off... This place is hell.
+In the middle of the rotting lake, I was invaded. I managed to kill the invader but lost a bunch of runes, and at the moment of my victory, some big-ass soldiers appeared to finish me off... This place is hell.
 
-Never mind. I stood up and found the beetle and applied the Lifesteal Fists on my hookclaws. Oh yeah. I found a misty cave entrance nearby, decided to open it. It was the Gaol Cave, imprisoned within a bunch of those kamikaze zombies, wardens and at the end a Frenzied Duelist. I beat him on the second try and leaving his room through a tunnel I was greeted with the calming view of Limgrave... such a relief. And just in front of me and a new sword.
-
-[video]
-
-I was tired, had to go back to Roundtable Hold and maybe tell people about my adventures. Hmm... somethings not right. It's dark here. From my left an invader came into view and sliced me up. What is happening!? Next time I was prepared. Finishing him gave me some nasty fist weapons and turned the place back to its original state, but hey, the grumpy guy outside grandpa's room is gone, and his Armor laying around. So you were the one, I never trusted you. 
+Never mind. I stood up, found the beetle, and applied the Lifesteal Fists on my Hookclaws. Oh yeah. I found a misty cave entrance nearby and decided to open it. It was the Gaol Cave, imprisoned within a bunch of those kamikaze zombies, wardens and at the end a Frenzied Duelist. I beat him on the second try and left his room through a tunnel. I was greeted with the calming view of Limgrave. It was such a relief. And just in front of me, a new sword.
 
 [video]
 
-I felt restless, so I decided to take a look at the eastern side of Liurnia. I hate the soldiers with four hands, they shoot arrows like crazy and when you get close it feels like in a blender. Damn.
+I was tired and had to go back to Roundtable Hold and maybe tell people about my adventures. Hmm... something is not right. It's dark here. From my left, an invader came into view and sliced me up. What is happening!? Next time, I was prepared. Finishing him gave me some nasty fist weapons and turned the place back to its original state, but hey, the grumpy guy outside Grandpa's room was gone, and his Armor was lying around. So you were the one. I never trusted you. 
 
-There are also a lot of wolves around here. And they are tougher. While I was escaping a pack I stumbled upon a Tibia Mariner, the death creature with the boat. I liked this fight in Limgrave before so I decided to give it a try. It want well and I got skeletal bandit ashes too. Nice ending of a long day. Time to rest.
+[video]
+
+I felt restless, so I decided to look at the eastern side of Liurnia. I hate the soldiers with four hands. They shoot arrows like crazy, and when you get close, it feels like it's in a blender. Damn. I later figured these were magically animated life-size dolls, called puppets, that could malfunction. That is when they chop you up and fill you with arrows.
+
+There are also a lot of wolves around here. And they are tougher. While escaping a pack, I stumbled upon a Tibia Mariner, the death creature with the boat. I had liked this fight in Limgrave before, so I decided to try it. It went well, and I got skeletal bandit ashes, too. It's a nice ending to a long day—time to rest.
 
 [video]
 
 #### Day 16
 
-I stayed around the eastern part of Liurnia. Found a statue that was leading me to Cliffbttom Catacombs. So far this was the most difficult dungeon I attempted. First, the obvious way does not lead to the lever. Oh no, it leads to traps, imps and onens guarding a few materials and a scythe, which is not that bad to be fair, but then where is the lever.
+I stayed around the eastern part of Liurnia. I found a statue that was leading me to the Cliffbttom Catacombs. So far, this was the most difficult dungeon I attempted. First, the obvious way does not lead to the lever. Oh no, it leads to traps, Imps, and Omens guarding a few materials and a scythe, which is not that bad, to be fair, but then where is the lever?
 
-Turné out one has to jump down below, where one of the omens stand guard. If you do it right, you fall into the bushes and crouch immediately, then it might not notice you. The other one is patrolling the circular corridor. There are bushes everywhere so you can stealth around. Leaving through the only exit leads to a room with another big guy, with a big ass sword. I'm sure there is a clever way to kill it, but I didn't have much patience at this point so I tried to rush past it. Finally a ladder, I climbed and there was the lever, but that thing also climbed up, what the hell. Pulled the lever, quickly grabbed some item on the right and jumped down to the ramp. The thing did too, it was following me, so I ran, all the way to the elevator.
+It turns out one has to jump down below, where one of the Omens stands guard. If you do it right, you fall into the bushes, and if you crouch immediately, it might not notice you. The other one is patrolling the circular corridor. There are bushes everywhere, so you can stealth around. Leaving through the only exit leads to a room with another big guy with a big-ass sword. I'm sure there is a clever way to kill it, but I didn't have much patience then, so I rushed past it. Finally a ladder, I climbed and there was the lever, but that thing also climbed up, what the hell. I pulled the lever, quickly grabbed some items on the right, and jumped down to the ramp. The thing did, too! It was following me, so I ran all the way to the elevator.
 
-Finally the boss arena was open, so after some rest I went straight there. It was a watchdog, of course, but this one wielded a staff and used glintstone magic. No surprise so close to Raya Lazarus. Took me two attempts, I melted it's HP while Roppy tanked, was rewarded with the Kaiden Sellsword Ashes.
+Finally, the boss arena was open, so after some rest, I went straight there. It was a watchdog, of course, but this one wielded a staff and used glintstone magic. No surprise, so close to Raya Lucaria. It took me two attempts. I melted its HP while Roppy tanked and was rewarded with the Kaiden Sellsword Ashes.
 
-While rushing in the lever area I missed one item, I have to come back for.
+While rushing toward the lever area, I missed one item. I have to come back for it later.
 
 [video]
 
-From here I travelled west through the lake. After killing some creepy hunchback enemies I found a girl, agreed to find her stolen necklace and also Patches, so set up shop here. I sat beside him by the campfire and thought about how difficult this day was.
+From here, I traveled west through the lake. After killing some creepy hunchback enemies, I found a girl and agreed to find her stolen necklace and also Patches. So, he set up shop here. Sitting beside him by the campfire, I thought about how difficult this day was.
 
 #### Day 17
 
-I left Patches' little camp south to check Laskyar Ruins. On the way I had some trouble with Demi-humans and wraith callers, but nothing much. When I reached the ruins there was a teleporter in the middle. Stepping close Wraith Callers started to appear and suddenly a Revenant. They quickly tore me apart. I tried a couple times to kill it but it was just too aggressive, so I decided to go somewhere else.
+I left Patches' little camp south to check Laskyar Ruins. On the way, I had some trouble with Demi-humans and wraith callers, but nothing much. When I reached the ruins, there was a teleporter in the middle. Stepping close Wraith Callers started to appear and suddenly a Revenant. They quickly tore me apart. I tried a couple of times to kill it, but it was too aggressive, so I decided to go somewhere else.
 
-Found a candle holder nearby and followed the spirit to the Lakeside Crystal Cave. Inside I had to fight Demi-humans and crystal snails while jumping lower and lower. At the bottom a Bloodhound Knight was waiting for me. I had to give this fight several tries and the most annoying about it was that I had to fight through most of the cave to get there. I used this right as an opportunity to practice guard counter with the Bloodhound's Fang. Ironic that I killed him with his own weapon. I got the Cerulean Amber Medallion.
-
-[video]
-
-I left the cave through a tunnel that lead me to the Slumbering Wolf Shack, where I met Latenna. She was the albinuaric who Albus asked me to find. She asked for some help in exchange for the other half of the medallion.
-
-With a clearer head I tried again to beat the Revenant. And after a few tries Insucceeded. Looted a smithing stone and some other stuff, but the most interesting item was underground's wraith caller's bell.
+I found a candle holder nearby and followed the spirit to the Lakeside Crystal Cave. Inside, I had to fight Demi-humans and crystal snails while jumping lower and lower. At the bottom, a Bloodhound Knight was waiting for me. I had to give this fight several tries, and the most annoying thing about it was that I had to fight through most of the cave to get there every time. I used this as an opportunity to practice guard counter with the Bloodhound's Fang. Ironic that I killed him with his own weapon. I got the Cerulean Amber Medallion.
 
 [video]
 
-Now that there were no more enemies I used the portal that placed me in front of the Raya Lucaria Academy gates. The same place I ended up few days ago. this time I noticed the grace further toward the gate, and also found a map with a meeting place marked. I decided to visit the place but the only thing I found there was a sleeping dragon...
+I left the cave through a tunnel that led me to the Slumbering Wolf Shack, where I met Latenna. She was the albinuaric that Albus asked me to find. She asked for some help in exchange for the other half of the medallion.
+
+With a clearer head, I tried again to beat the Revenant. And after a few tries, I succeeded. I looted a smithing stone and some other stuff, but the most interesting item was underground—a wraith caller's bell.
+
+[video]
+
+Now that there were no more enemies, I used the portal that placed me in front of the Raya Lucaria Academy gates. It's the same place I ended up a few days ago. But this time, I noticed the site of grace further toward the gate and also found a map with a meeting place marked. I decided to visit the place, but I only found a sleeping dragon.
 
 #### Day 18
 
-I've killed dragons... well, one dragon. So I can do this. This dragon, Smarag was similar to the previous one, but instead of fire, it used glintstone magic, and besides the breath attack, also fired a large projectile. I could bring down half of its health, but I usually fall of Torrent and that's death. I retreated for now and started some research.
+I've killed dragons... well, one dragon. So I can do this. This dragon, Smarag, was similar to the previous one, but instead of fire, it used glintstone magic, and besides the breath attack, it also fired a large projectile. I could bring down half of its health, but I usually fell off Torrent, and that's death. I retreated for now and started some research.
 
-Smarag is most vulnerable to piercing attacks and I happen to have a +8 Halberd. Also Roppy is not the best spirit to aid me here... Banished Knight Oleg. Which is dropped by the Ulcerated Tree Spirit in Fringefolk Hero's Grave. This is it. I can't delay this further. I have to go back and face the damn tree snake... and the chariot.
+Smarag is most vulnerable to piercing attacks, and I happen to have a +8 Halberd. Also, Roppy is not the best spirit to aid me here... Banished Knight Oleg Ashes, which the Ulcerated Tree Spirit drops in Fringefolk Hero's Grave. This is it. I can't delay this further. I have to go back and face the damn tree snake... and the chariot.
 
-Well How about, no. Actually I don't have enough FP to summon Oleg or Einhall or... wait a minute, Latenna, the Albinauric woman, with the wolf. I can summon her, and someone said she is very good against dragons. Let's see.
+Well, How about no. Actually, I don't have enough FP to summon Oleg or Einhall or... wait a minute, Latenna, the Albinauric woman, with the wolf. I can summon her. Someone said she is very good against dragons. Let's see.
 
-So, I accidentally summoned Latenna at a random spot, but no worries, I'll fail better this time. The Halberd doesn't work, I move too fast with Torrent to land good hits. Couple rounds around the rock and I was nocked off the saddle, right in the middle of glintstone fire. You're dead.
+I accidentally summoned Latenna at a random spot, but no worries, I'll fail better this time. The Halberd didn't work, I moved too fast with Torrent to land good hits. A couple rounds around the rock, and I was knocked off the saddle right in the middle of glintstone fire. *You're dead.*
 
-Ok, this time I set up Latenna up on a smaller rock, so she has a clean shot on Smarag and probably safe from fire. I switched back to good old Hookclaws, prepared some raisins for Torrent and jumped into action. And it was great, an awesome dragon fight again, and success, another dragon heart. The keys I came for I actually looted during one of the previous tries, but no matter, killing the dragon was the real reward here. Yeah.
+Ok, this time I set up Latenna up on a smaller rock, so she has a clean shot on Smarag and probably safe from fire. I switched back to my good old Hookclaws, prepared some raisins for Torrent, and jumped into action. And it was great—another awesome dragon fight, another success, another dragon heart. The keys I came for I accidentalla looted during one of the previous tries, but no matter, killing the dragon was the real reward here. Yeah.
 
 [video]
 
-So, full off ambition I trotted in the middle of Temple Quarter and hit the lonely guy in the middle... suddenly a whole village was cartwheeling toward me, and I'm dead. What the hell!? Next time I carefully removed every hiding enemy around the middle one, still on attack three small ones emerged from the water, but still it was much easier. Also I'm using the Demi-human group now, these boys are tough and aggressive. I like them.
+So, full off ambition I trotted in the middle of Temple Quarter and hit the lonely guy in the middle... suddenly a whole village was cartwheeling toward me, and I'm dead. What the hell!? Next time I carefully removed every hiding enemy around the middle one. Now, when I attacked, only three small ones emerged from the water. It was much easier. Also I'm using the Demi-human group now, these boys are tough and aggressive. I like them.
 
-After killing everyone I looted a Frost Hatchet from a chest, and called it a day.
+After killing everyone, I looted a Frost Hatchet from a chest and called it a day.
