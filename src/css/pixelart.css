@@ -64,7 +64,7 @@ div.sprite picture {
   -ms-interpolation-mode: nearest-neighbor;   /* IE8+                */
 }
 
-.sprite picture::after {
+/* .sprite picture::after {
   content: "";
   width: 36px;
   height: 13px;
@@ -74,7 +74,7 @@ div.sprite picture {
   background: url("../images/aorcsixel.png");
   background-size: cover;
   opacity: .75;
-}
+} */
 
 div.sprite strong.title {
   font-size: 1.2em;
